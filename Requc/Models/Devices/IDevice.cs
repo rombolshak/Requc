@@ -9,5 +9,7 @@ namespace Requc.Models.Devices
         event EventHandler ProcessStarted;
 
         void Process();
+
+        string Name { get; set; }
     }
 }

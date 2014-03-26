@@ -14,5 +14,11 @@ namespace Requc.Models.Devices
         {
             throw new NotImplementedException();
         }
+
+        public string Name
+        {
+            get { return "Device"; }
+            set { }
+        }
     }
 }
