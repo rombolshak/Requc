@@ -5,15 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-        <Path Stroke="CadetBlue" StrokeThickness="3">
+        <Path Stroke="Black" StrokeThickness="2" Fill="White">
             <Path.Data>
-                <PathGeometry>
-                    <PathGeometry.Figures>
-                        <PathFigure StartPoint="0,20">
-                            <LineSegment Point="100,20"></LineSegment>
-                        </PathFigure>
-                    </PathGeometry.Figures>
-                </PathGeometry>
+               <GeometryGroup>
+                   <LineGeometry StartPoint="0,80" EndPoint="20,80"></LineGeometry>
+                   <RectangleGeometry Rect="20,70,40,20"></RectangleGeometry>
+                   <LineGeometry StartPoint="60,80" EndPoint="80,80"></LineGeometry>
+               </GeometryGroup>
             </Path.Data>
         </Path>
 </UserControl>

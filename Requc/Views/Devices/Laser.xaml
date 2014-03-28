@@ -5,21 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-        <Path Stroke="CadetBlue" StrokeThickness="3" Fill="CadetBlue">
-            <Path.Data>
-                <PathGeometry>
-                    <PathGeometry.Figures>
-                        <PathFigure StartPoint="20,5" >
-                            <PathFigure.Segments>
-                                <ArcSegment Size="10,10" RotationAngle="45" IsLargeArc="True" SweepDirection="Counterclockwise" Point="20,40"/>
-                                <LineSegment Point="20,5"></LineSegment>
-                            </PathFigure.Segments>
-                        </PathFigure>
-                        <PathFigure StartPoint="20,20">
-                            <LineSegment Point="100,20"></LineSegment>
-                        </PathFigure>
-                    </PathGeometry.Figures>
-                </PathGeometry>
-            </Path.Data>
-        </Path>
+    <Grid>
+    <Path Stroke="Black" StrokeThickness="2" Fill="White">
+        <Path.Data>
+            <GeometryGroup>
+                <LineGeometry StartPoint="68,50" EndPoint="68,110"></LineGeometry>
+                <LineGeometry StartPoint="74,50" EndPoint="74,110"></LineGeometry>
+                <LineGeometry StartPoint="80,50" EndPoint="80,110"></LineGeometry>
+                <LineGeometry StartPoint="86,50" EndPoint="86,110"></LineGeometry>
+                <LineGeometry StartPoint="92,50" EndPoint="92,110"></LineGeometry>
+                <RectangleGeometry Rect="100,75,10,10"></RectangleGeometry>
+                <RectangleGeometry Rect="110,78,10,5"></RectangleGeometry>
+                </GeometryGroup>
+        </Path.Data>
+    </Path>
+    <Path Stroke="White" Fill="Black">
+        <Path.Data>
+            <RectangleGeometry Rect="60,60,40,40"></RectangleGeometry>
+        </Path.Data>
+    </Path>
+    </Grid>
 </UserControl>
