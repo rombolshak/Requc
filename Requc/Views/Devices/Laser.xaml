@@ -5,6 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <PathGeometry x:Key="Way" Figures="M 100,80 L 158,80" />
+        <Storyboard TargetProperty="Center" x:Key="Storyboard">
+            <PointAnimationUsingPath PathGeometry="{StaticResource Way}" />
+        </Storyboard>
+        <EllipseGeometry RadiusX="1" RadiusY="1" Center="0,80" x:Key="Photon" />
+        <Path Stroke="Red" StrokeThickness="3" x:Key="Path" />
+    </UserControl.Resources>
     <Grid>
     <Path Stroke="Black" StrokeThickness="2" Fill="White">
         <Path.Data>
@@ -16,6 +24,7 @@
                 <LineGeometry StartPoint="92,50" EndPoint="92,110"></LineGeometry>
                 <RectangleGeometry Rect="100,75,10,10"></RectangleGeometry>
                 <RectangleGeometry Rect="110,78,10,5"></RectangleGeometry>
+                <LineGeometry StartPoint="120,80" EndPoint="160,80"></LineGeometry>
                 </GeometryGroup>
         </Path.Data>
     </Path>
@@ -23,6 +32,6 @@
         <Path.Data>
             <RectangleGeometry Rect="60,60,40,40"></RectangleGeometry>
         </Path.Data>
-    </Path>
+        </Path>
     </Grid>
 </UserControl>

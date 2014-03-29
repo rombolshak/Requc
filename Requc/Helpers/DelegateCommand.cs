@@ -7,6 +7,12 @@ namespace Requc.Helpers
     {
         private readonly Action _command;
         private readonly Func<bool> _canExecute;
+
+        public void RaiseCanExecuteChanged()
+        {
+            CommandManager.InvalidateRequerySuggested();
+        }
+
         public event EventHandler CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }

@@ -5,13 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.Resources>
+        <PathGeometry x:Key="Way" Figures="M 0,80 L 80,80" />
+        <ColorAnimation AutoReverse="True" x:Key="ColorAnimation" Duration="0:0:0.6"></ColorAnimation>
+        <Storyboard TargetProperty="Center" x:Key="Storyboard">
+            <PointAnimationUsingPath PathGeometry="{StaticResource Way}" />
+            <Storyboard TargetName="Device" TargetProperty="(Path.Fill).(SolidColorBrush.Color)">
+                <StaticResource ResourceKey="ColorAnimation"></StaticResource>
+            </Storyboard>
+        </Storyboard>
+        <EllipseGeometry RadiusX="1" RadiusY="1" x:Key="Photon" Center="0,80" />
+    </UserControl.Resources>
+    <Grid>
         <Path Stroke="Black" StrokeThickness="2" Fill="White">
             <Path.Data>
                <GeometryGroup>
-                   <LineGeometry StartPoint="0,80" EndPoint="20,80"></LineGeometry>
-                   <RectangleGeometry Rect="20,70,40,20"></RectangleGeometry>
-                   <LineGeometry StartPoint="60,80" EndPoint="80,80"></LineGeometry>
+                    <LineGeometry StartPoint="0,80" EndPoint="20,80"></LineGeometry>
+                    <LineGeometry StartPoint="60,80" EndPoint="80,80"></LineGeometry>
                </GeometryGroup>
             </Path.Data>
         </Path>
+        <Path Stroke="Black" StrokeThickness="2" Fill="White" x:Name="Device">
+            <Path.Data>
+                <RectangleGeometry Rect="20,70,40,20" ></RectangleGeometry>
+            </Path.Data>
+        </Path>
+    </Grid>
 </UserControl>

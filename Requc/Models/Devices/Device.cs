@@ -1,4 +1,5 @@
 ﻿using System;
+using Requc.Helpers;
 
 namespace Requc.Models.Devices
 {
@@ -6,19 +7,19 @@ namespace Requc.Models.Devices
     {
         protected abstract void DoProcess();
 
-        public event EventHandler ProcessFinished;
+        public event EventHandler ProcessFinished = Actions.DoNothing;
 
-        public event EventHandler ProcessStarted;
+        public event EventHandler ProcessStarted = Actions.DoNothing;
 
         public void Process()
         {
-            throw new NotImplementedException();
+            DoProcess();
+            ProcessStarted(this, new EventArgs());
         }
 
-        public string Name
+        public void RequestProcessFinish()
         {
-            get { return "Device"; }
-            set { }
+            ProcessFinished(this, new EventArgs());
         }
     }
 }

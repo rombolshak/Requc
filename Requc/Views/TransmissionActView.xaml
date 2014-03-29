@@ -5,18 +5,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Canvas>
-        <ItemsControl ItemsSource="{Binding Path=TransmissionActScheme.Devices}" >
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Horizontal"></StackPanel>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <ContentPresenter Content="{Binding}"></ContentPresenter>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-    </Canvas>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Canvas Grid.Column="0">
+            <ItemsControl ItemsSource="{Binding Path=TransmissionActScheme.Devices}" >
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ContentPresenter Content="{Binding}"></ContentPresenter>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Canvas>
+        <StackPanel Grid.Column="1">
+            <Button Height="100" Margin="0,0,0,10" Command="{Binding Path=NextStepCommand}">Next step</Button>
+            <Button Height="100" Margin="0,0,0,10" Command="{Binding Path=RunAllStepsCommand}">Run all</Button>
+        </StackPanel>
+    </Grid>
 </UserControl>

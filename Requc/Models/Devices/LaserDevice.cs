@@ -6,7 +6,7 @@ namespace Requc.Models.Devices
     {
         protected override void DoProcess()
         {
-            throw new NotImplementedException();
+            //TODO: create new photon
         }
     }
 }

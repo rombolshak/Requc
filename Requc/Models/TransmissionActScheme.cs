@@ -15,6 +15,10 @@ namespace Requc.Models
         public TransmissionActScheme(IList<IDevice> devices)
         {
             Devices = devices;
+            foreach (var device in Devices)
+            {
+                device.ProcessFinished += DeviceOnProcessFinished;
+            }
         }
 
         public IList<IDevice> Devices { get; private set; }
@@ -22,13 +26,17 @@ namespace Requc.Models
         public void NextStep()
         {
             Devices[_currentDevice].Process();
+        }
+
+        private void DeviceOnProcessFinished(object sender, EventArgs eventArgs)
+        {
             _currentDevice += 1;
-            StepCompleted(this, new EventArgs());
             if (_currentDevice == Devices.Count)
             {
                 _currentDevice = 0;
                 ActCompleted(this, new EventArgs());
             }
+            StepCompleted(this, new EventArgs());
         }
 
         public event EventHandler StepCompleted = Actions.DoNothing;
