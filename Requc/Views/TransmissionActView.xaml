@@ -15,7 +15,7 @@
             <ItemsControl ItemsSource="{Binding Path=TransmissionActScheme.Columns}" >
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <views:GridEx ItemsPerColumn="1"></views:GridEx>
+                        <StackPanel Orientation="Horizontal"></StackPanel>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>

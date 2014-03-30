@@ -11,7 +11,6 @@ namespace Requc.Commands
         public event EventHandler RunWorkerStarting = Actions.DoNothing;
         public event RunWorkerCompletedEventHandler RunWorkerCompleted;
 
-        public abstract string Text { get; }
         private bool _isExecuting;
         public bool IsExecuting
         {

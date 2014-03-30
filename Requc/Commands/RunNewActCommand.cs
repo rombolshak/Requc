@@ -7,17 +7,21 @@ using Requc.Models;
 
 namespace Requc.Commands
 {
-    class RunNewActCommand : AsyncCommand 
+    class RunNewActCommand : CommonCommand 
     {
-        public override string Text
-        {
-            get { throw new NotImplementedException(); }
-        }
-
         protected override void OnExecute(object parameter)
         {
-            var act = new TransmissionAct((TransmissionActScheme)parameter);
-            act.Run();
+            _act = new TransmissionAct((TransmissionActScheme) parameter);
+            _act.Completed += ActOnCompleted;
+            _act.Run();
         }
+
+        private void ActOnCompleted(object sender, EventArgs eventArgs)
+        {
+            _act.Completed -= ActOnCompleted;
+            _act.Dispose();
+        }
+
+        private TransmissionAct _act;
     }
 }

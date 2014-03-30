@@ -60,7 +60,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Commands\AsyncCommand.cs" />
+    <Compile Include="Commands\CommonCommand.cs" />
     <Compile Include="Commands\RunNewActCommand.cs" />
+    <Compile Include="Views\Devices\Alice.xaml.cs">
+      <DependentUpon>Alice.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Devices\Channel.xaml.cs">
       <DependentUpon>Channel.xaml</DependentUpon>
     </Compile>
@@ -87,6 +91,10 @@
       <DependentUpon>TransmissionActView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\DeviceColumnView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Devices\Alice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

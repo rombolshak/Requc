@@ -33,8 +33,8 @@ namespace Requc.Views.Devices
 
         private void OnProcessStarted(object sender, EventArgs eventArgs)
         {
-            Dispatcher.Invoke(() =>
-            {
+            //Dispatcher.Invoke(() =>
+            //{
                 var photon = ((EllipseGeometry)FindResource("Photon")).Clone();
                 var name = "ph" + Guid.NewGuid().ToString("N");
                 RegisterName(name, photon);
@@ -57,7 +57,7 @@ namespace Requc.Views.Devices
                     animation.Remove();
                 };
                 BeginStoryboard(animation);
-            });
+            //});
         }
     }
 }

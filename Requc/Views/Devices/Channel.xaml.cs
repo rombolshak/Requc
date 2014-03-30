@@ -33,8 +33,8 @@ namespace Requc.Views.Devices
 
         private void OnProcessStarted(object sender, EventArgs eventArgs)
         {
-            Dispatcher.Invoke(() =>
-            {
+            //Dispatcher.Invoke(() =>
+            //{
                 var photon = ((EllipseGeometry)FindResource("Photon")).Clone();
                 var name = "ph" + Guid.NewGuid().ToString("N");
                 RegisterName(name, photon);
@@ -51,13 +51,13 @@ namespace Requc.Views.Devices
                 Storyboard.SetTargetName(animation, name);
                 animation.Completed += (o, args) =>
                 {
+                    UnregisterName(name);
                     ((Device)DataContext).RequestProcessFinish();
                     ((Grid)Content).Children.Remove(path);
-                    UnregisterName(name);
                     animation.Remove();
                 };
-                BeginStoryboard(animation);
-            });
+                animation.Begin(this);
+            //});
         }
     }
 }
