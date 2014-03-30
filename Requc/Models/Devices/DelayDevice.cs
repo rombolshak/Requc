@@ -6,7 +6,6 @@ namespace Requc.Models.Devices
     {
         protected override void DoProcess()
         {
-            throw new NotImplementedException();
         }
     }
 }

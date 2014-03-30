@@ -23,4 +23,12 @@
     <DataTemplate DataType="{x:Type device:PhaseShiftDevice}">
         <deviceview:PhaseShift />
     </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type device:ChannelDevice}">
+        <deviceview:Channel />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type device:DelayDevice}">
+        <deviceview:Delay />
+    </DataTemplate>
 </ResourceDictionary>

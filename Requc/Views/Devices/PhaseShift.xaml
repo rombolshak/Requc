@@ -8,8 +8,8 @@
     
     <UserControl.Resources>
         <PathGeometry x:Key="Way" Figures="M 0,40 L 100,40" />
-        <ColorAnimation AutoReverse="True" x:Key="ColorAnimation" Duration="0:0:0.6"></ColorAnimation>
-        <Storyboard TargetProperty="Center" x:Key="Storyboard">
+        <ColorAnimation AutoReverse="True" x:Key="ColorAnimation" Duration="0:0:0.5"></ColorAnimation>
+        <Storyboard TargetProperty="Center" x:Key="Storyboard" Duration="0:0:1">
             <PointAnimationUsingPath PathGeometry="{StaticResource Way}" />
             <Storyboard TargetName="Device" TargetProperty="(Path.Fill).(SolidColorBrush.Color)">
                 <StaticResource ResourceKey="ColorAnimation"></StaticResource>

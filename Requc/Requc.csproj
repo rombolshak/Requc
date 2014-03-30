@@ -64,6 +64,9 @@
     <Compile Include="Views\Devices\Channel.xaml.cs">
       <DependentUpon>Channel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Devices\Delay.xaml.cs">
+      <DependentUpon>Delay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\GridEx.cs" />
     <Compile Include="Models\DeviceColumn.cs" />
     <Compile Include="Models\Devices\NullDevice.cs" />
@@ -88,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Devices\Channel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Devices\Delay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
