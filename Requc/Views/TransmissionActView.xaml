@@ -11,7 +11,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Canvas Grid.Column="0">
-            <ItemsControl ItemsSource="{Binding Path=TransmissionActScheme.Devices}" >
+            <ItemsControl ItemsSource="{Binding Path=TransmissionActScheme.Columns}" >
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"></StackPanel>
@@ -25,8 +25,7 @@
             </ItemsControl>
         </Canvas>
         <StackPanel Grid.Column="1">
-            <Button Height="100" Margin="0,0,0,10" Command="{Binding Path=NextStepCommand}">Next step</Button>
-            <Button Height="100" Margin="0,0,0,10" Command="{Binding Path=RunAllStepsCommand}">Run all</Button>
+            <Button Height="100" Margin="0,0,0,10" Command="{Binding Path=RunNewActCommand}" CommandParameter="{Binding TransmissionActScheme}">Run all</Button>
         </StackPanel>
     </Grid>
 </UserControl>

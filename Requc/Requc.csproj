@@ -59,8 +59,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AsyncCommand.cs" />
+    <Compile Include="Commands\RunNewActCommand.cs" />
+    <Compile Include="Models\DeviceColumn.cs" />
+    <Compile Include="Models\Devices\NullDevice.cs" />
+    <Compile Include="Models\TransmissionAct.cs" />
+    <Compile Include="Views\DeviceColumnView.xaml.cs">
+      <DependentUpon>DeviceColumnView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Devices\Laser.xaml.cs">
       <DependentUpon>Laser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Devices\Null.xaml.cs">
+      <DependentUpon>Null.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Devices\PhaseShift.xaml.cs">
       <DependentUpon>PhaseShift.xaml</DependentUpon>
@@ -68,7 +79,15 @@
     <Compile Include="Views\TransmissionActView.xaml.cs">
       <DependentUpon>TransmissionActView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\DeviceColumnView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Devices\Laser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Devices\Null.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

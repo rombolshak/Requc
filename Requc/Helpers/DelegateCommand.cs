@@ -5,7 +5,7 @@ namespace Requc.Helpers
 {
     public class DelegateCommand : ICommand
     {
-        private readonly Action _command;
+        private readonly Action<object> _command;
         private readonly Func<bool> _canExecute;
 
         public void RaiseCanExecuteChanged()
@@ -19,7 +19,7 @@ namespace Requc.Helpers
             remove { CommandManager.RequerySuggested -= value; }
         }
 
-        public DelegateCommand(Action command, Func<bool> canExecute = null)
+        public DelegateCommand(Action<object> command, Func<bool> canExecute = null)
         {
             if (command == null)
                 throw new ArgumentNullException();
@@ -29,7 +29,7 @@ namespace Requc.Helpers
 
         public void Execute(object parameter)
         {
-            _command();
+            _command(parameter);
         }
 
         public bool CanExecute(object parameter)

@@ -15,11 +15,9 @@ namespace Requc.ViewModels
         {
             TransmissionAct = new TransmissionActViewModel()
                 {
-                    TransmissionActScheme = new TransmissionActScheme(new IDevice[]
-                        {
-                            new LaserDevice(),
-                            new PhaseShiftDevice(),
-                        })
+                    TransmissionActScheme = new TransmissionActScheme(
+                        new DeviceColumn(new LaserDevice(), new PhaseShiftDevice()),
+                        new DeviceColumn(new PhaseShiftDevice(), null))
                 };
         }
         #endregion

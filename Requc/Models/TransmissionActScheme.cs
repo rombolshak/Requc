@@ -10,19 +10,13 @@ namespace Requc.Models
 {
     public class TransmissionActScheme : NotificationObject
     {
-        private int _currentDevice;
-
-        public TransmissionActScheme(IList<IDevice> devices)
+        public TransmissionActScheme(params DeviceColumn[] columns)
         {
-            Devices = devices;
-            foreach (var device in Devices)
-            {
-                device.ProcessFinished += DeviceOnProcessFinished;
-            }
+            Columns = columns;
         }
 
-        public IList<IDevice> Devices { get; private set; }
-
+        public IList<DeviceColumn> Columns { get; private set; }
+        /*
         public void NextStep()
         {
             Devices[_currentDevice].Process();
@@ -41,5 +35,6 @@ namespace Requc.Models
 
         public event EventHandler StepCompleted = Actions.DoNothing;
         public event EventHandler ActCompleted = Actions.DoNothing;
+        */
     }
 }

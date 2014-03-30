@@ -34,28 +34,31 @@ namespace Requc.Views.Devices
 
         private void OnProcessStarted(object sender, EventArgs eventArgs)
         {
-            var photon = ((EllipseGeometry) FindResource("Photon")).Clone();
-            var name = "ph" + Guid.NewGuid().ToString("N");
-            RegisterName(name, photon);
-
-            var path = new Path
+            Dispatcher.Invoke(() =>
                 {
-                    Stroke = Brushes.Wheat,
-                    StrokeThickness = 4,
-                    Data = photon
-                };
-            ((Grid)Content).Children.Add(path);
+                    var photon = ((EllipseGeometry)FindResource("Photon")).Clone();
+                    var name = "ph" + Guid.NewGuid().ToString("N");
+                    RegisterName(name, photon);
 
-            var animation = ((Storyboard) FindResource("Storyboard")).Clone();
-            Storyboard.SetTargetName(animation, name);
-            animation.Completed += (o, args) =>
-                {
-                    animation.Remove();
-                    UnregisterName(name);
-                    ((Grid)Content).Children.Remove(path);
-                    ((Device)DataContext).RequestProcessFinish();
-                };
-            BeginStoryboard(animation);
+                    var path = new Path
+                    {
+                        Stroke = Brushes.Wheat,
+                        StrokeThickness = 4,
+                        Data = photon
+                    };
+                    ((Grid)Content).Children.Add(path);
+
+                    var animation = ((Storyboard)FindResource("Storyboard")).Clone();
+                    Storyboard.SetTargetName(animation, name);
+                    animation.Completed += (o, args) =>
+                    {
+                        animation.Remove();
+                        UnregisterName(name);
+                        ((Grid)Content).Children.Remove(path);
+                        ((Device)DataContext).RequestProcessFinish();
+                    };
+                    BeginStoryboard(animation);
+                });
         }
     }
 }
