@@ -4,8 +4,66 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="160" d:DesignWidth="300">
+             d:DesignHeight="160" d:DesignWidth="500">
     <Grid>
-            
+        <!-- Laser -->
+        <Path Stroke="Black" StrokeThickness="2" Fill="White">
+            <Path.Data>
+                <GeometryGroup>
+                    <LineGeometry StartPoint="8,10" EndPoint="8,70"></LineGeometry>
+                    <LineGeometry StartPoint="14,10" EndPoint="14,70"></LineGeometry>
+                    <LineGeometry StartPoint="20,10" EndPoint="20,70"></LineGeometry>
+                    <LineGeometry StartPoint="26,10" EndPoint="26,70"></LineGeometry>
+                    <LineGeometry StartPoint="32,10" EndPoint="32,70"></LineGeometry>
+                    <RectangleGeometry Rect="40,35,10,10"></RectangleGeometry>
+                    <RectangleGeometry Rect="50,38,10,5"></RectangleGeometry>
+                    <LineGeometry StartPoint="60,40" EndPoint="100,40"></LineGeometry>
+                </GeometryGroup>
+            </Path.Data>
+        </Path>
+        <Path Stroke="White" Fill="Black">
+            <Path.Data>
+                <RectangleGeometry Rect="0,20,40,40"></RectangleGeometry>
+            </Path.Data>
+        </Path>
+        <!-- /Laser -->
+        
+        <!-- APD -->
+        <Path Stroke="Black" Fill="Black" StrokeThickness="2" Data="M 40,120 L 40,100 A 10,10 180 0 0 40,140 L 40,120 L 100,120"></Path>
+        <!-- /APD -->
+        
+        <!-- Beamsplitter 1 -->
+        <Path Stroke="Black" StrokeThickness="2" Data="M 100,40 C 110,40 110,78 120,78 L 160,78 C 170,78 170,40 180,40"></Path>
+        <Path Stroke="Black" StrokeThickness="2" Data="M 100,120 C 110,120 110,82 120,82 L 160,82 C 170,82 170,120 180,120"></Path>
+        <!-- /Beamsplitter 1 -->
+        
+        <!-- bottom line -->
+        <Path Stroke="Black" StrokeThickness="2" Data="M 180,120 L 200,120 A 10,10 360 1 0 199,120 L 220,120"></Path>
+        <Path Stroke="Black" StrokeThickness="2">
+            <Path.Data>
+                <RectangleGeometry Rect="220 110 40 20"></RectangleGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Black" StrokeThickness="2" Data="M 260,120 L 280,120"></Path>
+        <!-- /bottom line -->
+        
+        <!-- top line -->
+        <Path Stroke="Black" StrokeThickness="2" Data="M 180,40 L 280,40"></Path>
+        <!-- /top line -->
+
+        <!-- Beamsplitter 2 -->
+        <Path Stroke="Black" StrokeThickness="2" Data="M 280,40 C 290,40 290,78 300,78 L 340,78 C 350,78 350,40 360,40"></Path>
+        <Path Stroke="Black" StrokeThickness="2" Data="M 280,120 C 290,120 290,82 300,82 L 340,82 C 350,82 350,120 360,120"></Path>
+        <!-- /Beamsplitter 2 -->
+        
+        <!-- final lines -->
+        <Path Stroke="Black" StrokeThickness="2" Data="M 360,40 L 400,40"></Path>
+        <Path Stroke="Black" StrokeThickness="2">
+            <Path.Data>
+                <EllipseGeometry Center="405,40" RadiusX="5" RadiusY="20"></EllipseGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Black" StrokeThickness="2" Data="M 360,120 L 400,120"></Path>
+        <!-- /final lines -->
     </Grid>
 </UserControl>
