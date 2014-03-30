@@ -28,7 +28,7 @@ namespace Requc.Views.Devices
             InitializeComponent();
             Loaded += (sender, args) =>
             {
-                ((LaserDevice)DataContext).ProcessStarted += OnProcessStarted;
+                ((Device)DataContext).ProcessStarted += OnProcessStarted;
             };
         }
 
@@ -52,10 +52,10 @@ namespace Requc.Views.Devices
                     Storyboard.SetTargetName(animation, name);
                     animation.Completed += (o, args) =>
                     {
-                        animation.Remove();
-                        UnregisterName(name);
-                        ((Grid)Content).Children.Remove(path);
                         ((Device)DataContext).RequestProcessFinish();
+                        ((Grid)Content).Children.Remove(path);
+                        UnregisterName(name);
+                        animation.Remove();
                     };
                     BeginStoryboard(animation);
                 });

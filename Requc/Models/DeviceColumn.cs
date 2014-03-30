@@ -23,14 +23,8 @@ namespace Requc.Models
         
         public void Process()
         {
-            var topWaiter = new AutoResetEvent(false);
-            var bottomWaiter = new AutoResetEvent(false);
-            Top.ProcessFinished += (sender, args) => topWaiter.Set();
-            Bottom.ProcessFinished += (sender, args) => bottomWaiter.Set();
             Top.Process();
             Bottom.Process();
-            topWaiter.WaitOne();
-            bottomWaiter.WaitOne();
         }
     }
 }
