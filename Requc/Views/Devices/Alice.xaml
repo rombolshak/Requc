@@ -2,10 +2,40 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:devices="clr-namespace:Requc.Models.Devices"
              mc:Ignorable="d" 
              d:DesignHeight="160" d:DesignWidth="500">
+    
+    <UserControl.Resources>
+        <!-- way up up -->
+        <PathGeometry x:Key="WayUpUp" Figures="M 40,40 L 100,40 C 110,40 110,78 120,78 L 160,78 C 170,78 170,40 180,40 L 280,40  C 290,40 290,78 300,78 L 340,78 C 350,78 350,40 360,40 L 405,40"></PathGeometry>
+        <PathGeometry x:Key="WayUpDown" Figures="M 40,40 L 100,40 C 110,40 110,78 120,78 L 160,78 C 170,78 170,40 180,40 L 280,40  C 290,40 290,78 300,78 L 340,80 C 350,82 350,120 360,120 L 405,120"></PathGeometry>
+        <PathGeometry x:Key="WayDownUp" Figures="M 40,40 L 100,40 C 110,40 110,78 120,78 L 160,80 C 170,82 170,120 180,120L 200,120 A 10,10 360 1 0 199,120 L 280,120 C 290,120 290,82 300,82 L 340,80 C 350,78 350,40 360,40 L 405,40"></PathGeometry>
+        <PathGeometry x:Key="WayDownDown" Figures="M 40,40 L 100,40 C 110,40 110,78 120,78 L 160,80 C 170,82 170,120 180,120L 200,120 A 10,10 360 1 0 199,120 L 280,120 C 290,120 290,82 300,82 L 340,82 C 350,82 350,120 360,120 L 405,120"></PathGeometry>
+        
+        <Storyboard x:Key="Animations" Duration="0:0:12" SpeedRatio="5">
+            <PointAnimationUsingPath Duration="0:0:10" PathGeometry="{StaticResource WayUpUp}" 
+                                     Storyboard.TargetName="PhotonUpUp" 
+                                     Storyboard.TargetProperty="Center" />
+            <PointAnimationUsingPath Duration="0:0:10" PathGeometry="{StaticResource WayUpDown}"
+                                     Storyboard.TargetName="PhotonUpDown"
+                                     Storyboard.TargetProperty="Center" />
+            <PointAnimationUsingPath Duration="0:0:11.5" PathGeometry="{StaticResource WayDownUp}" 
+                                     Storyboard.TargetName="PhotonDownUp" 
+                                     Storyboard.TargetProperty="Center" />
+            <PointAnimationUsingPath Duration="0:0:11.5" PathGeometry="{StaticResource WayDownDown}"
+                                     Storyboard.TargetName="PhotonDownDown"
+                                     Storyboard.TargetProperty="Center" />
+        </Storyboard>
+        <!-- /way up up -->
+    </UserControl.Resources>
+    
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
         <!-- Laser -->
         <Path Stroke="Black" StrokeThickness="2" Fill="White">
             <Path.Data>
@@ -65,5 +95,29 @@
         </Path>
         <Path Stroke="Black" StrokeThickness="2" Data="M 360,120 L 400,120"></Path>
         <!-- /final lines -->
+        
+        <!-- photons -->
+        <Path Stroke="Chocolate" StrokeThickness="2" Fill="Chocolate">
+            <Path.Data>
+                <EllipseGeometry x:Name="PhotonUpUp" RadiusX="2" RadiusY="2" Center="40,40"></EllipseGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Chocolate" StrokeThickness="2" Fill="Chocolate">
+            <Path.Data>
+                <EllipseGeometry x:Name="PhotonUpDown" RadiusX="2" RadiusY="2" Center="40,40"></EllipseGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Chocolate" StrokeThickness="2" Fill="Chocolate">
+            <Path.Data>
+                <EllipseGeometry x:Name="PhotonDownUp" RadiusX="2" RadiusY="2" Center="40,40"></EllipseGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Chocolate" StrokeThickness="2" Fill="Chocolate">
+            <Path.Data>
+                <EllipseGeometry x:Name="PhotonDownDown" RadiusX="2" RadiusY="2" Center="40,40"></EllipseGeometry>
+            </Path.Data>
+        </Path>
+        <!-- /photons -->
+        <Slider Grid.Column="1" Width="100" Value="{Binding Source={StaticResource Animations}, Path=SpeedRatio, Mode=TwoWay}" Minimum="1" Maximum="10"></Slider>
     </Grid>
 </UserControl>

@@ -21,7 +21,7 @@ namespace Requc.Commands
         public bool IsExecuting
         {
             get { return _isExecuting; }
-            private set
+            protected set
             {
                 _isExecuting = value;
                 CanExecuteChanged(this, EventArgs.Empty);
@@ -33,9 +33,7 @@ namespace Requc.Commands
 
         public void Execute(object parameter)
         {
-            IsExecuting = true;
             OnExecute(parameter);
-            IsExecuting = false;
         }
 
         public virtual bool CanExecute(object parameter)

@@ -9,9 +9,11 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Requc.Models.Devices;
 
 namespace Requc.Views.Devices
 {
@@ -23,6 +25,22 @@ namespace Requc.Views.Devices
         public Alice()
         {
             InitializeComponent();
+            Loaded += (sender, args) =>
+                {
+                    ((AliceDevice) DataContext).ProcessStarted += Alice_ProcessStarted;
+                    ((Storyboard)FindResource("Animations")).Completed += Alice_Completed;
+                };
+        }
+
+        void Alice_Completed(object sender, EventArgs e)
+        {
+            ((AliceDevice) DataContext).RequestProcessFinish();
+        }
+
+        void Alice_ProcessStarted(object sender, EventArgs e)
+        {
+            var storyboard = (Storyboard) FindResource("Animations");
+            storyboard.Begin(this);
         }
     }
 }

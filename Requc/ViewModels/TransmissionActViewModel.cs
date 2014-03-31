@@ -14,15 +14,9 @@ namespace Requc.ViewModels
     {
         public TransmissionActScheme TransmissionActScheme { get; set; }
 
-        public ICommand RunNewActCommand
+        public override void Dispose()
         {
-            get
-            {
-                return _newActCommand ??
-                       (_newActCommand = new RunNewActCommand());
-            }
+            throw new NotImplementedException();
         }
-        
-        private RunNewActCommand _newActCommand;
     }
 }

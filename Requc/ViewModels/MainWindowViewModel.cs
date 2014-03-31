@@ -10,33 +10,16 @@ namespace Requc.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {
-        #region Ctor
         public MainWindowViewModel()
         {
-            TransmissionAct = new TransmissionActViewModel()
-                {
-                    TransmissionActScheme = new TransmissionActScheme(
-                        new DeviceColumn(new LaserDevice(), new LaserDevice()),
-                        new DeviceColumn(new PhaseShiftDevice(), new ChannelDevice()),
-                        new DeviceColumn(new ChannelDevice(), new PhaseShiftDevice()),
-                        new DeviceColumn(new PhaseShiftDevice(), new ChannelDevice()),
-                        new DeviceColumn(new ChannelDevice(), new PhaseShiftDevice()),
-                       new DeviceColumn(new PhaseShiftDevice(), new ChannelDevice()),
-                        new DeviceColumn(new ChannelDevice(), new PhaseShiftDevice()))
-                };
+            SimpleProtocol = new SimpleProtocolViewModel();
         }
-        #endregion
 
-        #region Properties
-        public TransmissionActViewModel TransmissionAct { get; private set; }
-        #endregion
+        public SimpleProtocolViewModel SimpleProtocol { get; private set; }
 
-        #region Commands
-        
-        #endregion
-        
-        #region Command Handlers
-
-        #endregion
+        public override void Dispose()
+        {
+            SimpleProtocol.Dispose();
+        }
     }
 }

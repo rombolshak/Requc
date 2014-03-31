@@ -31,4 +31,12 @@
     <DataTemplate DataType="{x:Type device:DelayDevice}">
         <deviceview:Delay />
     </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type viewmodel:SimpleProtocolViewModel}">
+        <view:SimpleProtocolView />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type device:AliceDevice}">
+        <deviceview:Alice />
+    </DataTemplate>
 </ResourceDictionary>

@@ -17,6 +17,6 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <ContentPresenter Content="{Binding Path=TransmissionAct}"></ContentPresenter>
+        <ContentPresenter Content="{Binding Path=SimpleProtocol}"></ContentPresenter>
     </Grid>
 </Window>
