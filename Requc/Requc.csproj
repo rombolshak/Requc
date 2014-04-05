@@ -65,6 +65,7 @@
     <Compile Include="Models\Devices\AliceDevice.cs" />
     <Compile Include="Models\Devices\BobDevice.cs" />
     <Compile Include="Models\SimpleProtocol.cs" />
+    <Compile Include="ViewModels\AnimationsManager.cs" />
     <Compile Include="ViewModels\SimpleProtocolViewModel.cs" />
     <Compile Include="Views\Devices\Alice.xaml.cs">
       <DependentUpon>Alice.xaml</DependentUpon>

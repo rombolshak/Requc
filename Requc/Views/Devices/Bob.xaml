@@ -34,8 +34,8 @@
 
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:3.32" Storyboard.TargetName="PathUp1" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:4.79" Storyboard.TargetName="PathUp2" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:1.59" Storyboard.TargetName="PathDown1" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:2.49" Storyboard.TargetName="PathDown2" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:1.99" Storyboard.TargetName="PathDown1" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:3.49" Storyboard.TargetName="PathDown2" Storyboard.TargetProperty="Opacity" />
         </Storyboard>
     </UserControl.Resources>
     
