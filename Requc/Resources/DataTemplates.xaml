@@ -5,32 +5,6 @@
                     xmlns:view="clr-namespace:Requc.Views"
                     xmlns:device="clr-namespace:Requc.Models.Devices"
                     xmlns:deviceview="clr-namespace:Requc.Views.Devices">
-    <DataTemplate DataType="{x:Type viewmodel:TransmissionActViewModel}">
-      <view:TransmissionActView />
-    </DataTemplate>
-    
-    <DataTemplate DataType="{x:Type model:DeviceColumn}">
-        <view:DeviceColumnView />
-    </DataTemplate>
-    
-    <DataTemplate DataType="{x:Type device:NullDevice}">
-    </DataTemplate>
-    
-    <DataTemplate DataType="{x:Type device:LaserDevice}">
-        <deviceview:Laser />
-    </DataTemplate>
-
-    <DataTemplate DataType="{x:Type device:PhaseShiftDevice}">
-        <deviceview:PhaseShift />
-    </DataTemplate>
-    
-    <DataTemplate DataType="{x:Type device:ChannelDevice}">
-        <deviceview:Channel />
-    </DataTemplate>
-    
-    <DataTemplate DataType="{x:Type device:DelayDevice}">
-        <deviceview:Delay />
-    </DataTemplate>
     
     <DataTemplate DataType="{x:Type viewmodel:SimpleProtocolViewModel}">
         <view:SimpleProtocolView />
