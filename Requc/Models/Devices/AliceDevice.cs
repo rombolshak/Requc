@@ -2,7 +2,12 @@
 {
     public class AliceDevice : Device
     {
-        protected override void DoProcess()
+        protected override void DoForwardProcess()
+        {
+            
+        }
+
+        protected override void DoBackwardProcess()
         {
             
         }

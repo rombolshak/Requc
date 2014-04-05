@@ -4,10 +4,12 @@ namespace Requc.Models.Devices
 {
     public interface IDevice
     {
-        event EventHandler ProcessFinished;
+        event EventHandler ForwardProcessFinished;
+        event EventHandler ForwardProcessStarted;
+        event EventHandler BackwardProcessFinished;
+        event EventHandler BackwardProcessStarted;
 
-        event EventHandler ProcessStarted;
-
-        void Process();
+        void ProcessForward();
+        void ProcessBackward();
     }
 }

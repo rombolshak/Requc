@@ -5,21 +5,34 @@ namespace Requc.Models.Devices
 {
     public abstract class Device : IDevice
     {
-        protected abstract void DoProcess();
+        protected abstract void DoForwardProcess();
+        protected abstract void DoBackwardProcess();
 
-        public event EventHandler ProcessFinished = Actions.DoNothing;
+        public event EventHandler ForwardProcessFinished = Actions.DoNothing;
+        public event EventHandler ForwardProcessStarted = Actions.DoNothing;
+        public event EventHandler BackwardProcessFinished = Actions.DoNothing;
+        public event EventHandler BackwardProcessStarted = Actions.DoNothing;
 
-        public event EventHandler ProcessStarted = Actions.DoNothing;
-
-        public void Process()
+        public void ProcessForward()
         {
-            DoProcess();
-            ProcessStarted(this, new EventArgs());
+            DoForwardProcess();
+            ForwardProcessStarted(this, new EventArgs());
         }
 
-        public void RequestProcessFinish()
+        public void ProcessBackward()
         {
-            ProcessFinished(this, new EventArgs());
+            DoBackwardProcess();
+            BackwardProcessStarted(this, new EventArgs());
+        }
+
+        public void RequestForwardProcessFinish()
+        {
+            ForwardProcessFinished(this, new EventArgs());
+        }
+
+        public void RequestBackwardProcessFinish()
+        {
+            BackwardProcessFinished(this, new EventArgs());
         }
     }
 }

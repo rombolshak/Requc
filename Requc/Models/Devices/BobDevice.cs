@@ -8,7 +8,12 @@ namespace Requc.Models.Devices
 {
     public class BobDevice : Device
     {
-        protected override void DoProcess()
+        protected override void DoForwardProcess()
+        {
+            
+        }
+
+        protected override void DoBackwardProcess()
         {
             
         }

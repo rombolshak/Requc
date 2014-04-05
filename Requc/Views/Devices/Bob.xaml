@@ -10,7 +10,7 @@
         <PathGeometry x:Key="WayDown" Figures="m 5,40 L 40,40 C 55,40 45,80 60,80 " />
         <PathGeometry x:Key="WayBack" Figures="M 235,40 180,40" />
 
-        <Storyboard x:Key="Animations" Duration="0:0:4.8" SpeedRatio="1">
+        <Storyboard x:Key="ForwardAnimation" Duration="0:0:4.8" SpeedRatio="1">
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUp1" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:0.7" Storyboard.TargetName="PathUp2" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathDown1" Storyboard.TargetProperty="Opacity" />
@@ -55,6 +55,7 @@
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:1.99" Storyboard.TargetName="PathDown1" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:2.69" Storyboard.TargetName="PathDown2" Storyboard.TargetProperty="Opacity" />
         </Storyboard>
+        <Storyboard x:Key="BackwardAnimation"></Storyboard>
     </UserControl.Resources>
     
     <Grid>

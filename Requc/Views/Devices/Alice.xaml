@@ -14,7 +14,7 @@
         <PathGeometry x:Key="WayDownUp" Figures="M 40,40 L 100,40 C 110,40 110,78 120,78 L 160,80 C 170,82 170,120 180,120L 200,120 A 10,10 360 1 0 199,120 L 280,120 C 290,120 290,82 300,82 L 340,80 C 350,78 350,40 360,40 L 405,40"></PathGeometry>
         <PathGeometry x:Key="WayDownDown" Figures="M 40,40 L 100,40 C 110,40 110,78 120,78 L 160,80 C 170,82 170,120 180,120L 200,120 A 10,10 360 1 0 199,120 L 280,120 C 290,120 290,82 300,82 L 340,82 C 350,82 350,120 360,120 L 405,120"></PathGeometry>
         
-        <Storyboard x:Key="Animations" Duration="0:0:12" SpeedRatio="5">
+        <Storyboard x:Key="ForwardAnimation" Duration="0:0:12" SpeedRatio="5">
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUpUp" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUpDown" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathDownUp" Storyboard.TargetProperty="Opacity" />
@@ -38,6 +38,7 @@
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:11.49" Storyboard.TargetName="PathDownUp" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:11.49" Storyboard.TargetName="PathDownDown" Storyboard.TargetProperty="Opacity" />
         </Storyboard>
+        <Storyboard x:Key="BackwardAnimation"></Storyboard>
         <!-- /way up up -->
     </UserControl.Resources>
     

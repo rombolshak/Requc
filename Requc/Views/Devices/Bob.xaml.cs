@@ -28,21 +28,37 @@ namespace Requc.Views.Devices
             InitializeComponent();
             Loaded += (sender, args) =>
             {
-                AnimationsManager.Add((Storyboard)FindResource("Animations"));
-                ((Device)DataContext).ProcessStarted += ProcessStarted;
-                ((Storyboard)FindResource("Animations")).Completed += Completed;
+                AnimationsManager.Add((Storyboard)FindResource("ForwardAnimation"));
+                AnimationsManager.Add((Storyboard)FindResource("BackwardAnimation"));
+
+                ((Device)DataContext).ForwardProcessStarted += ForwardProcessStarted;
+                ((Device)DataContext).BackwardProcessStarted += BackwardProcessStarted;
+                
+                ((Storyboard)FindResource("ForwardAnimation")).Completed += ForwardCompleted;
+                ((Storyboard)FindResource("BackwardAnimation")).Completed += BackwardCompleted;
             };
         }
 
-        void Completed(object sender, EventArgs e)
+        void ForwardProcessStarted(object sender, EventArgs e)
         {
-            ((Device)DataContext).RequestProcessFinish();
+            var storyboard = (Storyboard)FindResource("ForwardAnimation");
+            storyboard.Begin(this);
         }
 
-        void ProcessStarted(object sender, EventArgs e)
+        void ForwardCompleted(object sender, EventArgs e)
         {
-            var storyboard = (Storyboard)FindResource("Animations");
+            ((Device)DataContext).RequestForwardProcessFinish();
+        }
+
+        private void BackwardProcessStarted(object sender, EventArgs e)
+        {
+            var storyboard = (Storyboard)FindResource("BackwardAnimation");
             storyboard.Begin(this);
+        }
+
+        private void BackwardCompleted(object sender, EventArgs e)
+        {
+            ((Device)DataContext).RequestBackwardProcessFinish();
         }
     }
 }

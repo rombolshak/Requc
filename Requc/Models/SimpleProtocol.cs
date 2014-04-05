@@ -15,8 +15,10 @@ namespace Requc.Models
             AliceDevice = new AliceDevice();
             BobDevice = new BobDevice();
 
-            AliceDevice.ProcessFinished += AliceDevice_ProcessFinished;
-            BobDevice.ProcessFinished += BobDevice_ProcessFinished;
+            AliceDevice.ForwardProcessFinished += AliceDeviceForwardProcessFinished;
+            BobDevice.ForwardProcessFinished += BobDeviceForwardProcessFinished;
+            BobDevice.BackwardProcessFinished += BobDevice_BackwardProcessFinished;
+            AliceDevice.BackwardProcessFinished += AliceDevice_BackwardProcessFinished;
         }
 
         public AliceDevice AliceDevice { get; private set; }
@@ -26,23 +28,33 @@ namespace Requc.Models
 
         public void Process()
         {
-            AliceDevice.Process();
+            AliceDevice.ProcessForward();
         }
 
-        void AliceDevice_ProcessFinished(object sender, EventArgs e)
+        void AliceDeviceForwardProcessFinished(object sender, EventArgs e)
         {
-            BobDevice.Process();
+            BobDevice.ProcessForward();
         }
 
-        void BobDevice_ProcessFinished(object sender, EventArgs e)
+        void BobDeviceForwardProcessFinished(object sender, EventArgs e)
         {
-            Finished(this, EventArgs.Empty);
+            BobDevice.ProcessBackward();
+        }
+
+        void BobDevice_BackwardProcessFinished(object sender, EventArgs e)
+        {
+            AliceDevice.ProcessBackward();
+        }
+
+        void AliceDevice_BackwardProcessFinished(object sender, EventArgs e)
+        {
+            Finished(this, new EventArgs());
         }
 
         public void Dispose()
         {
-            AliceDevice.ProcessFinished -= AliceDevice_ProcessFinished;
-            BobDevice.ProcessFinished -= BobDevice_ProcessFinished;
+            AliceDevice.ForwardProcessFinished -= AliceDeviceForwardProcessFinished;
+            BobDevice.ForwardProcessFinished -= BobDeviceForwardProcessFinished;
         }
     }
 }
