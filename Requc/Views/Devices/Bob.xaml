@@ -36,6 +36,19 @@
                                      Storyboard.TargetName="PhotonDown2"
                                      Storyboard.TargetProperty="Center"
                                      BeginTime="0:0:0.7"/>
+            
+            <ColorAnimation Duration="0:0:0.20"
+                            Storyboard.TargetName="Detector"
+                            Storyboard.TargetProperty="(Fill).(Color)"
+                            To="Yellow"
+                            AutoReverse="True"
+                            BeginTime="0:0:1" />
+            <ColorAnimation Duration="0:0:0.20"
+                            Storyboard.TargetName="Detector"
+                            Storyboard.TargetProperty="(Fill).(Color)"
+                            To="Yellow"
+                            AutoReverse="True"
+                            BeginTime="0:0:1.7" />
 
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:4.32" Storyboard.TargetName="PathUp1" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:3.99" Storyboard.TargetName="PathUp2" Storyboard.TargetProperty="Opacity" />
@@ -70,7 +83,7 @@
         
         <!-- detector -->
         <Path Stroke="Black" StrokeThickness="2" Data="M 40,40 C 55,40 45,80 60,80"></Path>
-        <Path Stroke="Black" StrokeThickness="2" Fill="Black" Data="M 60,90 A 10 10 180 0 0 60,70"></Path>
+        <Path Stroke="Black" StrokeThickness="2" Fill="Black" Data="M 60,90 A 10 10 180 0 0 60,70" x:Name="Detector"></Path>
         <Path Stroke="Black" StrokeThickness="2" StrokeDashArray="3 1" Data="M 70,80 L 140,80 140,52"></Path>
         <Path Stroke="Black" StrokeThickness="2" Fill="Black" Data="M 140,52 L 137,60 143,60 Z"></Path>
         <!-- /detector -->
