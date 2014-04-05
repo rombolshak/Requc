@@ -6,36 +6,41 @@
              mc:Ignorable="d" 
              d:DesignHeight="160" d:DesignWidth="300">
     <UserControl.Resources>
-        <PathGeometry x:Key="WayUp" Figures="M 5,40 L 195,40"></PathGeometry>
-        <PathGeometry x:Key="WayDown" Figures="m 5,40 L 40,40 C 55,40 45,80 60,80 "></PathGeometry>
+        <PathGeometry x:Key="WayUp" Figures="M 5,40 L 235,40" />
+        <PathGeometry x:Key="WayDown" Figures="m 5,40 L 40,40 C 55,40 45,80 60,80 " />
+        <PathGeometry x:Key="WayBack" Figures="M 235,40 180,40" />
 
-        <Storyboard x:Key="Animations" Duration="0:0:5" SpeedRatio="5">
+        <Storyboard x:Key="Animations" Duration="0:0:4.8" SpeedRatio="1">
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUp1" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:1.5" Storyboard.TargetName="PathUp2" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:0.7" Storyboard.TargetName="PathUp2" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathDown1" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:1.5" Storyboard.TargetName="PathDown2" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:0.7" Storyboard.TargetName="PathDown2" Storyboard.TargetProperty="Opacity" />
             
             <PointAnimationUsingPath Duration="0:0:3.3" PathGeometry="{StaticResource WayUp}" 
                                      Storyboard.TargetName="PhotonUp1" 
                                      Storyboard.TargetProperty="Center"
                                      BeginTime="0:0:0"/>
+            <PointAnimationUsingPath Duration="0:0:1" PathGeometry="{StaticResource WayBack}" 
+                                     Storyboard.TargetName="PhotonUp1" 
+                                     Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:3.3"/>
             <PointAnimationUsingPath Duration="0:0:3.3" PathGeometry="{StaticResource WayUp}"
                                      Storyboard.TargetName="PhotonUp2"
                                      Storyboard.TargetProperty="Center"
-                                     BeginTime="0:0:1.5"/>
-            <PointAnimationUsingPath Duration="0:0:2" PathGeometry="{StaticResource WayDown}" 
+                                     BeginTime="0:0:0.7"/>
+            <PointAnimationUsingPath Duration="0:0:1" PathGeometry="{StaticResource WayDown}" 
                                      Storyboard.TargetName="PhotonDown1" 
                                      Storyboard.TargetProperty="Center"
                                      BeginTime="0:0:0"/>
-            <PointAnimationUsingPath Duration="0:0:2" PathGeometry="{StaticResource WayDown}"
+            <PointAnimationUsingPath Duration="0:0:1" PathGeometry="{StaticResource WayDown}"
                                      Storyboard.TargetName="PhotonDown2"
                                      Storyboard.TargetProperty="Center"
-                                     BeginTime="0:0:1.5"/>
+                                     BeginTime="0:0:0.7"/>
 
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:3.32" Storyboard.TargetName="PathUp1" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:4.79" Storyboard.TargetName="PathUp2" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:4.32" Storyboard.TargetName="PathUp1" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:3.99" Storyboard.TargetName="PathUp2" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:1.99" Storyboard.TargetName="PathDown1" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:3.49" Storyboard.TargetName="PathDown2" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:2.69" Storyboard.TargetName="PathDown2" Storyboard.TargetProperty="Opacity" />
         </Storyboard>
     </UserControl.Resources>
     
@@ -71,15 +76,15 @@
         <!-- /detector -->
         
         <!-- mirror -->
-        <Path Stroke="Black" StrokeThickness="2" Data="M 150,40 L 180,40"></Path>
+        <Path Stroke="Black" StrokeThickness="2" Data="M 150,40 L 220,40"></Path>
         <Path Stroke="Black" StrokeThickness="2" Fill="Gray">
             <Path.Data>
-                    <RectangleGeometry Rect="180 20 15 40" RadiusX="1" RadiusY="1"></RectangleGeometry>
+                    <RectangleGeometry Rect="220 20 15 40" RadiusX="1" RadiusY="1"></RectangleGeometry>
             </Path.Data>
         </Path>
         <Path Stroke="Black" StrokeThickness="2" Fill="Black">
             <Path.Data>
-                <RectangleGeometry Rect="195 20 5 40" RadiusX="1" RadiusY="1"></RectangleGeometry>
+                <RectangleGeometry Rect="235 20 5 40" RadiusX="1" RadiusY="1"></RectangleGeometry>
             </Path.Data>
         </Path>
         <!-- /mirror -->
