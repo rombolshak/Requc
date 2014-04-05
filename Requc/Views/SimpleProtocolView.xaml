@@ -9,10 +9,12 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="100" />
         </Grid.ColumnDefinitions>
         <ContentPresenter Content="{Binding Path=Protocol.AliceDevice}" Grid.Column="0"/>
-        <StackPanel Grid.Column="1">
+        <ContentPresenter Content="{Binding Path=Protocol.BobDevice}" Grid.Column="1"/>
+        <StackPanel Grid.Column="2">
             <Button Height="100" Command="{Binding Path=RunCommand}" CommandParameter="{Binding Path=Protocol}">Run</Button>
         </StackPanel>
     </Grid>

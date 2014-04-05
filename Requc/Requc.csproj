@@ -63,15 +63,23 @@
     <Compile Include="Commands\CommonCommand.cs" />
     <Compile Include="Commands\RunCommand.cs" />
     <Compile Include="Models\Devices\AliceDevice.cs" />
+    <Compile Include="Models\Devices\BobDevice.cs" />
     <Compile Include="Models\SimpleProtocol.cs" />
     <Compile Include="ViewModels\SimpleProtocolViewModel.cs" />
     <Compile Include="Views\Devices\Alice.xaml.cs">
       <DependentUpon>Alice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Devices\Bob.xaml.cs">
+      <DependentUpon>Bob.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SimpleProtocolView.xaml.cs">
       <DependentUpon>SimpleProtocolView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Devices\Alice.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Devices\Bob.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

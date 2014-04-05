@@ -13,10 +13,14 @@ namespace Requc.Models
         public SimpleProtocol()
         {
             AliceDevice = new AliceDevice();
+            BobDevice = new BobDevice();
+
             AliceDevice.ProcessFinished += AliceDevice_ProcessFinished;
+            BobDevice.ProcessFinished += BobDevice_ProcessFinished;
         }
 
         public AliceDevice AliceDevice { get; private set; }
+        public BobDevice BobDevice { get; private set; }
 
         public event EventHandler Finished = Actions.DoNothing;
 
@@ -27,12 +31,18 @@ namespace Requc.Models
 
         void AliceDevice_ProcessFinished(object sender, EventArgs e)
         {
+            BobDevice.Process();
+        }
+
+        void BobDevice_ProcessFinished(object sender, EventArgs e)
+        {
             Finished(this, EventArgs.Empty);
         }
 
         public void Dispose()
         {
             AliceDevice.ProcessFinished -= AliceDevice_ProcessFinished;
+            BobDevice.ProcessFinished -= BobDevice_ProcessFinished;
         }
     }
 }
