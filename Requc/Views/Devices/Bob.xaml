@@ -6,33 +6,36 @@
              mc:Ignorable="d" 
              d:DesignHeight="160" d:DesignWidth="300">
     <UserControl.Resources>
-        <PathGeometry x:Key="WayUp" Figures="M 5,40 L 235,40" />
-        <PathGeometry x:Key="WayDown" Figures="m 5,40 L 40,40 C 55,40 45,80 60,80 " />
-        <PathGeometry x:Key="WayBack" Figures="M 235,40 180,40" />
+        <PathGeometry x:Key="ForwardWayUp" Figures="M 5,40 L 235,40" />
+        <PathGeometry x:Key="ForwardWayDown" Figures="m 5,40 L 40,40 C 55,40 45,80 60,80 " />
+        <PathGeometry x:Key="ForwardWayBack" Figures="M 235,40 180,40" />
+        
+        <PathGeometry x:Key="BackwardWay1" Figures="M 180,40 L 5,40" />
+        <PathGeometry x:Key="BackwardWay2" Figures="M 235,40 L 5,40" />
 
-        <Storyboard x:Key="ForwardAnimation" Duration="0:0:4.8" SpeedRatio="1">
+        <Storyboard x:Key="ForwardAnimation">
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUp1" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:0.7" Storyboard.TargetName="PathUp2" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathDown1" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:0.7" Storyboard.TargetName="PathDown2" Storyboard.TargetProperty="Opacity" />
             
-            <PointAnimationUsingPath Duration="0:0:3.3" PathGeometry="{StaticResource WayUp}" 
+            <PointAnimationUsingPath Duration="0:0:4" PathGeometry="{StaticResource ForwardWayUp}" 
                                      Storyboard.TargetName="PhotonUp1" 
                                      Storyboard.TargetProperty="Center"
                                      BeginTime="0:0:0"/>
-            <PointAnimationUsingPath Duration="0:0:1" PathGeometry="{StaticResource WayBack}" 
+            <PointAnimationUsingPath Duration="0:0:1.5" PathGeometry="{StaticResource ForwardWayBack}" 
                                      Storyboard.TargetName="PhotonUp1" 
                                      Storyboard.TargetProperty="Center"
-                                     BeginTime="0:0:3.3"/>
-            <PointAnimationUsingPath Duration="0:0:3.3" PathGeometry="{StaticResource WayUp}"
+                                     BeginTime="0:0:4"/>
+            <PointAnimationUsingPath Duration="0:0:4" PathGeometry="{StaticResource ForwardWayUp}"
                                      Storyboard.TargetName="PhotonUp2"
                                      Storyboard.TargetProperty="Center"
                                      BeginTime="0:0:0.7"/>
-            <PointAnimationUsingPath Duration="0:0:1" PathGeometry="{StaticResource WayDown}" 
+            <PointAnimationUsingPath Duration="0:0:1.5" PathGeometry="{StaticResource ForwardWayDown}" 
                                      Storyboard.TargetName="PhotonDown1" 
                                      Storyboard.TargetProperty="Center"
                                      BeginTime="0:0:0"/>
-            <PointAnimationUsingPath Duration="0:0:1" PathGeometry="{StaticResource WayDown}"
+            <PointAnimationUsingPath Duration="0:0:1.5" PathGeometry="{StaticResource ForwardWayDown}"
                                      Storyboard.TargetName="PhotonDown2"
                                      Storyboard.TargetProperty="Center"
                                      BeginTime="0:0:0.7"/>
@@ -42,25 +45,60 @@
                             Storyboard.TargetProperty="(Fill).(Color)"
                             To="Yellow"
                             AutoReverse="True"
-                            BeginTime="0:0:1" />
+                            BeginTime="0:0:1.5" />
             <ColorAnimation Duration="0:0:0.20"
                             Storyboard.TargetName="Detector"
                             Storyboard.TargetProperty="(Fill).(Color)"
                             To="Yellow"
                             AutoReverse="True"
+                            BeginTime="0:0:2.2" />
+
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:5.49" Storyboard.TargetName="PathUp1" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:4.69" Storyboard.TargetName="PathUp2" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:1.49" Storyboard.TargetName="PathDown1" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:2.19" Storyboard.TargetName="PathDown2" Storyboard.TargetProperty="Opacity" />
+        </Storyboard>
+        
+        <Storyboard x:Key="BackwardAnimation">
+            <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUp1" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUp2" Storyboard.TargetProperty="Opacity" />
+
+            <PointAnimationUsingPath Duration="0:0:2.6" PathGeometry="{StaticResource BackwardWay1}" 
+                                     Storyboard.TargetName="PhotonUp1" 
+                                     Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:0"/>
+            <PointAnimationUsingPath Duration="0:0:3.3" PathGeometry="{StaticResource BackwardWay2}"
+                                     Storyboard.TargetName="PhotonUp2"
+                                     Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:0.0"/>
+            
+            <ColorAnimation Duration="0:0:0.3"
+                            Storyboard.TargetName="Attenuator"
+                            Storyboard.TargetProperty="(Fill).(Color)"
+                            To="DarkGoldenrod"
+                            AutoReverse="True"
+                            BeginTime="0:0:0.4" />
+            <ColorAnimation Duration="0:0:0.3"
+                            Storyboard.TargetName="Attenuator"
+                            Storyboard.TargetProperty="(Fill).(Color)"
+                            To="DarkGoldenrod"
+                            AutoReverse="True"
+                            BeginTime="0:0:1.0" />
+            <ColorAnimation Duration="0:0:0.5"
+                            Storyboard.TargetName="PhaseShift"
+                            Storyboard.TargetProperty="(Fill).(Color)"
+                            To="ForestGreen"
+                            AutoReverse="True"
                             BeginTime="0:0:1.7" />
 
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:4.32" Storyboard.TargetName="PathUp1" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:3.99" Storyboard.TargetName="PathUp2" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:1.99" Storyboard.TargetName="PathDown1" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:2.69" Storyboard.TargetName="PathDown2" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:2.59" Storyboard.TargetName="PathUp1" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:3.29" Storyboard.TargetName="PathUp2" Storyboard.TargetProperty="Opacity" />
         </Storyboard>
-        <Storyboard x:Key="BackwardAnimation"></Storyboard>
     </UserControl.Resources>
     
     <Grid>
         <!-- initial line -->
-        <Path Stroke="Black" StrokeThickness="2">
+        <Path Stroke="Black" StrokeThickness="2" Fill="DodgerBlue">
             <Path.Data>
                 <EllipseGeometry Center="5,40" RadiusX="5" RadiusY="20"></EllipseGeometry>
             </Path.Data>
@@ -70,7 +108,7 @@
         
         <!-- phase shift -->
         <Path Stroke="Black" StrokeThickness="2" Data="M 40,40 L 60,40"></Path>
-        <Path Stroke="Black" StrokeThickness="2">
+        <Path Stroke="Black" StrokeThickness="2" x:Name="PhaseShift" Fill="Transparent">
             <Path.Data>
                 <RectangleGeometry Rect="60 30 40, 20"></RectangleGeometry>
             </Path.Data>
@@ -79,7 +117,7 @@
         <!-- /phase -->
         
         <!-- attenuator -->
-        <Path Stroke="Black" StrokeThickness="2" Data="M 130,40 L 150, 60 150,20 Z"></Path>
+        <Path Stroke="Black" StrokeThickness="2" Data="M 130,40 L 150, 60 150,20 Z" Fill="Transparent" x:Name="Attenuator"/>
         <!-- /attenuator -->
         
         <!-- detector -->
