@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using Requc.Models;
 using Requc.ViewModels;
@@ -38,9 +39,19 @@ namespace Requc.Views.Devices
             ((ProtocolDevice)DataContext).RequestForwardProcessFinish();
         }
 
-        private void BackwardProcessStarted(object sender, EventArgs e)
+        private void BackwardProcessStarted(object sender, SimpleProtocolEventArgs e)
         {
+            var phaseAnimation = (ColorAnimation) FindResource("PhaseShiftAnimation");
+            var detectorAnimation = (ColorAnimation)FindResource("DetectorAnimation");
+            var photon1Animation = (DoubleAnimation)FindResource("MiddlePhoton1Animation");
+            var photon2Animation = (DoubleAnimation)FindResource("MiddlePhoton2Animation");
             var storyboard = (Storyboard)FindResource("BackwardAnimation");
+
+            phaseAnimation.To = Math.Abs(e.AlicePhase - e.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
+            var destructiveInterference = Math.Abs(e.AlicePhase - e.BobPhase) < 1e-5;
+            detectorAnimation.To = destructiveInterference ? Colors.Black : Colors.GreenYellow;
+            photon1Animation.To = destructiveInterference ? 0 : 1;
+            photon2Animation.To = destructiveInterference ? 0 : 1;
             storyboard.Begin(this);
         }
 

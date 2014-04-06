@@ -13,6 +13,13 @@
         <PathGeometry x:Key="BackwardWay1" Figures="M 180,40 L 5,40" />
         <PathGeometry x:Key="BackwardWay2" Figures="M 235,40 L 5,40" />
 
+        <ColorAnimation x:Key="PhaseShiftAnimation" Duration="0:0:0.5"
+                            Storyboard.TargetName="PhaseShift"
+                            Storyboard.TargetProperty="(Fill).(Color)"
+                            To="Transparent"
+                            AutoReverse="True"
+                            BeginTime="0:0:1.7" />
+
         <Storyboard x:Key="ForwardAnimation">
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUp1" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:0.7" Storyboard.TargetName="PathUp2" Storyboard.TargetProperty="Opacity" />
@@ -84,12 +91,8 @@
                             To="DarkGoldenrod"
                             AutoReverse="True"
                             BeginTime="0:0:1.0" />
-            <ColorAnimation Duration="0:0:0.5"
-                            Storyboard.TargetName="PhaseShift"
-                            Storyboard.TargetProperty="(Fill).(Color)"
-                            To="ForestGreen"
-                            AutoReverse="True"
-                            BeginTime="0:0:1.7" />
+            
+            <StaticResource ResourceKey="PhaseShiftAnimation" />
 
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:2.59" Storyboard.TargetName="PathUp1" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:3.29" Storyboard.TargetName="PathUp2" Storyboard.TargetProperty="Opacity" />

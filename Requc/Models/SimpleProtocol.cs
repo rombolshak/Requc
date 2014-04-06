@@ -24,7 +24,10 @@ namespace Requc.Models
 
         public void Process()
         {
-            AliceProtocolDevice.ProcessForward(new SimpleProtocolEventArgs(new QuantumState()));
+            AliceProtocolDevice.ProcessForward(new SimpleProtocolEventArgs(
+                                                   new QuantumState(),
+                                                   Params.Phase0,
+                                                   Params.Phase1));
         }
 
         void AliceDeviceForwardProcessFinished(object sender, SimpleProtocolEventArgs e)

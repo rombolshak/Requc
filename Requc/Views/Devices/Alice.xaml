@@ -15,7 +15,36 @@
         
         <PathGeometry x:Key="BackwardWayUpDown" Figures="M 405,40 L 360,40 C 350,40 350,78 340,78 L 300,78 C 290,78 290,40 280,40 L 180,40 C 170,40 170,78 160,78 L 120,82 C 110,82 110,120 100,120 L 40,120"></PathGeometry>
         <PathGeometry x:Key="BackwardWayDownDown" Figures="M 405,40 L 360,40 C 350,40 350,78 340,78 L 300,80 C 290,82 290,120 280,120 L 199,120 A 10,10 360 1 1 200,120 L 180,120 C 170,120 170,82 160,82 L 120,82 C 110,82 110,120 100,120 L 40,120"></PathGeometry>
+
+        <PathGeometry x:Key="WayToLaser" Figures="M 130,80 C 110,78 110,40 100,40 L 40,40"></PathGeometry>
         
+        <ColorAnimation x:Key="PhaseShiftAnimation" 
+                        Duration="0:0:0.5"
+                        Storyboard.TargetName="PhaseShift"
+                        Storyboard.TargetProperty="(Fill).(Color)"
+                        To="Transparent"
+                        AutoReverse="True"
+                        BeginTime="0:0:4.2" />
+        <ColorAnimation x:Key="DetectorAnimation" 
+                        Duration="0:0:0.5"
+                        Storyboard.TargetName="Detector"
+                        Storyboard.TargetProperty="(Fill).(Color)"
+                        To="Black"
+                        AutoReverse="True"
+                        BeginTime="0:0:11.45" />
+        <DoubleAnimation  x:Key="MiddlePhoton1Animation"
+                          Duration="0:0:0.01"
+                          To="0"
+                          Storyboard.TargetName="PathUpDown"
+                          Storyboard.TargetProperty="Opacity"
+                          BeginTime="0:0:9" />
+        <DoubleAnimation x:Key="MiddlePhoton2Animation"
+                         Duration="0:0:0.01"
+                         To="0"
+                         Storyboard.TargetName="PathDownUp"
+                         Storyboard.TargetProperty="Opacity"
+                         BeginTime="0:0:9" />
+
         <Storyboard x:Key="ForwardAnimation">
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUpUp" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUpDown" Storyboard.TargetProperty="Opacity" />
@@ -62,18 +91,31 @@
                                      Storyboard.TargetProperty="Center"
                                      BeginTime="0:0:1.5"/>
 
-            <ColorAnimation Duration="0:0:0.5"
-                            Storyboard.TargetName="PhaseShift"
-                            Storyboard.TargetProperty="(Fill).(Color)"
-                            To="ForestGreen"
-                            AutoReverse="True"
-                            BeginTime="0:0:4.2" />
-            <ColorAnimation Duration="0:0:0.5"
-                            Storyboard.TargetName="Detector"
-                            Storyboard.TargetProperty="(Fill).(Color)"
-                            To="GreenYellow"
-                            AutoReverse="True"
-                            BeginTime="0:0:11.45" />
+            <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathToLaser1" Storyboard.TargetProperty="Opacity" BeginTime="0:0:7.5" />
+            <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathToLaser2" Storyboard.TargetProperty="Opacity" BeginTime="0:0:9" />
+            <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathToLaser3" Storyboard.TargetProperty="Opacity" BeginTime="0:0:10.5" />
+
+            <PointAnimationUsingPath Duration="0:0:2.5" PathGeometry="{StaticResource WayToLaser}"
+                                     Storyboard.TargetName="PhotonToLaser1"
+                                     Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:7.5"/>
+            <PointAnimationUsingPath Duration="0:0:2.5" PathGeometry="{StaticResource WayToLaser}"
+                                     Storyboard.TargetName="PhotonToLaser2"
+                                     Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:9"/>
+            <PointAnimationUsingPath Duration="0:0:2.5" PathGeometry="{StaticResource WayToLaser}"
+                                     Storyboard.TargetName="PhotonToLaser3"
+                                     Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:10.5"/>
+            
+            <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="PathToLaser1" Storyboard.TargetProperty="Opacity" BeginTime="0:0:10" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="PathToLaser2" Storyboard.TargetProperty="Opacity" BeginTime="0:0:11.5" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="PathToLaser3" Storyboard.TargetProperty="Opacity" BeginTime="0:0:13" />
+
+            <StaticResource ResourceKey="PhaseShiftAnimation" />
+            <StaticResource ResourceKey="DetectorAnimation" />
+            <StaticResource ResourceKey="MiddlePhoton1Animation"/>
+            <StaticResource ResourceKey="MiddlePhoton2Animation"/>
 
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:9.99" Storyboard.TargetName="PathUpUp" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:11.49" Storyboard.TargetName="PathUpDown" Storyboard.TargetProperty="Opacity" />
@@ -167,6 +209,21 @@
         <Path Stroke="Chocolate" StrokeThickness="2" Fill="Chocolate" x:Name="PathDownDown" Opacity="0">
             <Path.Data>
                 <EllipseGeometry x:Name="PhotonDownDown" RadiusX="2" RadiusY="2" Center="40,40"></EllipseGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Chocolate" StrokeThickness="2" Fill="Chocolate" x:Name="PathToLaser1" Opacity="0">
+            <Path.Data>
+                <EllipseGeometry x:Name="PhotonToLaser1" RadiusX="2" RadiusY="2" Center="40,40"></EllipseGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Chocolate" StrokeThickness="2" Fill="Chocolate" x:Name="PathToLaser2" Opacity="0">
+            <Path.Data>
+                <EllipseGeometry x:Name="PhotonToLaser2" RadiusX="2" RadiusY="2" Center="40,40"></EllipseGeometry>
+            </Path.Data>
+        </Path>
+        <Path Stroke="Chocolate" StrokeThickness="2" Fill="Chocolate" x:Name="PathToLaser3" Opacity="0">
+            <Path.Data>
+                <EllipseGeometry x:Name="PhotonToLaser3" RadiusX="2" RadiusY="2" Center="40,40"></EllipseGeometry>
             </Path.Data>
         </Path>
         <!-- /photons -->

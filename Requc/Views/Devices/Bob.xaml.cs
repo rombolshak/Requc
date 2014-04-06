@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using Requc.Models;
 using Requc.ViewModels;
@@ -27,7 +28,7 @@ namespace Requc.Views.Devices
             };
         }
 
-        void ForwardProcessStarted(object sender, EventArgs e)
+        void ForwardProcessStarted(object sender, SimpleProtocolEventArgs e)
         {
             var storyboard = (Storyboard)FindResource("ForwardAnimation");
             storyboard.Begin(this);
@@ -38,8 +39,10 @@ namespace Requc.Views.Devices
             ((ProtocolDevice)DataContext).RequestForwardProcessFinish();
         }
 
-        private void BackwardProcessStarted(object sender, EventArgs e)
+        private void BackwardProcessStarted(object sender, SimpleProtocolEventArgs e)
         {
+            var animation = (ColorAnimation) FindResource("PhaseShiftAnimation");
+            animation.To = Math.Abs(e.BobPhase - e.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
             var storyboard = (Storyboard)FindResource("BackwardAnimation");
             storyboard.Begin(this);
         }
