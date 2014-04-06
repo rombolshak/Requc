@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Windows.Input;
-using Requc.Helpers;
-using Requc.Models;
-using Requc.Models.Devices;
-
-namespace Requc.ViewModels
+﻿namespace Requc.ViewModels
 {
     public class MainWindowViewModel : BaseViewModel
     {

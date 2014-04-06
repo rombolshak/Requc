@@ -3,18 +3,18 @@
                     xmlns:model="clr-namespace:Requc.Models"
                     xmlns:viewmodel="clr-namespace:Requc.ViewModels"
                     xmlns:view="clr-namespace:Requc.Views"
-                    xmlns:device="clr-namespace:Requc.Models.Devices"
+                    xmlns:device="clr-namespace:Requc.Models"
                     xmlns:deviceview="clr-namespace:Requc.Views.Devices">
     
     <DataTemplate DataType="{x:Type viewmodel:SimpleProtocolViewModel}">
         <view:SimpleProtocolView />
     </DataTemplate>
     
-    <DataTemplate DataType="{x:Type device:AliceDevice}">
+    <DataTemplate DataType="{x:Type device:AliceProtocolDevice}">
         <deviceview:Alice />
     </DataTemplate>
     
-    <DataTemplate DataType="{x:Type device:BobDevice}">
+    <DataTemplate DataType="{x:Type device:BobProtocolDevice}">
         <deviceview:Bob />
     </DataTemplate>
 </ResourceDictionary>

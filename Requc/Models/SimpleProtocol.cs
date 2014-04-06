@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Requc.Helpers;
-using Requc.Models.Devices;
 
 namespace Requc.Models
 {
@@ -12,49 +6,53 @@ namespace Requc.Models
     {
         public SimpleProtocol()
         {
-            AliceDevice = new AliceDevice();
-            BobDevice = new BobDevice();
+            AliceProtocolDevice = new AliceProtocolDevice {Protocol = this};
+            BobProtocolDevice = new BobProtocolDevice {Protocol = this};
+            Params = new ProtocolParams(100, 200, Math.PI/8, Math.PI/4);
 
-            AliceDevice.ForwardProcessFinished += AliceDeviceForwardProcessFinished;
-            BobDevice.ForwardProcessFinished += BobDeviceForwardProcessFinished;
-            BobDevice.BackwardProcessFinished += BobDevice_BackwardProcessFinished;
-            AliceDevice.BackwardProcessFinished += AliceDevice_BackwardProcessFinished;
+            AliceProtocolDevice.ForwardProcessFinished += AliceDeviceForwardProcessFinished;
+            BobProtocolDevice.ForwardProcessFinished += BobDeviceForwardProcessFinished;
+            BobProtocolDevice.BackwardProcessFinished += BobDevice_BackwardProcessFinished;
+            AliceProtocolDevice.BackwardProcessFinished += AliceDevice_BackwardProcessFinished;
         }
 
-        public AliceDevice AliceDevice { get; private set; }
-        public BobDevice BobDevice { get; private set; }
+        public AliceProtocolDevice AliceProtocolDevice { get; private set; }
+        public BobProtocolDevice BobProtocolDevice { get; private set; }
+        public ProtocolParams Params { get; private set; }
 
-        public event EventHandler Finished = Actions.DoNothing;
+        public event EventHandler<SimpleProtocolEventArgs> Finished = (sender, args) => { };
 
         public void Process()
         {
-            AliceDevice.ProcessForward();
+            AliceProtocolDevice.ProcessForward(new SimpleProtocolEventArgs(new QuantumState()));
         }
 
-        void AliceDeviceForwardProcessFinished(object sender, EventArgs e)
+        void AliceDeviceForwardProcessFinished(object sender, SimpleProtocolEventArgs e)
         {
-            BobDevice.ProcessForward();
+            BobProtocolDevice.ProcessForward(e);
         }
 
-        void BobDeviceForwardProcessFinished(object sender, EventArgs e)
+        void BobDeviceForwardProcessFinished(object sender, SimpleProtocolEventArgs e)
         {
-            BobDevice.ProcessBackward();
+            BobProtocolDevice.ProcessBackward(e);
         }
 
-        void BobDevice_BackwardProcessFinished(object sender, EventArgs e)
+        void BobDevice_BackwardProcessFinished(object sender, SimpleProtocolEventArgs e)
         {
-            AliceDevice.ProcessBackward();
+            AliceProtocolDevice.ProcessBackward(e);
         }
 
-        void AliceDevice_BackwardProcessFinished(object sender, EventArgs e)
+        void AliceDevice_BackwardProcessFinished(object sender, SimpleProtocolEventArgs e)
         {
-            Finished(this, new EventArgs());
+            Finished(this, e);
         }
 
         public void Dispose()
         {
-            AliceDevice.ForwardProcessFinished -= AliceDeviceForwardProcessFinished;
-            BobDevice.ForwardProcessFinished -= BobDeviceForwardProcessFinished;
+            AliceProtocolDevice.ForwardProcessFinished -= AliceDeviceForwardProcessFinished;
+            BobProtocolDevice.ForwardProcessFinished -= BobDeviceForwardProcessFinished;
+            BobProtocolDevice.BackwardProcessFinished -= BobDevice_BackwardProcessFinished;
+            AliceProtocolDevice.BackwardProcessFinished -= AliceDevice_BackwardProcessFinished;
         }
     }
 }

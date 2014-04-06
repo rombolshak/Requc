@@ -1,19 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Requc.Models.Devices;
+using Requc.Models;
 using Requc.ViewModels;
 
 namespace Requc.Views.Devices
@@ -31,8 +19,8 @@ namespace Requc.Views.Devices
                     AnimationsManager.Add((Storyboard)FindResource("ForwardAnimation"));
                     AnimationsManager.Add((Storyboard)FindResource("BackwardAnimation"));
 
-                    ((Device)DataContext).ForwardProcessStarted += ForwardProcessStarted;
-                    ((Device)DataContext).BackwardProcessStarted += BackwardProcessStarted;
+                    ((ProtocolDevice)DataContext).ForwardProcessStarted += ForwardProcessStarted;
+                    ((ProtocolDevice)DataContext).BackwardProcessStarted += BackwardProcessStarted;
 
                     ((Storyboard)FindResource("ForwardAnimation")).Completed += ForwardCompleted;
                     ((Storyboard)FindResource("BackwardAnimation")).Completed += BackwardCompleted;
@@ -47,7 +35,7 @@ namespace Requc.Views.Devices
 
         void ForwardCompleted(object sender, EventArgs e)
         {
-            ((Device)DataContext).RequestForwardProcessFinish();
+            ((ProtocolDevice)DataContext).RequestForwardProcessFinish();
         }
 
         private void BackwardProcessStarted(object sender, EventArgs e)
@@ -58,7 +46,7 @@ namespace Requc.Views.Devices
 
         private void BackwardCompleted(object sender, EventArgs e)
         {
-            ((Device)DataContext).RequestBackwardProcessFinish();
+            ((ProtocolDevice)DataContext).RequestBackwardProcessFinish();
         }
     }
 }

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -62,8 +63,12 @@
     <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\CommonCommand.cs" />
     <Compile Include="Commands\RunCommand.cs" />
-    <Compile Include="Models\Devices\AliceDevice.cs" />
-    <Compile Include="Models\Devices\BobDevice.cs" />
+    <Compile Include="Models\Devices.cs" />
+    <Compile Include="Models\AliceProtocolDevice.cs" />
+    <Compile Include="Models\BobProtocolDevice.cs" />
+    <Compile Include="Models\ProtocolParams.cs" />
+    <Compile Include="Models\SimpleProtocolEventArgs.cs" />
+    <Compile Include="Models\QuantumState.cs" />
     <Compile Include="Models\SimpleProtocol.cs" />
     <Compile Include="ViewModels\AnimationsManager.cs" />
     <Compile Include="ViewModels\SimpleProtocolViewModel.cs" />
@@ -93,8 +98,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Helpers\Actions.cs" />
-    <Compile Include="Models\Devices\Device.cs" />
-    <Compile Include="Models\Devices\IDevice.cs" />
+    <Compile Include="Models\ProtocolDevice.cs" />
     <Compile Include="Helpers\DelegateCommand.cs" />
     <Compile Include="Helpers\NotificationObject.cs" />
     <Compile Include="Helpers\RandomHelper.cs" />
