@@ -50,7 +50,12 @@
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUpDown" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathDownUp" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathDownDown" Storyboard.TargetProperty="Opacity" />
-            
+
+            <DoubleAnimation To="8" Duration="0:0:0.01" Storyboard.TargetName="PathUpUp" Storyboard.TargetProperty="StrokeThickness" />
+            <DoubleAnimation To="8" Duration="0:0:0.01" Storyboard.TargetName="PathUpDown" Storyboard.TargetProperty="StrokeThickness" />
+            <DoubleAnimation To="8" Duration="0:0:0.01" Storyboard.TargetName="PathDownUp" Storyboard.TargetProperty="StrokeThickness" />
+            <DoubleAnimation To="8" Duration="0:0:0.01" Storyboard.TargetName="PathDownDown" Storyboard.TargetProperty="StrokeThickness" />
+
             <PointAnimationUsingPath Duration="0:0:10" PathGeometry="{StaticResource ForwardWayUpUp}" 
                                      Storyboard.TargetName="PhotonUpUp" 
                                      Storyboard.TargetProperty="Center" />
@@ -75,7 +80,12 @@
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUpDown" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathDownUp" Storyboard.TargetProperty="Opacity" BeginTime="0:0:1.5" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathDownDown" Storyboard.TargetProperty="Opacity" BeginTime="0:0:1.5" />
-            
+
+            <DoubleAnimation To="3" Duration="0:0:0.01" Storyboard.TargetName="PathUpUp" Storyboard.TargetProperty="StrokeThickness" />
+            <DoubleAnimation To="3" Duration="0:0:0.01" Storyboard.TargetName="PathUpDown" Storyboard.TargetProperty="StrokeThickness" />
+            <DoubleAnimation To="3" Duration="0:0:0.01" Storyboard.TargetName="PathDownUp" Storyboard.TargetProperty="StrokeThickness" />
+            <DoubleAnimation To="3" Duration="0:0:0.01" Storyboard.TargetName="PathDownDown" Storyboard.TargetProperty="StrokeThickness" />
+
             <PointAnimationUsingPath Duration="0:0:10" PathGeometry="{StaticResource BackwardWayUpDown}"
                                      Storyboard.TargetName="PhotonUpUp"
                                      Storyboard.TargetProperty="Center" />
@@ -91,6 +101,7 @@
                                      Storyboard.TargetProperty="Center"
                                      BeginTime="0:0:1.5"/>
 
+            <!--
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathToLaser1" Storyboard.TargetProperty="Opacity" BeginTime="0:0:7.5" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathToLaser2" Storyboard.TargetProperty="Opacity" BeginTime="0:0:9" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathToLaser3" Storyboard.TargetProperty="Opacity" BeginTime="0:0:10.5" />
@@ -111,9 +122,11 @@
             <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="PathToLaser1" Storyboard.TargetProperty="Opacity" BeginTime="0:0:10" />
             <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="PathToLaser2" Storyboard.TargetProperty="Opacity" BeginTime="0:0:11.5" />
             <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="PathToLaser3" Storyboard.TargetProperty="Opacity" BeginTime="0:0:13" />
+            -->
 
             <StaticResource ResourceKey="PhaseShiftAnimation" />
             <StaticResource ResourceKey="DetectorAnimation" />
+            <DoubleAnimation Duration="0:0:0.1" To="6" Storyboard.TargetName="PathUpDown" Storyboard.TargetProperty="StrokeThickness" BeginTime="0:0:9" />
             <StaticResource ResourceKey="MiddlePhoton1Animation"/>
             <StaticResource ResourceKey="MiddlePhoton2Animation"/>
 

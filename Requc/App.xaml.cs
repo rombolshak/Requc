@@ -9,12 +9,13 @@ namespace Requc
     /// </summary>
     public partial class App : Application
     {
-        private void App_OnStartup(object sender, StartupEventArgs e)
+        private void App_Run(object sender, StartupEventArgs e)
         {
-            var window = new MainWindow();
-            var viewModel = new MainWindowViewModel();
-            window.DataContext = viewModel;
-            window.Show();
+            //var window = new MainWindow();
+            //var window = Application.Current.MainWindow;
+            //var viewModel = new MainWindowViewModel();
+            //window.DataContext = viewModel;
+            //window.Show();
         }
     }
 }

@@ -81,6 +81,9 @@
     <Compile Include="Views\Devices\Bob.xaml.cs">
       <DependentUpon>Bob.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MainArea.xaml.cs">
+      <DependentUpon>MainArea.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SimpleProtocolView.xaml.cs">
       <DependentUpon>SimpleProtocolView.xaml</DependentUpon>
     </Compile>
@@ -89,6 +92,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Devices\Bob.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainArea.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -148,6 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Converters\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
