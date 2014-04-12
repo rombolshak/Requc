@@ -7,7 +7,7 @@ namespace Requc.Models
         protected override void DoForwardProcess(SimpleProtocolEventArgs args)
         {
             // laser
-            args.QuantumState.Timeslot[0] = RandomHelper.RandomNumber(Protocol.Params.LaserPhotonNumberMin, Protocol.Params.LaserPhotonNumberMax, 0);
+            args.QuantumState.Timeslot[0] = RandomHelper.RandomNumber(ProtocolAct.Params.LaserPhotonNumberMin, ProtocolAct.Params.LaserPhotonNumberMax, 0);
 
             // beamsplitter + delay
             args.QuantumState.Timeslot[1] = (args.QuantumState.Timeslot[0] /= 2);
@@ -18,7 +18,7 @@ namespace Requc.Models
             var stateTop = args.QuantumState;
             var stateBottom = QuantumState.Vacuum;
             Devices.BeamSplit(stateTop, stateBottom);
-            args.AlicePhase = RandomHelper.RandomBool() ? Protocol.Params.Phase0 : Protocol.Params.Phase1;
+            args.AlicePhase = RandomHelper.RandomBool() ? ProtocolAct.Params.Phase0 : ProtocolAct.Params.Phase1;
             Devices.PhaseShift(stateBottom, 0, args.AlicePhase);
             Devices.Delay(args.QuantumState);
             Devices.BeamSplit(stateTop, stateBottom);

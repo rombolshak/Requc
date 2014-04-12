@@ -13,21 +13,21 @@ namespace Requc.ViewModels
     {
         public SimpleProtocolViewModel()
         {
-            Protocol = new SimpleProtocol();
+            ProtocolAct = new SimpleProtocolAct();
         }
 
-        public SimpleProtocol Protocol { get; private set; }
+        public SimpleProtocolAct ProtocolAct { get; private set; }
 
         public ICommand RunCommand 
         {
-            get { return _runCommand ?? (_runCommand = new RunCommand(Protocol)); }
+            get { return _runCommand ?? (_runCommand = new RunCommand(ProtocolAct)); }
         }
 
         private RunCommand _runCommand;
         
         public void Dispose()
         {
-            Protocol.Dispose();
+            ProtocolAct.Dispose();
         }
     }
 }

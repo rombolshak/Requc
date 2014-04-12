@@ -37,7 +37,7 @@ namespace Requc.Models
             BackwardProcessFinished(this, _args);
         }
 
-        public SimpleProtocol Protocol { get; set; }
+        public SimpleProtocolAct ProtocolAct { get; set; }
         private SimpleProtocolEventArgs _args;
     }
 }

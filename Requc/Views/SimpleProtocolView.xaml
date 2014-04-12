@@ -12,10 +12,10 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="100" />
         </Grid.ColumnDefinitions>
-        <ContentPresenter Content="{Binding Path=Protocol.AliceProtocolDevice}" Grid.Column="0"/>
-        <ContentPresenter Content="{Binding Path=Protocol.BobProtocolDevice}" Grid.Column="1"/>
+        <ContentPresenter Content="{Binding Path=ProtocolAct.AliceProtocolDevice}" Grid.Column="0"/>
+        <ContentPresenter Content="{Binding Path=ProtocolAct.BobProtocolDevice}" Grid.Column="1"/>
         <StackPanel Grid.Column="2">
-            <Button Height="100" Command="{Binding Path=RunCommand}" CommandParameter="{Binding Path=Protocol}">Run</Button>
+            <Button Height="100" Command="{Binding Path=RunCommand}" CommandParameter="{Binding Path=ProtocolAct}">Run</Button>
         </StackPanel>
     </Grid>
 </UserControl>

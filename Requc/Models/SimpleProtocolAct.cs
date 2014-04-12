@@ -2,12 +2,12 @@
 
 namespace Requc.Models
 {
-    public class SimpleProtocol : IDisposable
+    public class SimpleProtocolAct : IDisposable
     {
-        public SimpleProtocol()
+        public SimpleProtocolAct()
         {
-            AliceProtocolDevice = new AliceProtocolDevice {Protocol = this};
-            BobProtocolDevice = new BobProtocolDevice {Protocol = this};
+            AliceProtocolDevice = new AliceProtocolDevice {ProtocolAct = this};
+            BobProtocolDevice = new BobProtocolDevice {ProtocolAct = this};
             Params = new ProtocolParams(100, 200, Math.PI/8, Math.PI/4);
 
             AliceProtocolDevice.ForwardProcessFinished += AliceDeviceForwardProcessFinished;

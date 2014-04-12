@@ -17,9 +17,9 @@ namespace Requc.Models
         protected override void DoBackwardProcess(SimpleProtocolEventArgs args)
         {
             args.QuantumState.Timeslot[0] = args.QuantumState.Timeslot[1] =
-                                            (args.QuantumState.Timeslot[0] - Protocol.Params.LaserPhotonNumberMin) /
-                                            (Protocol.Params.LaserPhotonNumberMax - Protocol.Params.LaserPhotonNumberMin);
-            args.BobPhase = RandomHelper.RandomBool() ? Protocol.Params.Phase0 : Protocol.Params.Phase1;
+                                            (args.QuantumState.Timeslot[0] - ProtocolAct.Params.LaserPhotonNumberMin) /
+                                            (ProtocolAct.Params.LaserPhotonNumberMax - ProtocolAct.Params.LaserPhotonNumberMin);
+            args.BobPhase = RandomHelper.RandomBool() ? ProtocolAct.Params.Phase0 : ProtocolAct.Params.Phase1;
             Devices.PhaseShift(args.QuantumState, 1, args.BobPhase);
         }
     }

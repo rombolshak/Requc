@@ -9,24 +9,24 @@ namespace Requc.Commands
 {
     class RunCommand : CommonCommand 
     {
-        public RunCommand(SimpleProtocol protocol)
+        public RunCommand(SimpleProtocolAct protocolAct)
         {
-            _protocol = protocol;
+            _protocolAct = protocolAct;
         }
 
         protected override void OnExecute(object parameter)
         {
             IsExecuting = true;
-            _protocol.Finished += ProtocolFinished;
-            _protocol.Process();
+            _protocolAct.Finished += ProtocolActFinished;
+            _protocolAct.Process();
         }
 
-        private void ProtocolFinished(object sender, EventArgs eventArgs)
+        private void ProtocolActFinished(object sender, EventArgs eventArgs)
         {
-            _protocol.Finished -= ProtocolFinished;
+            _protocolAct.Finished -= ProtocolActFinished;
             IsExecuting = false;
         }
 
-        private readonly SimpleProtocol _protocol;
+        private readonly SimpleProtocolAct _protocolAct;
     }
 }
