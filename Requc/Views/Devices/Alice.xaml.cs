@@ -47,8 +47,8 @@ namespace Requc.Views.Devices
             var photon2Animation = (DoubleAnimation)FindResource("MiddlePhoton2Animation");
             var storyboard = (Storyboard)FindResource("BackwardAnimation");
 
-            phaseAnimation.To = Math.Abs(e.AlicePhase - e.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
-            var destructiveInterference = Math.Abs(e.AlicePhase - e.BobPhase) < 1e-5;
+            phaseAnimation.To = Math.Abs(e.Item.AlicePhase - e.Item.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
+            var destructiveInterference = Math.Abs(e.Item.AlicePhase - e.Item.BobPhase) < 1e-5;
             detectorAnimation.To = destructiveInterference ? Colors.Black : Colors.GreenYellow;
             photon1Animation.To = destructiveInterference ? 0 : 1;
             photon2Animation.To = destructiveInterference ? 0 : 1;

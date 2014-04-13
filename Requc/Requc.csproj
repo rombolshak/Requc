@@ -73,6 +73,7 @@
     <Compile Include="Models\SimpleProtocolEventArgs.cs" />
     <Compile Include="Models\QuantumState.cs" />
     <Compile Include="Models\SimpleProtocolAct.cs" />
+    <Compile Include="Models\TransmissionItem.cs" />
     <Compile Include="ViewModels\AnimationsManager.cs" />
     <Compile Include="ViewModels\SimpleProtocolViewModel.cs" />
     <Compile Include="Views\Devices\Alice.xaml.cs">

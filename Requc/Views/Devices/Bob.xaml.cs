@@ -42,7 +42,7 @@ namespace Requc.Views.Devices
         private void BackwardProcessStarted(object sender, SimpleProtocolEventArgs e)
         {
             var animation = (ColorAnimation) FindResource("PhaseShiftAnimation");
-            animation.To = Math.Abs(e.BobPhase - e.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
+            animation.To = Math.Abs(e.Item.BobPhase - e.Item.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
             var storyboard = (Storyboard)FindResource("BackwardAnimation");
             storyboard.Begin(this);
         }

@@ -22,12 +22,11 @@ namespace Requc.Models
 
         public event EventHandler<SimpleProtocolEventArgs> Finished = (sender, args) => { };
 
-        public void Process()
+        public TransmissionItem Process()
         {
-            AliceProtocolDevice.ProcessForward(new SimpleProtocolEventArgs(
-                                                   new QuantumState(),
-                                                   Params.Phase0,
-                                                   Params.Phase1));
+            _transmissionItem = new TransmissionItem(Params.Phase0, Params.Phase1);
+            AliceProtocolDevice.ProcessForward(new SimpleProtocolEventArgs(_transmissionItem));
+            return _transmissionItem;
         }
 
         void AliceDeviceForwardProcessFinished(object sender, SimpleProtocolEventArgs e)
@@ -57,5 +56,7 @@ namespace Requc.Models
             BobProtocolDevice.BackwardProcessFinished -= BobDevice_BackwardProcessFinished;
             AliceProtocolDevice.BackwardProcessFinished -= AliceDevice_BackwardProcessFinished;
         }
+
+        private TransmissionItem _transmissionItem;
     }
 }

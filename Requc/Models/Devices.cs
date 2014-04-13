@@ -5,6 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using Requc.Helpers;
 
 namespace Requc.Models
 {
@@ -40,6 +41,13 @@ namespace Requc.Models
         public static void PhaseShift(QuantumState state, int timeslot, double phase)
         {
             state.Timeslot[timeslot] *= Complex.Exp(Complex.ImaginaryOne * phase);
+        }
+
+        public static void Laser(TransmissionItem transmissionItem)
+        {
+            transmissionItem.QuantumState = new QuantumState();
+            var phase = RandomHelper.RandomNumber(0, 6, 3);
+            transmissionItem.QuantumState.Timeslot[0] = 156*Complex.Exp(phase*Complex.ImaginaryOne);
         }
     }
 }

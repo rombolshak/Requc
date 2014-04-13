@@ -6,23 +6,24 @@ namespace Requc.Models
     {
         protected override void DoForwardProcess(SimpleProtocolEventArgs args)
         {
-            // laser
-            args.QuantumState.Timeslot[0] = RandomHelper.RandomNumber(ProtocolAct.Params.LaserPhotonNumberMin, ProtocolAct.Params.LaserPhotonNumberMax, 0);
-
-            // beamsplitter + delay
-            args.QuantumState.Timeslot[1] = (args.QuantumState.Timeslot[0] /= 2);
+            Devices.Laser(args.Item);
+            var topState = args.Item.QuantumState;
+            var bottomState = QuantumState.Vacuum;
+            Devices.BeamSplit(topState, bottomState);
+            Devices.Delay(bottomState);
+            Devices.BeamSplit(topState, bottomState);
         }
 
         protected override void DoBackwardProcess(SimpleProtocolEventArgs args)
         {
-            var stateTop = args.QuantumState;
+            var stateTop = args.Item.QuantumState;
             var stateBottom = QuantumState.Vacuum;
             Devices.BeamSplit(stateTop, stateBottom);
-            args.AlicePhase = RandomHelper.RandomBool() ? ProtocolAct.Params.Phase0 : ProtocolAct.Params.Phase1;
-            Devices.PhaseShift(stateBottom, 0, args.AlicePhase);
-            Devices.Delay(args.QuantumState);
+            args.Item.AliceValue = RandomHelper.RandomBool();
+            Devices.PhaseShift(stateBottom, 0, args.Item.AlicePhase);
+            Devices.Delay(args.Item.QuantumState);
             Devices.BeamSplit(stateTop, stateBottom);
-            args.QuantumState = stateBottom;
+            args.Item.QuantumState = stateBottom;
         }
     }
 }

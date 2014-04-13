@@ -4,18 +4,11 @@ namespace Requc.Models
 {
     public class SimpleProtocolEventArgs : EventArgs
     {
-        public SimpleProtocolEventArgs(QuantumState quantumState, double phase0, double phase1)
+        public SimpleProtocolEventArgs(TransmissionItem item)
         {
-            Phase1 = phase1;
-            Phase0 = phase0;
-            QuantumState = quantumState;
+            Item = item;
         }
 
-        public QuantumState QuantumState { get; set; }
-        public double AlicePhase { get; set; }
-        public double BobPhase { get; set; }
-
-        public double Phase0 { get; private set; }
-        public double Phase1 { get; private set; }
+        public TransmissionItem Item { get; private set; }
     }
 }
