@@ -45,6 +45,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,6 +67,8 @@
     <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\CommonCommand.cs" />
     <Compile Include="Commands\RunCommand.cs" />
+    <Compile Include="Converters\BooleanToIntConverter.cs" />
+    <Compile Include="Converters\PhaseValueToImageConverter.cs" />
     <Compile Include="Models\Devices.cs" />
     <Compile Include="Models\AliceProtocolDevice.cs" />
     <Compile Include="Models\BobProtocolDevice.cs" />
@@ -90,6 +93,9 @@
     </Compile>
     <Compile Include="Views\SimpleProtocolView.xaml.cs">
       <DependentUpon>SimpleProtocolView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TransmissionItemView.xaml.cs">
+      <DependentUpon>TransmissionItemView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\Devices\Alice.xaml">
       <SubType>Designer</SubType>
@@ -134,6 +140,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\TransmissionItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -162,10 +172,13 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Converters\" />
+    <Resource Include="Resources\phi0.gif" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\phi1.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
