@@ -10,6 +10,10 @@
         <view:SimpleProtocolView />
     </DataTemplate>
     
+    <DataTemplate DataType="{x:Type model:SimpleProtocolAct}">
+        <view:ProtocolActView />
+    </DataTemplate>
+    
     <DataTemplate DataType="{x:Type device:AliceProtocolDevice}">
         <deviceview:Alice />
     </DataTemplate>

@@ -85,6 +85,9 @@
     <Compile Include="Views\MainArea.xaml.cs">
       <DependentUpon>MainArea.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProtocolActView.xaml.cs">
+      <DependentUpon>ProtocolActView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SimpleProtocolView.xaml.cs">
       <DependentUpon>SimpleProtocolView.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ProtocolActView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SimpleProtocolView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
