@@ -69,6 +69,8 @@
     <Compile Include="Commands\RunCommand.cs" />
     <Compile Include="Converters\BooleanToIntConverter.cs" />
     <Compile Include="Converters\PhaseValueToImageConverter.cs" />
+    <Compile Include="Converters\ValuesToColorConverter.cs" />
+    <Compile Include="Converters\TransmissionItemToDetectorClickConverter.cs" />
     <Compile Include="Models\Devices.cs" />
     <Compile Include="Models\AliceProtocolDevice.cs" />
     <Compile Include="Models\BobProtocolDevice.cs" />
