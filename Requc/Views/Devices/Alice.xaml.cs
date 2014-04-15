@@ -17,8 +17,8 @@ namespace Requc.Views.Devices
             InitializeComponent();
             Loaded += (sender, args) =>
                 {
-                    AnimationsManager.Add((Storyboard)FindResource("ForwardAnimation"));
-                    AnimationsManager.Add((Storyboard)FindResource("BackwardAnimation"));
+                    AnimationsManager.Add((Storyboard)FindResource("ForwardAnimation"), this);
+                    AnimationsManager.Add((Storyboard)FindResource("BackwardAnimation"), this);
 
                     ((ProtocolDevice)DataContext).ForwardProcessStarted += ForwardProcessStarted;
                     ((ProtocolDevice)DataContext).BackwardProcessStarted += BackwardProcessStarted;
@@ -28,13 +28,13 @@ namespace Requc.Views.Devices
                 };
         }
 
-        void ForwardProcessStarted(object sender, EventArgs e)
+        private void ForwardProcessStarted(object sender, EventArgs e)
         {
             var storyboard = (Storyboard)FindResource("ForwardAnimation");
-            storyboard.Begin(this);
+            storyboard.Begin(this, true);
         }
 
-        void ForwardCompleted(object sender, EventArgs e)
+        private void ForwardCompleted(object sender, EventArgs e)
         {
             ((ProtocolDevice)DataContext).RequestForwardProcessFinish();
         }
@@ -52,7 +52,7 @@ namespace Requc.Views.Devices
             detectorAnimation.To = destructiveInterference ? Colors.Black : Colors.GreenYellow;
             photon1Animation.To = destructiveInterference ? 0 : 1;
             photon2Animation.To = destructiveInterference ? 0 : 1;
-            storyboard.Begin(this);
+            storyboard.Begin(this, true);
         }
 
         private void BackwardCompleted(object sender, EventArgs e)

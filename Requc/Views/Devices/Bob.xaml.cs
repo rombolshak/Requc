@@ -17,8 +17,8 @@ namespace Requc.Views.Devices
             InitializeComponent();
             Loaded += (sender, args) =>
             {
-                AnimationsManager.Add((Storyboard)FindResource("ForwardAnimation"));
-                AnimationsManager.Add((Storyboard)FindResource("BackwardAnimation"));
+                AnimationsManager.Add((Storyboard)FindResource("ForwardAnimation"), this);
+                AnimationsManager.Add((Storyboard)FindResource("BackwardAnimation"), this);
 
                 ((ProtocolDevice)DataContext).ForwardProcessStarted += ForwardProcessStarted;
                 ((ProtocolDevice)DataContext).BackwardProcessStarted += BackwardProcessStarted;
@@ -28,13 +28,13 @@ namespace Requc.Views.Devices
             };
         }
 
-        void ForwardProcessStarted(object sender, SimpleProtocolEventArgs e)
+        private void ForwardProcessStarted(object sender, SimpleProtocolEventArgs e)
         {
             var storyboard = (Storyboard)FindResource("ForwardAnimation");
-            storyboard.Begin(this);
+            storyboard.Begin(this, true);
         }
 
-        void ForwardCompleted(object sender, EventArgs e)
+        private void ForwardCompleted(object sender, EventArgs e)
         {
             ((ProtocolDevice)DataContext).RequestForwardProcessFinish();
         }
@@ -44,7 +44,7 @@ namespace Requc.Views.Devices
             var animation = (ColorAnimation) FindResource("PhaseShiftAnimation");
             animation.To = Math.Abs(e.Item.BobPhase - e.Item.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
             var storyboard = (Storyboard)FindResource("BackwardAnimation");
-            storyboard.Begin(this);
+            storyboard.Begin(this, true);
         }
 
         private void BackwardCompleted(object sender, EventArgs e)
