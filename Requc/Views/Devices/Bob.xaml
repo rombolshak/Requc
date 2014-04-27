@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="160" d:DesignWidth="300">
+             d:DesignHeight="160" d:DesignWidth="240">
     <UserControl.Resources>
         <PathGeometry x:Key="ForwardWayUp" Figures="M 5,40 L 235,40" />
         <PathGeometry x:Key="ForwardWayDown" Figures="m 5,40 L 40,40 C 55,40 45,80 60,80 " />

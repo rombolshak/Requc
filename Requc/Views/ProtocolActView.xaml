@@ -10,7 +10,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ContentPresenter Content="{Binding Path=AliceProtocolDevice}" Grid.Column="0"/>
-        <ContentPresenter Content="{Binding Path=BobProtocolDevice}" Grid.Column="1"/>
+        <ContentPresenter Content="{Binding Path=AliceProtocolDevice}" Grid.Column="0" HorizontalAlignment="Left" />
+        <ContentPresenter Content="{Binding Path=BobProtocolDevice}" Grid.Column="1" HorizontalAlignment="Right"/>
     </Grid>
 </UserControl>

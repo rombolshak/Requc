@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Requc.Views.BobTransmissionItemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Requc.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="200">
+    <UserControl.Resources>
+        <converters:BooleanToIntConverter x:Key="BooleanToInt" />
+        <converters:PhaseValueToImageConverter x:Key="PhaseToImage" />
+
+        <Storyboard x:Key="TransmissionItemAnimation">
+            <DoubleAnimation To="1" Storyboard.TargetName="BobValue" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:16.8" />
+            <DoubleAnimation To="1" Storyboard.TargetName="BobPhase" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:18.6" />
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid ShowGridLines="True" Opacity="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        
+        <Image Grid.Column="0" Grid.Row="0" x:Name="BobPhase" Opacity="0" Height="12" Width="18">
+            <Image.Source>
+                <MultiBinding Converter="{StaticResource PhaseToImage}">
+                    <Binding Path="BobPhase"></Binding>
+                    <Binding Path="Phase0"></Binding>
+                </MultiBinding>
+            </Image.Source>
+        </Image>
+        <TextBlock Text="{Binding Path=BobValue, Converter={StaticResource BooleanToInt}}" Grid.Column="1" Grid.Row="0" x:Name="BobValue" Opacity="0" HorizontalAlignment="Center" />
+
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="Grid.Loaded">
+                <BeginStoryboard Storyboard="{StaticResource TransmissionItemAnimation}" />
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="0:0:0.2" From="0" To="1"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="Grid.Unloaded">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="0:0:0.2" From="1" To="0"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+    </Grid>
+</UserControl>

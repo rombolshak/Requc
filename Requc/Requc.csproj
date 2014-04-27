@@ -81,6 +81,18 @@
     <Compile Include="Models\TransmissionItem.cs" />
     <Compile Include="ViewModels\AnimationsManager.cs" />
     <Compile Include="ViewModels\SimpleProtocolViewModel.cs" />
+    <Compile Include="Views\AliceTransmissionItemsView.xaml.cs">
+      <DependentUpon>AliceTransmissionItemsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AliceTransmissionItemView.xaml.cs">
+      <DependentUpon>AliceTransmissionItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BobTransmissionItemsView.xaml.cs">
+      <DependentUpon>BobTransmissionItemsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BobTransmissionItemView.xaml.cs">
+      <DependentUpon>BobTransmissionItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Devices\Alice.xaml.cs">
       <DependentUpon>Alice.xaml</DependentUpon>
     </Compile>
@@ -96,9 +108,22 @@
     <Compile Include="Views\SimpleProtocolView.xaml.cs">
       <DependentUpon>SimpleProtocolView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TransmissionItemView.xaml.cs">
-      <DependentUpon>TransmissionItemView.xaml</DependentUpon>
-    </Compile>
+    <Page Include="Views\AliceTransmissionItemsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AliceTransmissionItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BobTransmissionItemsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BobTransmissionItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Devices\Alice.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,10 +164,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\DataTemplates.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TransmissionItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

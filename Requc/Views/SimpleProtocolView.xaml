@@ -8,44 +8,20 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="100" />
+            <ColumnDefinition Width="200" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="180" />
-            <RowDefinition Height="25" />
-            <RowDefinition Height="200" />
+            <RowDefinition Height="350" />
         </Grid.RowDefinitions>
-        <ContentPresenter Content="{Binding Path=ProtocolAct}" Grid.Column="0" Grid.Row="0"/>
-        <StackPanel Grid.Column="1" Grid.Row="0">
+        <ContentPresenter Content="{Binding Path=ProtocolAct}" Grid.Column="1" Grid.Row="0"/>
+        <StackPanel Grid.Column="2" Grid.Row="0">
             <Button Height="100" Command="{Binding Path=RunCommand}" CommandParameter="{Binding Path=ProtocolAct}">Run</Button>
         </StackPanel>
 
-        <Grid ShowGridLines="True" Grid.Row="1" Height="20" Margin="0 0 0 0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition/>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
-            </Grid.RowDefinitions>
-            <TextBlock Text="Значение Алисы" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" />
-            <TextBlock Text="Отсчет" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center"/>
-            <TextBlock Text="Фаза Алисы" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" />
-            <TextBlock Text="Фаза Боба" Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" />
-            <TextBlock Text="Значение Боба" Grid.Column="4" Grid.Row="0" HorizontalAlignment="Center" />
-        </Grid>
-        <ScrollViewer Grid.Column="0" Grid.Row="2" >
-            <ItemsControl ScrollViewer.CanContentScroll="True" ItemsSource="{Binding Path=TransmissionItems}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <view:TransmissionItemView DataContext="{Binding}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </ScrollViewer>
+        <view:AliceTransmissionItemsView Grid.Row="1" Grid.Column="0" />
+        <view:BobTransmissionItemsView Grid.Row="1" Grid.Column="2" />
     </Grid>
 </UserControl>
