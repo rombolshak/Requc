@@ -20,12 +20,15 @@ namespace Requc.Models
         public BobProtocolDevice BobProtocolDevice { get; private set; }
         public ProtocolParams Params { get; private set; }
 
+        public event EventHandler<SimpleProtocolEventArgs> Started = (sender, args) => { };
         public event EventHandler<SimpleProtocolEventArgs> Finished = (sender, args) => { };
 
         public TransmissionItem Process()
         {
             _transmissionItem = new TransmissionItem(Params.Phase0, Params.Phase1);
-            AliceProtocolDevice.ProcessForward(new SimpleProtocolEventArgs(_transmissionItem));
+            var e = new SimpleProtocolEventArgs(_transmissionItem);
+            Started(this, e);
+            AliceProtocolDevice.ProcessForward(e);
             return _transmissionItem;
         }
 

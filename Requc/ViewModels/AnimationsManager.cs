@@ -10,7 +10,7 @@ namespace Requc.ViewModels
         public static void Add(Storyboard animation, FrameworkElement containingObject)
         {
             Animations.Add(new Tuple<Storyboard, FrameworkElement>(animation, containingObject));
-            animation.SpeedRatio = 20;
+            ////animation.SpeedRatio = 20;
         }
 
         public static void Remove(Storyboard animation, FrameworkElement containingObject)

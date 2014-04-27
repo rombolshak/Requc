@@ -5,7 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:view="clr-namespace:Requc.Views"
              mc:Ignorable="d" 
       d:DesignHeight="200" d:DesignWidth="500">
-
+    <UserControl.Resources>
+        <DataTemplate x:Key="ProtocolTime">
+            <view:ProtocolTimeView />
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
@@ -22,6 +26,7 @@
         </StackPanel>
 
         <view:AliceTransmissionItemsView Grid.Row="1" Grid.Column="0" />
+        <ContentPresenter Content="{Binding Path=ProtocolAct}" ContentTemplate="{StaticResource ProtocolTime}" Grid.Column="1" Grid.Row="1"/>
         <view:BobTransmissionItemsView Grid.Row="1" Grid.Column="2" />
     </Grid>
 </UserControl>

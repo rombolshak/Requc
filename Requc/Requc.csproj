@@ -39,6 +39,10 @@
   <PropertyGroup>
     <StartupObject>Requc.App</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="FirstFloor.ModernUI">
       <HintPath>..\packages\ModernUI.WPF.1.0.5\lib\net45\FirstFloor.ModernUI.dll</HintPath>
@@ -105,6 +109,9 @@
     <Compile Include="Views\ProtocolActView.xaml.cs">
       <DependentUpon>ProtocolActView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ProtocolTimeView.xaml.cs">
+      <DependentUpon>ProtocolTimeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SimpleProtocolView.xaml.cs">
       <DependentUpon>SimpleProtocolView.xaml</DependentUpon>
     </Compile>
@@ -159,6 +166,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ProtocolTimeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SimpleProtocolView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -202,6 +213,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\phi1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="favicon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
