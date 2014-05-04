@@ -6,19 +6,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="480" d:DesignWidth="880">
     <UserControl.Resources>
-        <PathGeometry x:Key="First" Figures="M 40,460 L 870,310 200,187 200,150 40,120" />
-        <PathGeometry x:Key="Second" Figures="M 40,460 L 200,431 200,393 870,270 40,120" />
+        <PathGeometry x:Key="First" Figures="M 40,460 L 870,295 120,150 160,145 40,120" />
+        <PathGeometry x:Key="Second" Figures="M 40,460 L 160,435 120,430 870,285 40,120" />
         <Storyboard x:Key="Animation">
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathFirst" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathSecond" Storyboard.TargetProperty="Opacity" />
-            <PointAnimationUsingPath Duration="0:0:32.1" PathGeometry="{StaticResource First}" 
+            <PointAnimationUsingPath Duration="0:0:39.5" PathGeometry="{StaticResource First}" 
                                      Storyboard.TargetName="PhotonFirst" 
                                      Storyboard.TargetProperty="Center" />
-            <PointAnimationUsingPath Duration="0:0:32.1" PathGeometry="{StaticResource Second}" 
+            <PointAnimationUsingPath Duration="0:0:39.5" PathGeometry="{StaticResource Second}" 
                                      Storyboard.TargetName="PhotonSecond" 
                                      Storyboard.TargetProperty="Center" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:32.1" Storyboard.TargetName="PathFirst" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:32.1" Storyboard.TargetName="PathSecond" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:39.5" Storyboard.TargetName="PathFirst" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:39.5" Storyboard.TargetName="PathSecond" Storyboard.TargetProperty="Opacity" />
         </Storyboard>
     </UserControl.Resources>
     <Grid>
