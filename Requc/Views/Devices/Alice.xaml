@@ -46,7 +46,10 @@
                          BeginTime="0:0:9" />
 
         <Storyboard x:Key="ForwardAnimation">
-            <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUpUp" Storyboard.TargetProperty="Opacity" />
+            <Storyboard>
+                <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUpUp" Storyboard.TargetProperty="Opacity" />    
+            </Storyboard>
+            
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathUpDown" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathDownUp" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathDownDown" Storyboard.TargetProperty="Opacity" />
@@ -69,7 +72,7 @@
                                      Storyboard.TargetName="PhotonDownDown"
                                      Storyboard.TargetProperty="Center" />
             
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:9.59" Storyboard.TargetName="PathUpUp" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation x:Name="RequestFinish" To="0" Duration="0:0:0.01" BeginTime="0:0:9.59" Storyboard.TargetName="PathUpUp" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:9.59" Storyboard.TargetName="PathUpDown" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:11.49" Storyboard.TargetName="PathDownUp" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:11.49" Storyboard.TargetName="PathDownDown" Storyboard.TargetProperty="Opacity" />
@@ -141,7 +144,6 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
-            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <!-- Laser -->
         <Path Stroke="Black" StrokeThickness="2" Fill="White">

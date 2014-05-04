@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="360" d:DesignWidth="880">
+             d:DesignHeight="480" d:DesignWidth="880">
     <UserControl.Resources>
-        <PathGeometry x:Key="First" Figures="M 40,340 L 870,190 206,67 C 200,67 200,49 195,49 L 40,20" />
-        <PathGeometry x:Key="Second" Figures="M 40,340 L 195,311 C 200,313 200,293 205,293 L 870,170 40,20" />
+        <PathGeometry x:Key="First" Figures="M 40,460 L 870,310 200,187 200,150 40,120" />
+        <PathGeometry x:Key="Second" Figures="M 40,460 L 200,431 200,393 870,270 40,120" />
         <Storyboard x:Key="Animation">
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathFirst" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathSecond" Storyboard.TargetProperty="Opacity" />
@@ -22,8 +22,8 @@
         </Storyboard>
     </UserControl.Resources>
     <Grid>
-        <Path Stroke="Black" StrokeThickness="6" Data="M 40,0 L 40,360" />
-        <Path Stroke="Black" StrokeThickness="6" Data="M 870,0 L 870,360" />
+        <Path Stroke="Black" StrokeThickness="6" Data="M 40,0 L 40,480" />
+        <Path Stroke="Black" StrokeThickness="6" Data="M 870,0 L 870,480" />
         <Path Data="{StaticResource First}" Stroke="Aqua" StrokeThickness="2" />
         <Path Data="{StaticResource Second}" Stroke="Red" StrokeThickness="2" />
         <Path Stroke="Chocolate" StrokeThickness="5" Fill="Chocolate" x:Name="PathFirst" Opacity="0">

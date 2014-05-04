@@ -1,31 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 using Requc.Models;
 using Requc.ViewModels;
 
 namespace Requc.Views.Devices
 {
     /// <summary>
-    /// Interaction logic for Alice.xaml
+    /// Interaction logic for AllInOne.xaml
     /// </summary>
-    public partial class Alice : UserControl
+    public partial class AllInOne : UserControl
     {
-        public Alice()
+        public AllInOne()
         {
-            InitializeComponent();
-            Loaded += (sender, args) =>
-                {
-                    AnimationsManager.Add((Storyboard)FindResource("ForwardAnimation"), this);
-                    AnimationsManager.Add((Storyboard)FindResource("BackwardAnimation"), this);
+            InitializeComponent(); Loaded += (sender, args) =>
+            {
+                AnimationsManager.Add((Storyboard)FindResource("ForwardAnimation"), this);
+                AnimationsManager.Add((Storyboard)FindResource("BackwardAnimation"), this);
 
-                    ((ProtocolDevice)DataContext).ForwardProcessStarted += ForwardProcessStarted;
-                    ((ProtocolDevice)DataContext).BackwardProcessStarted += BackwardProcessStarted;
+                ((ProtocolDevice)DataContext).ForwardProcessStarted += ForwardProcessStarted;
+                ((ProtocolDevice)DataContext).BackwardProcessStarted += BackwardProcessStarted;
 
-                    ((Storyboard)FindResource("ForwardAnimation")).Children[0].Completed += ForwardCompleted;
-                    ((Storyboard)FindResource("BackwardAnimation")).Completed += BackwardCompleted;
-                };
+                ((Storyboard)FindResource("ForwardAnimation")).Completed += ForwardCompleted;
+                ((Storyboard)FindResource("BackwardAnimation")).Completed += BackwardCompleted;
+            };
         }
 
         private void ForwardProcessStarted(object sender, EventArgs e)
@@ -41,8 +51,8 @@ namespace Requc.Views.Devices
 
         private void BackwardProcessStarted(object sender, SimpleProtocolEventArgs e)
         {
-            var phaseAnimation = (ColorAnimation) FindResource("PhaseShiftAnimation");
-            var detectorAnimation = (ColorAnimation)FindResource("DetectorAnimation");
+            var phaseAnimation = (ColorAnimation)FindResource("AlicePhaseShiftAnimation");
+            var detectorAnimation = (ColorAnimation)FindResource("AliceDetectorAnimation");
             var photon1Animation = (DoubleAnimation)FindResource("MiddlePhoton1Animation");
             var photon2Animation = (DoubleAnimation)FindResource("MiddlePhoton2Animation");
             var storyboard = (Storyboard)FindResource("BackwardAnimation");

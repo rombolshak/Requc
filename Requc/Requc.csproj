@@ -75,6 +75,7 @@
     <Compile Include="Converters\PhaseValueToImageConverter.cs" />
     <Compile Include="Converters\ValuesToColorConverter.cs" />
     <Compile Include="Converters\TransmissionItemToDetectorClickConverter.cs" />
+    <Compile Include="Models\AllInOneDevice.cs" />
     <Compile Include="Models\Devices.cs" />
     <Compile Include="Models\AliceProtocolDevice.cs" />
     <Compile Include="Models\BobProtocolDevice.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Models\SimpleProtocolEventArgs.cs" />
     <Compile Include="Models\QuantumState.cs" />
     <Compile Include="Models\SimpleProtocolAct.cs" />
+    <Compile Include="Models\TransmissionEnvironmentDevice.cs" />
     <Compile Include="Models\TransmissionItem.cs" />
     <Compile Include="ViewModels\AnimationsManager.cs" />
     <Compile Include="ViewModels\SimpleProtocolViewModel.cs" />
@@ -100,8 +102,14 @@
     <Compile Include="Views\Devices\Alice.xaml.cs">
       <DependentUpon>Alice.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Devices\AllInOne.xaml.cs">
+      <DependentUpon>AllInOne.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Devices\Bob.xaml.cs">
       <DependentUpon>Bob.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Devices\Environment.xaml.cs">
+      <DependentUpon>Environment.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainArea.xaml.cs">
       <DependentUpon>MainArea.xaml</DependentUpon>
@@ -135,7 +143,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Devices\AllInOne.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Devices\Bob.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Devices\Environment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -13,12 +13,20 @@
     <DataTemplate DataType="{x:Type model:SimpleProtocolAct}">
         <view:ProtocolActView />
     </DataTemplate>
-    
+    <!--
     <DataTemplate DataType="{x:Type device:AliceProtocolDevice}">
         <deviceview:Alice />
     </DataTemplate>
     
     <DataTemplate DataType="{x:Type device:BobProtocolDevice}">
         <deviceview:Bob />
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type device:TransmissionEnvironmentDevice}">
+        <deviceview:Environment />
+    </DataTemplate>
+    -->
+    <DataTemplate DataType="{x:Type device:AllInOneDevice}">
+        <deviceview:AllInOne />
     </DataTemplate>
 </ResourceDictionary>
