@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="900">
+             d:DesignHeight="160" d:DesignWidth="900">
     <UserControl.Resources>
         <!-- alice -->
 
@@ -260,6 +260,20 @@
         
         <!-- eva -->
         <Path Stroke="Black" StrokeThickness="2" Data="M 400,40 L 640,40" />
+        <Path Stroke="Black" StrokeThickness="2" Data="M 500,40 L 540,40 
+              M 500,40 L 505,33 M 505,40 L 510,33 M 510,40 L 515,33 M 515,40 L 520,33 M 520,40 L 525,33 M 525,40 L 530,33 M 530,40 L 535,33 M 535,40 L 540,33 M 540,40 L 545,33" >
+            <Path.RenderTransform>
+                <RotateTransform Angle="180" CenterX="520" CenterY="40" />
+            </Path.RenderTransform>
+        </Path>
+        <!-- eva detector -->
+        <Path Stroke="Black" StrokeThickness="2" Fill="Black" Data="M 500,0 L 540,0 M 520,0 L 520,80 M 500,80 A 10 10 180 0 0 540,80
+              M 500,0 L 505,-7 M 505,0 L 510,-7 M 510,0 L 515,-7 M 515,0 L 520,-7 M 520,0 L 525,-7 M 525,0 L 530,-7 M 530,0 L 535,-7 M 535,0 L 540,-7 M 540,0 L 545,-7"></Path>
+        <!-- /detector -->
+        <!-- laser -->
+        <Path Stroke="Black" StrokeThickness="2" Fill="Black" Data=" M 460,80 L 480,80 480,100 460,100 M 455,85 L 485,85 M 455,90 L 485,90 M 455,95 L 485,95" />
+        <Path Stroke="Black" StrokeThickness="2" Fill="White" Data="M 467,80 L 473,80 473,65 467,65 Z  M 470,65 L 470,50 C 470,40 455,40 455,40"></Path>
+        <!-- /laser -->
         <!-- /eva -->
         
         <!-- bob -->
