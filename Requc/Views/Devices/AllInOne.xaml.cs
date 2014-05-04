@@ -51,17 +51,28 @@ namespace Requc.Views.Devices
 
         private void BackwardProcessStarted(object sender, SimpleProtocolEventArgs e)
         {
-            var phaseAnimation = (ColorAnimation)FindResource("AlicePhaseShiftAnimation");
+            var alicePhaseAnimation = (ColorAnimation)FindResource("AlicePhaseShiftAnimation");
+            var bobPhaseAnimation = (ColorAnimation)FindResource("BobPhaseShiftAnimation");
             var detectorAnimation = (ColorAnimation)FindResource("AliceDetectorAnimation");
             var photon1Animation = (DoubleAnimation)FindResource("MiddlePhoton1Animation");
             var photon2Animation = (DoubleAnimation)FindResource("MiddlePhoton2Animation");
-            var storyboard = (Storyboard)FindResource("BackwardAnimation");
 
-            phaseAnimation.To = Math.Abs(e.Item.AlicePhase - e.Item.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
+            var eva1Animation = (PointAnimationUsingPath) FindResource("Eva1");
+            var eva2Animation = (PointAnimationUsingPath)FindResource("Eva2");
+
+            alicePhaseAnimation.To = Math.Abs(e.Item.AlicePhase - e.Item.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
+            bobPhaseAnimation.To = Math.Abs(e.Item.BobPhase - e.Item.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
             var destructiveInterference = Math.Abs(e.Item.AlicePhase - e.Item.BobPhase) < 1e-5;
             detectorAnimation.To = destructiveInterference ? Colors.Black : Colors.GreenYellow;
             photon1Animation.To = destructiveInterference ? 0 : 1;
             photon2Animation.To = destructiveInterference ? 0 : 1;
+
+            eva1Animation.Duration = new Duration(TimeSpan.FromSeconds(4));
+            eva1Animation.PathGeometry = (PathGeometry) FindResource("EvaNoCatchWay1");
+            eva2Animation.Duration = new Duration(TimeSpan.FromSeconds(4));
+            eva2Animation.PathGeometry = (PathGeometry)FindResource("EvaNoCatchWay2");
+            
+            var storyboard = (Storyboard)FindResource("BackwardAnimation");
             storyboard.Begin(this, true);
         }
 
