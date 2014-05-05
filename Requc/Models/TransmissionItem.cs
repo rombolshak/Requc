@@ -12,10 +12,13 @@ namespace Requc.Models
         private QuantumState _quantumState;
         private double _alicePhase;
         private double _bobPhase;
+        private double _evaPhase;
         private double _phase0;
         private double _phase1;
         private bool _aliceValue;
         private bool _bobValue;
+        private bool _evaValue;
+        private bool _catchedByEva;
 
         public TransmissionItem(double phase0, double phase1)
         {
@@ -55,6 +58,17 @@ namespace Requc.Models
             }
         }
 
+        public bool EvaValue
+        {
+            get { return _evaValue; }
+            set
+            {
+                _evaValue = value;
+                RaisePropertyChanged(() => EvaValue);
+                EvaPhase = value ? Phase0 : Phase1;
+            }
+        }
+
         public double AlicePhase
         {
             get { return _alicePhase; }
@@ -75,6 +89,16 @@ namespace Requc.Models
             }
         }
 
+        public double EvaPhase
+        {
+            get { return _evaPhase; }
+            set
+            {
+                _evaPhase = value;
+                RaisePropertyChanged(() => EvaPhase);
+            }
+        }
+
         public double Phase0
         {
             get { return _phase0; }
@@ -92,6 +116,16 @@ namespace Requc.Models
             {
                 _phase1 = value;
                 RaisePropertyChanged(() => Phase1);
+            }
+        }
+
+        public bool CatchedByEva
+        {
+            get { return _catchedByEva; }
+            set
+            {
+                _catchedByEva = value;
+                RaisePropertyChanged(() => CatchedByEva);
             }
         }
     }

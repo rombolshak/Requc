@@ -11,7 +11,7 @@ namespace Requc.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var objects = parameter as object[];
-            return (bool)values[0] == (bool)values[1] ? objects[0] : objects[1];
+            return (bool)values[0] == (bool)values[1] && !(bool)values[2] ? objects[0] : objects[1];
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

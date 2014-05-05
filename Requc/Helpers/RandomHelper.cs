@@ -44,9 +44,14 @@ namespace Requc.Helpers
             return Math.Round(RandomSeed.Next(min, max - 1) + RandomSeed.NextDouble(), digits);
         }
 
+        public static bool RandomBool(double threshold)
+        {
+            return (RandomSeed.NextDouble() > threshold);
+        }
+
         public static bool RandomBool()
         {
-            return (RandomSeed.NextDouble() > 0.5);
+            return RandomBool(0.5);
         }
 
         public static DateTime RandomDate()

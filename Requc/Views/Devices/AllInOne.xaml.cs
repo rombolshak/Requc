@@ -58,21 +58,59 @@ namespace Requc.Views.Devices
             var photon2Animation = (DoubleAnimation)FindResource("MiddlePhoton2Animation");
 
             var eva1Animation = (PointAnimationUsingPath) FindResource("Eva1");
-            var eva2Animation = (PointAnimationUsingPath)FindResource("Eva2");
+            var eva2Animation = (PointAnimationUsingPath) FindResource("Eva2");
+            
+            var storyboard = (Storyboard)FindResource("BackwardAnimation");
 
             alicePhaseAnimation.To = Math.Abs(e.Item.AlicePhase - e.Item.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
             bobPhaseAnimation.To = Math.Abs(e.Item.BobPhase - e.Item.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
             var destructiveInterference = Math.Abs(e.Item.AlicePhase - e.Item.BobPhase) < 1e-5;
-            detectorAnimation.To = destructiveInterference ? Colors.Black : Colors.GreenYellow;
-            photon1Animation.To = destructiveInterference ? 0 : 1;
-            photon2Animation.To = destructiveInterference ? 0 : 1;
+            detectorAnimation.To = !e.Item.CatchedByEva
+                                       ? destructiveInterference ? Colors.Black : Colors.GreenYellow
+                                       : Colors.GreenYellow;
+            photon1Animation.To = !e.Item.CatchedByEva ? destructiveInterference ? 0 : 1 : 1;
+            photon2Animation.To = !e.Item.CatchedByEva ? destructiveInterference ? 0 : 1 : 1;
 
             eva1Animation.Duration = new Duration(TimeSpan.FromSeconds(4));
-            eva1Animation.PathGeometry = (PathGeometry) FindResource("EvaNoCatchWay1");
             eva2Animation.Duration = new Duration(TimeSpan.FromSeconds(4));
-            eva2Animation.PathGeometry = (PathGeometry)FindResource("EvaNoCatchWay2");
-            
-            var storyboard = (Storyboard)FindResource("BackwardAnimation");
+
+            if (e.Item.CatchedByEva)
+            {
+                eva1Animation.PathGeometry = (PathGeometry) FindResource("EvaCatchedWay1");
+                eva2Animation.PathGeometry = (PathGeometry)FindResource("EvaCatchedWay2");
+                ((Storyboard)FindResource("AliceBackwardAnimation")).BeginTime = TimeSpan.FromSeconds(10);
+                alicePhaseAnimation.BeginTime = TimeSpan.FromSeconds(2.9);
+                detectorAnimation.BeginTime = TimeSpan.FromSeconds(9.9);
+                detectorAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+                if (!storyboard.Children.Contains((Timeline) FindResource("EveMirrorAnimation")))
+                {
+                    storyboard.Children.Insert(storyboard.Children.Count - 1,
+                                               (Timeline) FindResource("EveMirrorAnimation"));
+                }
+                if (!storyboard.Children.Contains((Timeline) FindResource("FromEveToAliceAnimation")))
+                {
+                    storyboard.Children.Insert(storyboard.Children.Count - 1,
+                                               (Timeline) FindResource("FromEveToAliceAnimation"));
+                }
+                if (!storyboard.Children.Contains((Timeline)FindResource("AliceDetectorAlarmAnimation")))
+                {
+                    storyboard.Children.Insert(storyboard.Children.Count - 1,
+                                               (Timeline) FindResource("AliceDetectorAlarmAnimation"));
+                }
+            }
+            else
+            {
+                eva1Animation.PathGeometry = (PathGeometry)FindResource("EvaNoCatchWay1");
+                eva2Animation.PathGeometry = (PathGeometry)FindResource("EvaNoCatchWay2");
+                ((Storyboard)FindResource("AliceBackwardAnimation")).BeginTime = TimeSpan.FromSeconds(9);
+                alicePhaseAnimation.BeginTime = TimeSpan.FromSeconds(3.9);
+                detectorAnimation.BeginTime = TimeSpan.FromSeconds(10.9);
+                detectorAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
+                storyboard.Children.Remove((Timeline)FindResource("EveMirrorAnimation"));
+                storyboard.Children.Remove((Timeline)FindResource("FromEveToAliceAnimation"));
+                storyboard.Children.Remove((Timeline)FindResource("AliceDetectorAlarmAnimation"));
+            }
+
             storyboard.Begin(this, true);
         }
 

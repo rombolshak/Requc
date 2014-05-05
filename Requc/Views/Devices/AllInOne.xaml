@@ -23,9 +23,14 @@
 
         <PathGeometry x:Key="BobBackwardWay1" Figures="M 820,40 L 585,40" />
         <PathGeometry x:Key="BobBackwardWay2" Figures="M 875,40 L 640,40" />
-        
+
         <PathGeometry x:Key="EvaNoCatchWay1" Figures="M 585,40 L 400, 40" />
         <PathGeometry x:Key="EvaNoCatchWay2" Figures="M 640,40 L 455, 40" />
+
+        <PathGeometry x:Key="EvaCatchedWay1" Figures="M 585,40 L 520,40 520,12.5 520,80" />
+        <PathGeometry x:Key="EvaCatchedWay2" Figures="M 640,40 L 520,40 520,80" />
+
+        <PathGeometry x:Key="EvaPathFromLaser" Figures="M 470,65 L 470,50 C 470,40 455,40 455,40" />
         
         <PathGeometry x:Key="AliceWayToStart" Figures="M 455,40 L 400,40"></PathGeometry>
 
@@ -37,7 +42,7 @@
                         Storyboard.TargetProperty="(Fill).(Color)"
                         To="Transparent"
                         AutoReverse="True"
-                        BeginTime="0:0:12.9" />
+                        BeginTime="0:0:3.9" />
         <ColorAnimation x:Key="BobPhaseShiftAnimation" Duration="0:0:0.5"
                             Storyboard.TargetName="BobPhaseShift"
                             Storyboard.TargetProperty="(Fill).(Color)"
@@ -50,23 +55,97 @@
                         Storyboard.TargetProperty="(Fill).(Color)"
                         To="Black"
                         AutoReverse="True"
-                        BeginTime="0:0:19.9" />
+                        BeginTime="0:0:10.9" />
+        <ColorAnimation x:Key="AliceDetectorAlarmAnimation" 
+                        Duration="0:0:0.8"
+                        Storyboard.TargetName="AliceDetector"
+                        Storyboard.TargetProperty="(Fill).(Color)"
+                        To="Red"
+                        AutoReverse="True"
+                        BeginTime="0:0:21" >
+            <ColorAnimation.EasingFunction>
+                <ElasticEase Oscillations="3" EasingMode="EaseOut"/>
+            </ColorAnimation.EasingFunction>
+        </ColorAnimation>
         <DoubleAnimation  x:Key="MiddlePhoton1Animation"
                           Duration="0:0:0.5"
                           To="0"
                           Storyboard.TargetName="Path2"
                           Storyboard.TargetProperty="Opacity"
-                          BeginTime="0:0:17" />
+                          BeginTime="0:0:8" />
         <DoubleAnimation x:Key="MiddlePhoton2Animation"
                          Duration="0:0:0.5"
                          To="0"
                          Storyboard.TargetName="Path3"
                          Storyboard.TargetProperty="Opacity"
-                         BeginTime="0:0:17" />
+                         BeginTime="0:0:8" />
 
         <PointAnimationUsingPath x:Key="Eva1" BeginTime="0:0:5" Storyboard.TargetName="Photon1" Storyboard.TargetProperty="Center" />
         <PointAnimationUsingPath x:Key="Eva2" BeginTime="0:0:5" Storyboard.TargetName="Photon3" Storyboard.TargetProperty="Center" />
-        
+
+        <Storyboard x:Key="FromEveToAliceAnimation" BeginTime="0:0:9">
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:0" Storyboard.TargetName="Path3" Storyboard.TargetProperty="Opacity" />
+            <Storyboard Duration="0:0:1">
+                <PointAnimationUsingPath PathGeometry="{StaticResource EvaPathFromLaser}"
+                                     Storyboard.TargetName="Photon1"
+                                     Storyboard.TargetProperty="Center"/>
+                <PointAnimationUsingPath PathGeometry="{StaticResource AliceWayToStart}"
+                                     Storyboard.TargetName="Photon1"
+                                     Storyboard.TargetProperty="Center"/>
+            </Storyboard>
+            <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:0.5" Storyboard.TargetName="Path3" Storyboard.TargetProperty="Opacity" />
+            <PointAnimationUsingPath Duration="0:0:0.5" PathGeometry="{StaticResource EvaPathFromLaser}"
+                                     Storyboard.TargetName="Photon3"
+                                     Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:0.5"/>
+        </Storyboard>
+        <Storyboard x:Key="EveMirrorAnimation">
+            <DoubleAnimation Storyboard.TargetName="EvaMirror" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" To="225" BeginTime="0:0:3"/>
+            <DoubleAnimation Storyboard.TargetName="EvaMirror" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" To="315" BeginTime="0:0:6.8"/>
+            <DoubleAnimation Storyboard.TargetName="EvaMirror" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" To="180" BeginTime="0:0:10"/>
+        </Storyboard>
+
+        <Storyboard x:Key="AliceBackwardAnimation" BeginTime="0:0:9">
+            <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:0" Storyboard.TargetName="Path2" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:0" Storyboard.TargetName="Path4" Storyboard.TargetProperty="Opacity" />
+
+            <PointAnimationUsingPath Duration="0:0:10" PathGeometry="{StaticResource AliceBackwardWayUpDown}"
+                                     Storyboard.TargetName="Photon1"
+                                     Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:0"/>
+            <PointAnimationUsingPath Duration="0:0:11" PathGeometry="{StaticResource AliceBackwardWayDownDown}"
+                                     Storyboard.TargetName="Photon2"
+                                     Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:0"/>
+            <PointAnimationUsingPath Duration="0:0:1" PathGeometry="{StaticResource AliceWayToStart}"
+                                     Storyboard.TargetName="Photon3"
+                                     Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:0"/>
+            <PointAnimationUsingPath Duration="0:0:1" PathGeometry="{StaticResource AliceWayToStart}"
+                                     Storyboard.TargetName="Photon4"
+                                     Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:0"/>
+            <PointAnimationUsingPath Duration="0:0:10" PathGeometry="{StaticResource AliceBackwardWayUpDown}"
+                                     Storyboard.TargetName="Photon3"
+                                     Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:1"/>
+            <PointAnimationUsingPath Duration="0:0:11" PathGeometry="{StaticResource AliceBackwardWayDownDown}"
+                                     Storyboard.TargetName="Photon4"
+                                     Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:1"/>
+
+            <StaticResource ResourceKey="AlicePhaseShiftAnimation" />
+            <StaticResource ResourceKey="AliceDetectorAnimation" />
+            <DoubleAnimation Duration="0:0:0.5" To="7" Storyboard.TargetName="Path2" Storyboard.TargetProperty="StrokeThickness" BeginTime="0:0:8" />
+            <StaticResource ResourceKey="MiddlePhoton1Animation"/>
+            <StaticResource ResourceKey="MiddlePhoton2Animation"/>
+
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:10" Storyboard.TargetName="Path1" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:11" Storyboard.TargetName="Path2" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:11" Storyboard.TargetName="Path3" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:12" Storyboard.TargetName="Path4" Storyboard.TargetProperty="Opacity" />
+        </Storyboard>
+
         <Storyboard x:Key="ForwardAnimation">
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="Path1" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="Path2" Storyboard.TargetProperty="Opacity" />
@@ -147,7 +226,7 @@
                             To="DarkGoldenrod"
                             AutoReverse="True"
                             BeginTime="0:0:1.6" />
-
+            
             <DoubleAnimation To="4" Duration="0:0:0.1" BeginTime="0:0:0.55" Storyboard.TargetName="Path1" Storyboard.TargetProperty="StrokeThickness" />
             <DoubleAnimation To="4" Duration="0:0:0.1" BeginTime="0:0:0.55" Storyboard.TargetName="Path2" Storyboard.TargetProperty="StrokeThickness" />
             <DoubleAnimation To="4" Duration="0:0:0.1" BeginTime="0:0:1.6" Storyboard.TargetName="Path3" Storyboard.TargetProperty="StrokeThickness" />
@@ -157,46 +236,10 @@
             
             <StaticResource ResourceKey="Eva1" />
             <StaticResource ResourceKey="Eva2" />
-
-            <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:9" Storyboard.TargetName="Path2" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:9" Storyboard.TargetName="Path4" Storyboard.TargetProperty="Opacity" />
             
-            <PointAnimationUsingPath Duration="0:0:10" PathGeometry="{StaticResource AliceBackwardWayUpDown}"
-                                     Storyboard.TargetName="Photon1"
-                                     Storyboard.TargetProperty="Center"
-                                     BeginTime="0:0:9"/>
-            <PointAnimationUsingPath Duration="0:0:11" PathGeometry="{StaticResource AliceBackwardWayDownDown}"
-                                     Storyboard.TargetName="Photon2"
-                                     Storyboard.TargetProperty="Center"
-                                     BeginTime="0:0:9"/>
-            <PointAnimationUsingPath Duration="0:0:1" PathGeometry="{StaticResource AliceWayToStart}"
-                                     Storyboard.TargetName="Photon3"
-                                     Storyboard.TargetProperty="Center"
-                                     BeginTime="0:0:9"/>
-            <PointAnimationUsingPath Duration="0:0:1" PathGeometry="{StaticResource AliceWayToStart}"
-                                     Storyboard.TargetName="Photon4"
-                                     Storyboard.TargetProperty="Center"
-                                     BeginTime="0:0:9"/>
-            <PointAnimationUsingPath Duration="0:0:10" PathGeometry="{StaticResource AliceBackwardWayUpDown}"
-                                     Storyboard.TargetName="Photon3"
-                                     Storyboard.TargetProperty="Center"
-                                     BeginTime="0:0:10"/>
-            <PointAnimationUsingPath Duration="0:0:11" PathGeometry="{StaticResource AliceBackwardWayDownDown}"
-                                     Storyboard.TargetName="Photon4"
-                                     Storyboard.TargetProperty="Center"
-                                     BeginTime="0:0:10"/>
-
-            <StaticResource ResourceKey="AlicePhaseShiftAnimation" />
-            <StaticResource ResourceKey="AliceDetectorAnimation" />
-            <DoubleAnimation Duration="0:0:0.5" To="7" Storyboard.TargetName="Path2" Storyboard.TargetProperty="StrokeThickness" BeginTime="0:0:17" />
-            <StaticResource ResourceKey="MiddlePhoton1Animation"/>
-            <StaticResource ResourceKey="MiddlePhoton2Animation"/>
-
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:19" Storyboard.TargetName="Path1" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:20" Storyboard.TargetName="Path2" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:20" Storyboard.TargetName="Path3" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:21" Storyboard.TargetName="Path4" Storyboard.TargetProperty="Opacity" />
+            <StaticResource ResourceKey="AliceBackwardAnimation" />
         </Storyboard>
+        
         <!-- /alice -->
     </UserControl.Resources>
     <Grid>
@@ -260,7 +303,7 @@
         
         <!-- eva -->
         <Path Stroke="Black" StrokeThickness="2" Data="M 400,40 L 640,40" />
-        <Path Stroke="Black" StrokeThickness="2" Data="M 500,40 L 540,40 
+        <Path Stroke="Black" StrokeThickness="2" x:Name="EvaMirror" Data="M 500,40 L 540,40 
               M 500,40 L 505,33 M 505,40 L 510,33 M 510,40 L 515,33 M 515,40 L 520,33 M 520,40 L 525,33 M 525,40 L 530,33 M 530,40 L 535,33 M 535,40 L 540,33 M 540,40 L 545,33" >
             <Path.RenderTransform>
                 <RotateTransform Angle="180" CenterX="520" CenterY="40" />

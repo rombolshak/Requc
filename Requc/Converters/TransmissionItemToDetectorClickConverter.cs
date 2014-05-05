@@ -11,7 +11,8 @@
         {
             var alice = (bool)values[0];
             var bob = (bool)values[1];
-            return alice == bob ? "-" : "+";
+            var catchedByEva = (bool) values[2];
+            return alice == bob && !catchedByEva ? "-" : "+";
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

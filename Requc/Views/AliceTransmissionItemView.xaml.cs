@@ -13,6 +13,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Requc.Models;
 using Requc.ViewModels;
 
 namespace Requc.Views
@@ -25,7 +26,14 @@ namespace Requc.Views
         public AliceTransmissionItemView()
         {
             InitializeComponent();
-            Loaded += (sender, args) => AnimationsManager.Add((Storyboard)FindResource("TransmissionItemAnimation"), this);
+            Loaded += (sender, args) =>
+                {
+                    AnimationsManager.Add((Storyboard) FindResource("TransmissionItemAnimation"), this);
+                    /*if (((TransmissionItem) DataContext).CatchedByEva)
+                    {
+                        ((Storyboard) FindResource("TransmissionItemAnimation")).BeginTime += TimeSpan.FromSeconds(1);
+                    }*/
+                };
         }
     }
 }

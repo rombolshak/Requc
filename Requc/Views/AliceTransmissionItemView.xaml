@@ -12,7 +12,7 @@
         <converters:TransmissionItemToDetectorClickConverter x:Key="ItemToClick" />
         <converters:ValuesToColorConverter x:Key="ValuesToColor" />
 
-        <Storyboard x:Key="TransmissionItemAnimation">
+        <Storyboard x:Key="TransmissionItemAnimation" BeginTime="0:0:0">
             <DoubleAnimation To="1" Storyboard.TargetName="AliceValue" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:28.5" />
             <DoubleAnimation To="1" Storyboard.TargetName="AlicePhase" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:32.3" />
             <DoubleAnimation To="1" Storyboard.TargetName="Click" Storyboard.TargetProperty="Opacity" Duration="0:0:0.3" BeginTime="0:0:39.5" />
@@ -35,6 +35,7 @@
                 <MultiBinding Converter="{StaticResource ValuesToColor}">
                     <Binding Path="AliceValue" />
                     <Binding Path="BobValue" />
+                    <Binding Path="CatchedByEva" />
                     <MultiBinding.ConverterParameter>
                         <x:Array Type="Brush">
                             <SolidColorBrush Color="PaleVioletRed" />
@@ -49,6 +50,7 @@
                 <MultiBinding Converter="{StaticResource ItemToClick}">
                     <Binding Path="AliceValue" />
                     <Binding Path="BobValue" />
+                    <Binding Path="CatchedByEva" />
                 </MultiBinding>
             </TextBlock.Text>
         </TextBlock>

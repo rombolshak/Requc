@@ -20,11 +20,29 @@ namespace Requc.Models
             Devices.BeamSplit(topState, bottomState);
 
             // bob
-            args.Item.QuantumState.Timeslot[0] = args.Item.QuantumState.Timeslot[1] =
-                                            (args.Item.QuantumState.Timeslot[0] - ProtocolAct.Params.LaserPhotonNumberMin) /
-                                            (ProtocolAct.Params.LaserPhotonNumberMax - ProtocolAct.Params.LaserPhotonNumberMin);
+            Devices.Attenuator(args.Item.QuantumState, ProtocolAct.Params);
             args.Item.BobValue = RandomHelper.RandomBool();
             Devices.PhaseShift(args.Item.QuantumState, 1, args.Item.BobPhase);
+
+            // eva
+            var catched = RandomHelper.RandomBool();
+            args.Item.CatchedByEva = catched;
+            if (catched)
+            {
+                var result = Devices.EvaMeasure(args.Item);
+                switch (result)
+                {
+                    case Devices.MeasurementResult.Phase0:
+                        args.Item.EvaValue = false;
+                        break;
+                    case Devices.MeasurementResult.Phase1:
+                        args.Item.EvaValue = true;
+                        break;
+                    case Devices.MeasurementResult.Inconclusive: // try to guess
+                        args.Item.EvaValue = RandomHelper.RandomBool();
+                        break;
+                }
+            }
 
             // alice backward
             var stateTop = args.Item.QuantumState;
