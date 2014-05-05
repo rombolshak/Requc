@@ -43,7 +43,7 @@
                             Storyboard.TargetProperty="(Fill).(Color)"
                             To="Transparent"
                             AutoReverse="True"
-                            BeginTime="0:0:2" />
+                            BeginTime="0:0:2.8" />
         <ColorAnimation x:Key="AliceDetectorAnimation" 
                         Duration="0:0:0.5"
                         Storyboard.TargetName="AliceDetector"
@@ -267,8 +267,8 @@
             </Path.RenderTransform>
         </Path>
         <!-- eva detector -->
-        <Path Stroke="Black" StrokeThickness="2" Fill="Black" Data="M 500,0 L 540,0 M 520,0 L 520,80 M 500,80 A 10 10 180 0 0 540,80
-              M 500,0 L 505,-7 M 505,0 L 510,-7 M 510,0 L 515,-7 M 515,0 L 520,-7 M 520,0 L 525,-7 M 525,0 L 530,-7 M 530,0 L 535,-7 M 535,0 L 540,-7 M 540,0 L 545,-7"></Path>
+        <Path Stroke="Black" StrokeThickness="2" Fill="Black" Data="M 500,12.5 L 540,12.5 M 520,12.5 L 520,80 M 500,80 A 10 10 180 0 0 540,80
+              M 500,12.5 L 505,5.5 M 505,12.5 L 510,5.5 M 510,12.5 L 515,5.5 M 515,12.5 L 520,5.5 M 520,12.5 L 525,5.5 M 525,12.5 L 530,5.5 M 530,12.5 L 535,5.5 M 535,12.5 L 540,5.5 M 540,12.5 L 545,5.5"></Path>
         <!-- /detector -->
         <!-- laser -->
         <Path Stroke="Black" StrokeThickness="2" Fill="Black" Data=" M 460,80 L 480,80 480,100 460,100 M 455,85 L 485,85 M 455,90 L 485,90 M 455,95 L 485,95" />

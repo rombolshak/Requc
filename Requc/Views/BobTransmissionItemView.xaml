@@ -11,8 +11,8 @@
         <converters:PhaseValueToImageConverter x:Key="PhaseToImage" />
 
         <Storyboard x:Key="TransmissionItemAnimation">
-            <DoubleAnimation To="1" Storyboard.TargetName="BobValue" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:16.8" />
-            <DoubleAnimation To="1" Storyboard.TargetName="BobPhase" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:18.6" />
+            <DoubleAnimation To="1" Storyboard.TargetName="BobValue" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:19.5" />
+            <DoubleAnimation To="1" Storyboard.TargetName="BobPhase" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:22.2" />
         </Storyboard>
     </UserControl.Resources>
     <Grid ShowGridLines="True" Opacity="0">

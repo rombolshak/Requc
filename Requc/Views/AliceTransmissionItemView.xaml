@@ -13,10 +13,10 @@
         <converters:ValuesToColorConverter x:Key="ValuesToColor" />
 
         <Storyboard x:Key="TransmissionItemAnimation">
-            <DoubleAnimation To="1" Storyboard.TargetName="AliceValue" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:21.5" />
-            <DoubleAnimation To="1" Storyboard.TargetName="AlicePhase" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:24.3" />
-            <DoubleAnimation To="1" Storyboard.TargetName="Click" Storyboard.TargetProperty="Opacity" Duration="0:0:0.3" BeginTime="0:0:32.1" />
-            <DoubleAnimation To="0.7" Storyboard.TargetName="ClickBg" Storyboard.TargetProperty="Opacity" Duration="0:0:0.3" BeginTime="0:0:32.1" />
+            <DoubleAnimation To="1" Storyboard.TargetName="AliceValue" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:28.5" />
+            <DoubleAnimation To="1" Storyboard.TargetName="AlicePhase" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:32.3" />
+            <DoubleAnimation To="1" Storyboard.TargetName="Click" Storyboard.TargetProperty="Opacity" Duration="0:0:0.3" BeginTime="0:0:39.5" />
+            <DoubleAnimation To="0.7" Storyboard.TargetName="ClickBg" Storyboard.TargetProperty="Opacity" Duration="0:0:0.3" BeginTime="0:0:39.5" />
         </Storyboard>
     </UserControl.Resources>
     <Grid ShowGridLines="True" Opacity="0">
