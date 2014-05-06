@@ -20,7 +20,7 @@
             <TextBlock Text="Bob value" Grid.Column="1" HorizontalAlignment="Center" />
             <TextBlock Text="Bob phase" Grid.Column="2" HorizontalAlignment="Center" />
         </Grid>
-        <ScrollViewer Grid.Row="1"  Height="420">
+        <ScrollViewer Grid.Row="1"  Height="460">
             <ItemsControl ScrollViewer.CanContentScroll="True" ItemsSource="{Binding Path=TransmissionItems}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
