@@ -6,7 +6,7 @@ namespace Requc.Models
     {
         public SimpleProtocolAct()
         {
-            Params = new ProtocolParams(100, 200, Math.PI/8, Math.PI/4);
+            Params = new ProtocolParams(100, 200, Math.PI/8, 3 * Math.PI/8);
             AllInOneDevice = new AllInOneDevice {ProtocolAct = this};
             AllInOneDevice.ForwardProcessFinished += AllInOneDevice_ForwardProcessFinished;
             AllInOneDevice.BackwardProcessFinished += AllInOneDevice_BackwardProcessFinished;

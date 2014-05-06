@@ -72,11 +72,14 @@
     <Compile Include="Commands\CommonCommand.cs" />
     <Compile Include="Commands\RunCommand.cs" />
     <Compile Include="Converters\BooleanToIntConverter.cs" />
+    <Compile Include="Converters\BoolToOppositeBoolConverter.cs" />
+    <Compile Include="Converters\EvaToTextConverter.cs" />
     <Compile Include="Converters\PhaseValueToImageConverter.cs" />
     <Compile Include="Converters\ValuesToColorConverter.cs" />
     <Compile Include="Converters\TransmissionItemToDetectorClickConverter.cs" />
     <Compile Include="Models\AllInOneDevice.cs" />
     <Compile Include="Models\Devices.cs" />
+    <Compile Include="Models\MeasurementResult.cs" />
     <Compile Include="Models\ProtocolParams.cs" />
     <Compile Include="Models\SimpleProtocolEventArgs.cs" />
     <Compile Include="Models\QuantumState.cs" />

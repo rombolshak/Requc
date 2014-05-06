@@ -9,22 +9,33 @@
     <UserControl.Resources>
         <converters:BooleanToIntConverter x:Key="BooleanToInt" />
         <converters:PhaseValueToImageConverter x:Key="PhaseToImage" />
+        <converters:EvaToTextConverter x:Key="EvaToText" />
 
         <Storyboard x:Key="TransmissionItemAnimation">
             <DoubleAnimation To="1" Storyboard.TargetName="BobValue" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:19.5" />
             <DoubleAnimation To="1" Storyboard.TargetName="BobPhase" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:22.2" />
+            <DoubleAnimation To="1" Storyboard.TargetName="EvaValue" Storyboard.TargetProperty="Opacity" Duration="0:0:0.1" BeginTime="0:0:29" />
         </Storyboard>
     </UserControl.Resources>
     <Grid ShowGridLines="True" Opacity="0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition />
         </Grid.RowDefinitions>
-        
-        <Image Grid.Column="0" Grid.Row="0" x:Name="BobPhase" Opacity="0" Height="12" Width="18">
+
+        <TextBlock Grid.Column="0" Grid.Row="0" x:Name="EvaValue" Opacity="0" HorizontalAlignment="Center" >
+            <TextBlock.Text>
+                <MultiBinding Converter="{StaticResource EvaToText}">
+                    <Binding Path="EvaResult"></Binding>
+                    <Binding Path="CatchedByEva"></Binding>
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+        <Image Grid.Column="1" Grid.Row="0" x:Name="BobPhase" Opacity="0" Height="12" Width="18">
             <Image.Source>
                 <MultiBinding Converter="{StaticResource PhaseToImage}">
                     <Binding Path="BobPhase"></Binding>
@@ -32,7 +43,7 @@
                 </MultiBinding>
             </Image.Source>
         </Image>
-        <TextBlock Text="{Binding Path=BobValue, Converter={StaticResource BooleanToInt}}" Grid.Column="1" Grid.Row="0" x:Name="BobValue" Opacity="0" HorizontalAlignment="Center" />
+        <TextBlock Text="{Binding Path=BobValue, Converter={StaticResource BooleanToInt}}" Grid.Column="2" Grid.Row="0" x:Name="BobValue" Opacity="0" HorizontalAlignment="Center" />
 
         <Grid.Triggers>
             <EventTrigger RoutedEvent="Grid.Loaded">

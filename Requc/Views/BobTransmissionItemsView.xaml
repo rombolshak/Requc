@@ -14,11 +14,13 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
+                <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <TextBlock Text="Значение" Grid.Column="0" HorizontalAlignment="Center" />
-            <TextBlock Text="Фаза" Grid.Column="1" HorizontalAlignment="Center" />
+            <TextBlock Text="Eve" Grid.Column="0" HorizontalAlignment="Center" />
+            <TextBlock Text="Bob value" Grid.Column="1" HorizontalAlignment="Center" />
+            <TextBlock Text="Bob phase" Grid.Column="2" HorizontalAlignment="Center" />
         </Grid>
-        <ScrollViewer Grid.Row="1" >
+        <ScrollViewer Grid.Row="1"  Height="400">
             <ItemsControl ScrollViewer.CanContentScroll="True" ItemsSource="{Binding Path=TransmissionItems}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>

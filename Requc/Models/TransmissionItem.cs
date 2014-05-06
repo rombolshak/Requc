@@ -19,6 +19,7 @@ namespace Requc.Models
         private bool _bobValue;
         private bool _evaValue;
         private bool _catchedByEva;
+        private MeasurementResult _evaResult;
 
         public TransmissionItem(double phase0, double phase1)
         {
@@ -126,6 +127,16 @@ namespace Requc.Models
             {
                 _catchedByEva = value;
                 RaisePropertyChanged(() => CatchedByEva);
+            }
+        }
+
+        public MeasurementResult EvaResult
+        {
+            get { return _evaResult; }
+            set
+            {
+                _evaResult = value;
+                RaisePropertyChanged(() => EvaResult);
             }
         }
     }

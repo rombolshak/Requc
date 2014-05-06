@@ -45,7 +45,7 @@
                 </MultiBinding>
             </Rectangle.Fill>
         </Rectangle>
-        <TextBlock Grid.Column="1" x:Name="Click" Opacity="0" HorizontalAlignment="Center" FontWeight="Bold" FontSize="16">
+        <TextBlock Grid.Column="1" x:Name="Click" Opacity="0" HorizontalAlignment="Center" FontWeight="Bold">
             <TextBlock.Text>
                 <MultiBinding Converter="{StaticResource ItemToClick}">
                     <Binding Path="AliceValue" />

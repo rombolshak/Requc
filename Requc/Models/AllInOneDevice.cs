@@ -30,15 +30,16 @@ namespace Requc.Models
             if (catched)
             {
                 var result = Devices.EvaMeasure(args.Item);
+                args.Item.EvaResult = result;
                 switch (result)
                 {
-                    case Devices.MeasurementResult.Phase0:
+                    case MeasurementResult.Phase0:
                         args.Item.EvaValue = false;
                         break;
-                    case Devices.MeasurementResult.Phase1:
+                    case MeasurementResult.Phase1:
                         args.Item.EvaValue = true;
                         break;
-                    case Devices.MeasurementResult.Inconclusive: // try to guess
+                    case MeasurementResult.Inconclusive: // try to guess
                         args.Item.EvaValue = RandomHelper.RandomBool();
                         break;
                 }

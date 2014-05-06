@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Requc.ViewModels;
 
 namespace Requc.Views
 {
@@ -23,6 +24,21 @@ namespace Requc.Views
         public SimpleProtocolView()
         {
             InitializeComponent();
+        }
+
+        private void AnimationSpeedSetterValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            AnimationsManager.SetSpeed(e.NewValue);
+        }
+
+        private void AnimationSpeedSetterTextChanged(object sender, TextChangedEventArgs e)
+        {
+            double newSpeed;
+            Double.TryParse(((TextBox) sender).Text, out newSpeed);
+            if (newSpeed > 0 && newSpeed <= 100)
+            {
+                AnimationsManager.SetSpeed(newSpeed);
+            }
         }
     }
 }

@@ -70,12 +70,5 @@ namespace Requc.Models
             }
             return MeasurementResult.Inconclusive;
         }
-
-        public enum MeasurementResult
-        {
-            Phase0,
-            Phase1,
-            Inconclusive
-        }
     }
 }
