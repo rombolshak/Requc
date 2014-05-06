@@ -40,8 +40,7 @@
     <StartupObject>Requc.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Key.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FirstFloor.ModernUI">
@@ -211,6 +210,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Key.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
