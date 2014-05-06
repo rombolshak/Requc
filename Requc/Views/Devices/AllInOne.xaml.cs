@@ -65,15 +65,7 @@ namespace Requc.Views.Devices
             alicePhaseAnimation.To = Math.Abs(e.Item.AlicePhase - e.Item.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
             bobPhaseAnimation.To = Math.Abs(e.Item.BobPhase - e.Item.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
             var destructiveInterference = Math.Abs(e.Item.AlicePhase - e.Item.BobPhase) < 1e-5;
-            detectorAnimation.To = !e.Item.CatchedByEva
-                                       ? destructiveInterference ? Colors.Black : Colors.GreenYellow
-                                       : Colors.GreenYellow;
-            photon1Animation.To = !e.Item.CatchedByEva ? destructiveInterference ? 0 : 1 : 1;
-            photon2Animation.To = !e.Item.CatchedByEva ? destructiveInterference ? 0 : 1 : 1;
-
-            eva1Animation.Duration = new Duration(TimeSpan.FromSeconds(4));
-            eva2Animation.Duration = new Duration(TimeSpan.FromSeconds(4));
-
+           
             if (e.Item.CatchedByEva)
             {
                 eva1Animation.PathGeometry = (PathGeometry) FindResource("EvaCatchedWay1");
@@ -82,6 +74,8 @@ namespace Requc.Views.Devices
                 alicePhaseAnimation.BeginTime = TimeSpan.FromSeconds(2.9);
                 detectorAnimation.BeginTime = TimeSpan.FromSeconds(9.9);
                 detectorAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
+                detectorAnimation.To = Colors.GreenYellow;
+                photon2Animation.To = photon1Animation.To = 1;
                 if (!storyboard.Children.Contains((Timeline) FindResource("EveMirrorAnimation")))
                 {
                     storyboard.Children.Insert(storyboard.Children.Count - 1,
@@ -106,6 +100,8 @@ namespace Requc.Views.Devices
                 alicePhaseAnimation.BeginTime = TimeSpan.FromSeconds(3.9);
                 detectorAnimation.BeginTime = TimeSpan.FromSeconds(10.9);
                 detectorAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
+                detectorAnimation.To = destructiveInterference ? Colors.Black : Colors.GreenYellow;
+                photon2Animation.To = photon1Animation.To = destructiveInterference ? 0 : 1;
                 storyboard.Children.Remove((Timeline)FindResource("EveMirrorAnimation"));
                 storyboard.Children.Remove((Timeline)FindResource("FromEveToAliceAnimation"));
                 storyboard.Children.Remove((Timeline)FindResource("AliceDetectorAlarmAnimation"));

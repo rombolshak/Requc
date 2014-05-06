@@ -53,7 +53,7 @@
                         Duration="0:0:0.5"
                         Storyboard.TargetName="AliceDetector"
                         Storyboard.TargetProperty="(Fill).(Color)"
-                        To="Black"
+                        To="Blue"
                         AutoReverse="True"
                         BeginTime="0:0:10.9" />
         <ColorAnimation x:Key="AliceDetectorAlarmAnimation" 
@@ -80,24 +80,23 @@
                          Storyboard.TargetProperty="Opacity"
                          BeginTime="0:0:8" />
 
-        <PointAnimationUsingPath x:Key="Eva1" BeginTime="0:0:5" Storyboard.TargetName="Photon1" Storyboard.TargetProperty="Center" />
-        <PointAnimationUsingPath x:Key="Eva2" BeginTime="0:0:5" Storyboard.TargetName="Photon3" Storyboard.TargetProperty="Center" />
+        <PointAnimationUsingPath x:Key="Eva1" BeginTime="0:0:5" Duration="0:0:4" Storyboard.TargetName="Photon1" Storyboard.TargetProperty="Center" />
+        <PointAnimationUsingPath x:Key="Eva2" BeginTime="0:0:5" Duration="0:0:4" Storyboard.TargetName="Photon3" Storyboard.TargetProperty="Center" />
 
-        <Storyboard x:Key="FromEveToAliceAnimation" BeginTime="0:0:9">
+        <Storyboard x:Key="FromEveToAliceAnimation" BeginTime="0:0:9" Duration="0:0:1">
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:0" Storyboard.TargetName="Path3" Storyboard.TargetProperty="Opacity" />
-            <Storyboard Duration="0:0:1">
-                <PointAnimationUsingPath PathGeometry="{StaticResource EvaPathFromLaser}"
-                                     Storyboard.TargetName="Photon1"
-                                     Storyboard.TargetProperty="Center"/>
-                <PointAnimationUsingPath PathGeometry="{StaticResource AliceWayToStart}"
-                                     Storyboard.TargetName="Photon1"
-                                     Storyboard.TargetProperty="Center"/>
-            </Storyboard>
-            <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:0.5" Storyboard.TargetName="Path3" Storyboard.TargetProperty="Opacity" />
-            <PointAnimationUsingPath Duration="0:0:0.5" PathGeometry="{StaticResource EvaPathFromLaser}"
+            <PointAnimationUsingPath Duration="0:0:0.35" PathGeometry="{StaticResource EvaPathFromLaser}"
+                                    Storyboard.TargetName="Photon1"
+                                    Storyboard.TargetProperty="Center"/>
+            <PointAnimationUsingPath Duration="0:0:0.65" PathGeometry="{StaticResource AliceWayToStart}"
+                                    Storyboard.TargetName="Photon1"
+                                    Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:0.35"/>
+            <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:0.65" Storyboard.TargetName="Path3" Storyboard.TargetProperty="Opacity" />
+            <PointAnimationUsingPath Duration="0:0:0.35" PathGeometry="{StaticResource EvaPathFromLaser}"
                                      Storyboard.TargetName="Photon3"
                                      Storyboard.TargetProperty="Center"
-                                     BeginTime="0:0:0.5"/>
+                                     BeginTime="0:0:0.65"/>
         </Storyboard>
         <Storyboard x:Key="EveMirrorAnimation">
             <DoubleAnimation Storyboard.TargetName="EvaMirror" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" To="225" BeginTime="0:0:3"/>

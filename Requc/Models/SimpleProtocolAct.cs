@@ -32,8 +32,8 @@ namespace Requc.Models
         {
             _transmissionItem = new TransmissionItem(Params.Phase0, Params.Phase1);
             var e = new SimpleProtocolEventArgs(_transmissionItem);
-            Started(this, e);
             AllInOneDevice.ProcessForward(e);
+            Started(this, e);
             return _transmissionItem;
         }
 

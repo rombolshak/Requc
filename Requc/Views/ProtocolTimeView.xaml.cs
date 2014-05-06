@@ -28,8 +28,19 @@ namespace Requc.Views
             InitializeComponent();
             Loaded += (sender, args) =>
                 {
-                    AnimationsManager.Add((Storyboard) FindResource("Animation"), this);
-                    ((SimpleProtocolAct)DataContext).Started += (o, eventArgs) => ((Storyboard)FindResource("Animation")).Begin(this);
+                    AnimationsManager.Add((Storyboard)FindResource("CatchedAnimation"), this);
+                    AnimationsManager.Add((Storyboard)FindResource("NotCatchedAnimation"), this);
+                    ((SimpleProtocolAct)DataContext).Started += (o, eventArgs) =>
+                        {
+                            if (eventArgs.Item.CatchedByEva)
+                            {
+                                ((Storyboard) FindResource("CatchedAnimation")).Begin(this);
+                            }
+                            else
+                            {
+                                ((Storyboard)FindResource("NotCatchedAnimation")).Begin(this);
+                            }
+                        };
                 };
         }
     }
