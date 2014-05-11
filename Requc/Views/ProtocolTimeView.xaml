@@ -18,10 +18,10 @@
             
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathFirst" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathSecond" Storyboard.TargetProperty="Opacity" />
-            <PointAnimationUsingPath Duration="0:0:40.5" PathGeometry="{StaticResource FirstCatched}" 
+            <PointAnimationUsingPath Duration="0:0:41.5" PathGeometry="{StaticResource FirstCatched}" 
                                      Storyboard.TargetName="PhotonFirst" 
                                      Storyboard.TargetProperty="Center" />
-            <PointAnimationUsingPath Duration="0:0:40.5" PathGeometry="{StaticResource SecondCatched}" 
+            <PointAnimationUsingPath Duration="0:0:41.5" PathGeometry="{StaticResource SecondCatched}" 
                                      Storyboard.TargetName="PhotonSecond" 
                                      Storyboard.TargetProperty="Center" />
 

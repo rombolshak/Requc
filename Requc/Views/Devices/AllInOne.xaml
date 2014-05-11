@@ -51,6 +51,13 @@
                             To="Transparent"
                             AutoReverse="True"
                             BeginTime="0:0:2.8" />
+        <ColorAnimation x:Key="EvaDetectorAnimation" 
+                        Duration="0:0:0.5"
+                        Storyboard.TargetName="EvaDetector"
+                        Storyboard.TargetProperty="(Fill).(Color)"
+                        To="Black"
+                        AutoReverse="True"
+                        BeginTime="0:0:9" />
         <ColorAnimation x:Key="AliceDetectorAnimation" 
                         Duration="0:0:0.5"
                         Storyboard.TargetName="AliceDetector"
@@ -64,7 +71,7 @@
                         Storyboard.TargetProperty="(Fill).(Color)"
                         To="Red"
                         AutoReverse="True"
-                        BeginTime="0:0:21" >
+                        BeginTime="0:0:22" >
             <ColorAnimation.EasingFunction>
                 <ElasticEase Oscillations="3" EasingMode="EaseOut"/>
             </ColorAnimation.EasingFunction>
@@ -85,20 +92,24 @@
         <PointAnimationUsingPath x:Key="Eva1" BeginTime="0:0:5" Duration="0:0:4" Storyboard.TargetName="Photon1" Storyboard.TargetProperty="Center" />
         <PointAnimationUsingPath x:Key="Eva2" BeginTime="0:0:5" Duration="0:0:4" Storyboard.TargetName="Photon3" Storyboard.TargetProperty="Center" />
 
-        <Storyboard x:Key="FromEveToAliceAnimation" BeginTime="0:0:9" Duration="0:0:1">
+        <Storyboard x:Key="FromEveToAliceAnimation" BeginTime="0:0:9" Duration="0:0:2">
+            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:0" Storyboard.TargetName="Path1" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:0" Storyboard.TargetName="Path3" Storyboard.TargetProperty="Opacity" />
-            <PointAnimationUsingPath Duration="0:0:0.35" PathGeometry="{StaticResource EvaPathFromLaser}"
-                                    Storyboard.TargetName="Photon1"
-                                    Storyboard.TargetProperty="Center"/>
-            <PointAnimationUsingPath Duration="0:0:0.65" PathGeometry="{StaticResource AliceWayToStart}"
+            
+            <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:0.5" Storyboard.TargetName="Path1" Storyboard.TargetProperty="Opacity" />
+            <PointAnimationUsingPath Duration="0:0:0.52" PathGeometry="{StaticResource EvaPathFromLaser}"
                                     Storyboard.TargetName="Photon1"
                                     Storyboard.TargetProperty="Center"
-                                     BeginTime="0:0:0.35"/>
-            <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:0.65" Storyboard.TargetName="Path3" Storyboard.TargetProperty="Opacity" />
-            <PointAnimationUsingPath Duration="0:0:0.35" PathGeometry="{StaticResource EvaPathFromLaser}"
+                                     BeginTime="0:0:0.5"/>
+            <PointAnimationUsingPath Duration="0:0:0.98" PathGeometry="{StaticResource AliceWayToStart}"
+                                    Storyboard.TargetName="Photon1"
+                                    Storyboard.TargetProperty="Center"
+                                     BeginTime="0:0:1.02"/>
+            <DoubleAnimation To="1" Duration="0:0:0.01" BeginTime="0:0:1.48" Storyboard.TargetName="Path3" Storyboard.TargetProperty="Opacity" />
+            <PointAnimationUsingPath Duration="0:0:0.52" PathGeometry="{StaticResource EvaPathFromLaser}"
                                      Storyboard.TargetName="Photon3"
                                      Storyboard.TargetProperty="Center"
-                                     BeginTime="0:0:0.65"/>
+                                     BeginTime="0:0:1.48"/>
         </Storyboard>
         <Storyboard x:Key="EveMirrorAnimation">
             <DoubleAnimation Storyboard.TargetName="EvaMirror" Storyboard.TargetProperty="(Path.RenderTransform).(RotateTransform.Angle)" To="225" BeginTime="0:0:3"/>
@@ -246,7 +257,8 @@
                 </DoubleAnimation.EasingFunction>
             </DoubleAnimation>
             <StaticResource ResourceKey="BobPhaseShiftAnimation" />
-            
+
+            <StaticResource ResourceKey="EvaDetectorAnimation" />
             <StaticResource ResourceKey="Eva1" />
             <StaticResource ResourceKey="Eva2" />
             
@@ -329,7 +341,7 @@
             </Path.RenderTransform>
         </Path>
         <!-- eva detector -->
-        <Path Stroke="Black" StrokeThickness="2" Fill="Black" Data="M 500,12.5 L 540,12.5 M 520,12.5 L 520,80 M 500,80 A 10 10 180 0 0 540,80
+        <Path Stroke="Black" StrokeThickness="2" Fill="Black" x:Name="EvaDetector" Data="M 500,12.5 L 540,12.5 M 520,12.5 L 520,80 M 500,80 A 10 10 180 0 0 540,80
               M 500,12.5 L 505,5.5 M 505,12.5 L 510,5.5 M 510,12.5 L 515,5.5 M 515,12.5 L 520,5.5 M 520,12.5 L 525,5.5 M 525,12.5 L 530,5.5 M 530,12.5 L 535,5.5 M 535,12.5 L 540,5.5 M 540,12.5 L 545,5.5"></Path>
         <!-- /detector -->
         <!-- laser -->
