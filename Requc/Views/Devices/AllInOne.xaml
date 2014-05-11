@@ -7,7 +7,9 @@
              d:DesignHeight="160" d:DesignWidth="900">
     <UserControl.Resources>
         <!-- alice -->
-
+        <TextBlock Text="1"  Width="20" Height="20" Margin="-390 140 0 0" x:Key="AliceRng" Opacity="0" FontWeight="Bold" FontSize="15" />
+        <TextBlock Text="1"  Width="20" Height="20" Margin="570 -180 0 0" x:Key="BobRng" Opacity="0" FontWeight="Bold" FontSize="15" />
+        
         <PathGeometry x:Key="ForwardWayUpUp" Figures="M 40,40 L 100,40 C 110,40 110,78 120,78 L 160,78 C 170,78 170,40 180,40 L 280,40 
                                                             C 290,40 290,78 300,78 L 340,78 C 350,78 350,40 360,40 L 875,40 820,40" />
         <PathGeometry x:Key="ForwardWayDownUp" Figures="M 40,40 L 100,40 C 110,40 110,78 120,78 L 160,80 C 170,82 170,120 180,120 
@@ -133,6 +135,12 @@
                                      Storyboard.TargetProperty="Center"
                                      BeginTime="0:0:1"/>
 
+            <DoubleAnimation Duration="0:0:2.5" Storyboard.Target="{StaticResource AliceRng}" Storyboard.TargetProperty="Opacity" 
+                             To="1" AutoReverse="True" BeginTime="0:0:1">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseOut"></BackEase>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
             <StaticResource ResourceKey="AlicePhaseShiftAnimation" />
             <StaticResource ResourceKey="AliceDetectorAnimation" />
             <DoubleAnimation Duration="0:0:0.5" To="7" Storyboard.TargetName="Path2" Storyboard.TargetProperty="StrokeThickness" BeginTime="0:0:8" />
@@ -169,8 +177,8 @@
                                      Storyboard.TargetName="Photon4"
                                      Storyboard.TargetProperty="Center" />
 
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:9.15" Storyboard.TargetName="Path2" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:10.3" Storyboard.TargetName="Path4" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.5" BeginTime="0:0:8.7" Storyboard.TargetName="Path2" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.5" BeginTime="0:0:9.9" Storyboard.TargetName="Path4" Storyboard.TargetProperty="Opacity" />
             
             <!-- bob detector -->
             <DoubleAnimation To="3" Duration="0:0:0.01" BeginTime="0:0:14" Storyboard.TargetName="Path2" Storyboard.TargetProperty="StrokeThickness" />
@@ -231,6 +239,12 @@
             <DoubleAnimation To="4" Duration="0:0:0.1" BeginTime="0:0:1.6" Storyboard.TargetName="Path3" Storyboard.TargetProperty="StrokeThickness" />
             <DoubleAnimation To="4" Duration="0:0:0.1" BeginTime="0:0:1.6" Storyboard.TargetName="Path4" Storyboard.TargetProperty="StrokeThickness" />
 
+            <DoubleAnimation Duration="0:0:2.5" Storyboard.Target="{StaticResource BobRng}" Storyboard.TargetProperty="Opacity" 
+                             To="1" AutoReverse="True" BeginTime="0:0:0">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseOut"></BackEase>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
             <StaticResource ResourceKey="BobPhaseShiftAnimation" />
             
             <StaticResource ResourceKey="Eva1" />
@@ -273,7 +287,7 @@
         <Path Stroke="Black" StrokeThickness="2" Data="M 100,40 C 110,40 110,78 120,78 L 160,78 C 170,78 170,40 180,40"></Path>
         <Path Stroke="Black" StrokeThickness="2" Data="M 100,120 C 110,120 110,82 120,82 L 160,82 C 170,82 170,120 180,120"></Path>
         <!-- /Beamsplitter 1 -->
-
+        
         <!-- bottom line -->
         <Path Stroke="Black" StrokeThickness="2" Data="M 180,120 L 200,120 A 10,10 360 1 0 199,120 L 220,120"></Path>
         <Path Stroke="Black" StrokeThickness="2" Fill="Transparent" x:Name="AlicePhaseShift">
@@ -283,6 +297,12 @@
         </Path>
         <Path Stroke="Black" StrokeThickness="2" Data="M 260,120 L 280,120"></Path>
         <!-- /bottom line -->
+        
+        <!-- alice rng -->
+        <Path Stroke="Black" StrokeThickness="2" Data="M 230,150 L 230,170 250,170 250,150 Z" />
+        <Path Stroke="Black" StrokeThickness="2" StrokeDashArray="3 1" Data="M 240,150 L 240,130" />
+        <StaticResource ResourceKey="AliceRng" />
+        <!-- /rng -->
 
         <!-- top line -->
         <Path Stroke="Black" StrokeThickness="2" Data="M 180,40 L 280,40"></Path>
@@ -332,6 +352,12 @@
         </Path>
         <Path Stroke="Black" StrokeThickness="2" Data="M 740,40 L 770,40"></Path>
         <!-- /phase -->
+
+        <!-- alice rng -->
+        <Path Stroke="Black" StrokeThickness="2" Data="M 710,-10 L 730,-10 730,10 710,10 Z" />
+        <Path Stroke="Black" StrokeThickness="2" StrokeDashArray="3 1" Data="M 720,10 L 720,30" />
+        <StaticResource ResourceKey="BobRng" />
+        <!-- /rng -->
 
         <!-- attenuator -->
         <Path Stroke="Black" StrokeThickness="2" Data="M 770,40 L 790,60 790,20 Z" Fill="Transparent" x:Name="Attenuator"/>

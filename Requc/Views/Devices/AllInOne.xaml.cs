@@ -58,13 +58,18 @@ namespace Requc.Views.Devices
             var photon2Animation = (DoubleAnimation)FindResource("MiddlePhoton2Animation");
 
             var eva1Animation = (PointAnimationUsingPath) FindResource("Eva1");
-            var eva2Animation = (PointAnimationUsingPath) FindResource("Eva2");
+            var eva2Animation = (PointAnimationUsingPath)FindResource("Eva2");
+            
+            var aliceRng = (TextBlock)FindResource("AliceRng");
+            var bobRng = (TextBlock)FindResource("BobRng");
             
             var storyboard = (Storyboard)FindResource("BackwardAnimation");
 
             alicePhaseAnimation.To = Math.Abs(e.Item.AlicePhase - e.Item.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
             bobPhaseAnimation.To = Math.Abs(e.Item.BobPhase - e.Item.Phase0) < 1e-5 ? Colors.DarkGreen : Colors.Brown;
             var destructiveInterference = Math.Abs(e.Item.AlicePhase - e.Item.BobPhase) < 1e-5;
+            aliceRng.Text = e.Item.AliceValue ? "1" : "0";
+            bobRng.Text = e.Item.BobValue ? "1" : "0";
            
             if (e.Item.CatchedByEva)
             {
