@@ -139,5 +139,10 @@ namespace Requc.Models
                 RaisePropertyChanged(() => EvaResult);
             }
         }
+
+        public bool IsBlocked
+        {
+            get { return _evaResult == MeasurementResult.Inconclusive; }
+        }
     }
 }

@@ -36,11 +36,12 @@
                     <Binding Path="AliceValue" />
                     <Binding Path="BobValue" />
                     <Binding Path="CatchedByEva" />
+                    <Binding Path="IsBlocked" />
                     <MultiBinding.ConverterParameter>
                         <x:Array Type="Brush">
                             <SolidColorBrush Color="PaleVioletRed" />
                             <SolidColorBrush Color="GreenYellow" />
-                            <SolidColorBrush Color="Red"></SolidColorBrush>
+                            <SolidColorBrush Color="Red" />
                         </x:Array>
                     </MultiBinding.ConverterParameter>
                 </MultiBinding>
@@ -52,6 +53,7 @@
                     <Binding Path="AliceValue" />
                     <Binding Path="BobValue" />
                     <Binding Path="CatchedByEva" />
+                    <Binding Path="IsBlocked" />
                 </MultiBinding>
             </TextBlock.Text>
         </TextBlock>

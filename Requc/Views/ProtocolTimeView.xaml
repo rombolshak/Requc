@@ -8,13 +8,32 @@
     <UserControl.Resources>
         <PathGeometry x:Key="First" Figures="M 40,460 L 870,260 120,80 160,70 40,40" />
         <PathGeometry x:Key="FirstCatched" Figures="M 40,460 L 870,260 480,165 520,155 120,60 160,50 40,20" />
+        <PathGeometry x:Key="FirstBlocked" Figures="M 40,460 L 870,260 480,165 520,155" />
+        <PathGeometry x:Key="FirstDestructive" Figures="M 40,460 L 870,260 120,80 160,70" />
         <PathGeometry x:Key="Second" Figures="M 40,460 L 160,430 120,420 870,240 40,40" />
         <PathGeometry x:Key="SecondCatched" Figures="M 40,460 L 160,430 120,420 870,240 480,145 520,135 40,20" />
+        <PathGeometry x:Key="SecondBlocked" Figures="M 40,460 L 160,430 120,420 870,240 520,155 " />
+        <PathGeometry x:Key="SecondDestructive" Figures="M 40,460 L 160,430 120,420 870,240 160,70" />
+        
+        <Storyboard x:Key="HidePhotons">
+            <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="PathFirst" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="PathSecond" Storyboard.TargetProperty="Opacity" />
+        </Storyboard>
+        
+        <Storyboard x:Key="ShowPaths">
+            <DoubleAnimation To="0.8" Duration="0:0:0.5" Storyboard.TargetName="Path1Catched" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0.8" Duration="0:0:0.5" Storyboard.TargetName="Path2Catched" Storyboard.TargetProperty="Opacity" />
+        </Storyboard>
+        
         <Storyboard x:Key="CatchedAnimation">
             <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path1" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path2" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path1Catched" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path2Catched" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path1Blocked" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path2Blocked" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path1Destructed" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path2Destructed" Storyboard.TargetProperty="Opacity" />
             
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathFirst" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathSecond" Storyboard.TargetProperty="Opacity" />
@@ -24,18 +43,18 @@
             <PointAnimationUsingPath Duration="0:0:41.5" PathGeometry="{StaticResource SecondCatched}" 
                                      Storyboard.TargetName="PhotonSecond" 
                                      Storyboard.TargetProperty="Center" />
-
-            <DoubleAnimation To="0.8" Duration="0:0:0.5" BeginTime="0:0:40.5" Storyboard.TargetName="Path1Catched" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0.8" Duration="0:0:0.5" BeginTime="0:0:40.5" Storyboard.TargetName="Path2Catched" Storyboard.TargetProperty="Opacity" />
-            
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:41" Storyboard.TargetName="PathFirst" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:41" Storyboard.TargetName="PathSecond" Storyboard.TargetProperty="Opacity" />
+            <StaticResource ResourceKey="HidePhotons"/>
+            <StaticResource ResourceKey="ShowPaths"/>
         </Storyboard>
         <Storyboard x:Key="NotCatchedAnimation">
             <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path1" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path2" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path1Catched" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path2Catched" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path1Blocked" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path2Blocked" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path1Destructed" Storyboard.TargetProperty="Opacity" />
+            <DoubleAnimation To="0" Duration="0:0:0.01" Storyboard.TargetName="Path2Destructed" Storyboard.TargetProperty="Opacity" />
             
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathFirst" Storyboard.TargetProperty="Opacity" />
             <DoubleAnimation To="1" Duration="0:0:0.01" Storyboard.TargetName="PathSecond" Storyboard.TargetProperty="Opacity" />
@@ -45,22 +64,27 @@
             <PointAnimationUsingPath Duration="0:0:39.5" PathGeometry="{StaticResource Second}" 
                                      Storyboard.TargetName="PhotonSecond" 
                                      Storyboard.TargetProperty="Center" />
-
-            <DoubleAnimation To="0.8" Duration="0:0:0.5" BeginTime="0:0:39.5" Storyboard.TargetName="Path1" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0.8" Duration="0:0:0.5" BeginTime="0:0:39.5" Storyboard.TargetName="Path2" Storyboard.TargetProperty="Opacity" />
-            
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:40" Storyboard.TargetName="PathFirst" Storyboard.TargetProperty="Opacity" />
-            <DoubleAnimation To="0" Duration="0:0:0.01" BeginTime="0:0:40" Storyboard.TargetName="PathSecond" Storyboard.TargetProperty="Opacity" />
+            <StaticResource ResourceKey="HidePhotons"/>
+            <StaticResource ResourceKey="ShowPaths"/>
         </Storyboard>
     </UserControl.Resources>
     <Grid>
         <Path Stroke="Black" StrokeThickness="6" Data="M 40,0 L 40,480" />
         <Path Stroke="Black" StrokeThickness="6" Data="M 870,0 L 870,480" />
         <Path Stroke="LightSkyBlue" StrokeThickness="4" Data="M 20,40 L 60,40"></Path>
+        
         <Path Data="{StaticResource First}" Stroke="DarkCyan" StrokeThickness="2" x:Name="Path1" Opacity="0" />
         <Path Data="{StaticResource Second}" Stroke="DarkOrange" StrokeThickness="2" x:Name="Path2" Opacity="0" />
+        
         <Path Data="{StaticResource FirstCatched}" Stroke="DarkCyan" StrokeThickness="2" x:Name="Path1Catched" Opacity="0"/>
         <Path Data="{StaticResource SecondCatched}" Stroke="DarkOrange" StrokeThickness="2" x:Name="Path2Catched" Opacity="0"/>
+
+        <Path Data="{StaticResource FirstBlocked}" Stroke="DarkCyan" StrokeThickness="2" x:Name="Path1Blocked" Opacity="0"/>
+        <Path Data="{StaticResource SecondBlocked}" Stroke="DarkOrange" StrokeThickness="2" x:Name="Path2Blocked" Opacity="0"/>
+
+        <Path Data="{StaticResource FirstDestructive}" Stroke="DarkCyan" StrokeThickness="2" x:Name="Path1Destructed" Opacity="0"/>
+        <Path Data="{StaticResource SecondDestructive}" Stroke="DarkOrange" StrokeThickness="2" x:Name="Path2Destructed" Opacity="0"/>
+        
         <Path Stroke="Chocolate" StrokeThickness="5" Fill="Chocolate" x:Name="PathFirst" Opacity="0">
             <Path.Data>
                 <EllipseGeometry x:Name="PhotonFirst" RadiusX="2" RadiusY="2" Center="40,340" />

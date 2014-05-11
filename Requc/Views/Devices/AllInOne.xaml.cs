@@ -53,8 +53,8 @@ namespace Requc.Views.Devices
         {
             var alicePhaseAnimation = (ColorAnimation)FindResource("AlicePhaseShiftAnimation");
             var bobPhaseAnimation = (ColorAnimation)FindResource("BobPhaseShiftAnimation");
-            var aliceDetectorAnimation = (ColorAnimation)FindResource("AliceDetectorAnimation");
             var evaDetectorAnimation = (ColorAnimation)FindResource("EvaDetectorAnimation");
+            var aliceDetectorAnimation = (ColorAnimation)FindResource("AliceDetectorAnimation");
             var photon1Animation = (DoubleAnimation)FindResource("MiddlePhoton1Animation");
             var photon2Animation = (DoubleAnimation)FindResource("MiddlePhoton2Animation");
 
@@ -63,51 +63,79 @@ namespace Requc.Views.Devices
             
             var aliceRng = (TextBlock)FindResource("AliceRng");
             var bobRng = (TextBlock)FindResource("BobRng");
-            
+
+            var fromEveToAliceAnimation = (Storyboard)FindResource("FromEveToAliceAnimation");
+            var aliceBackwardAnimation = (Storyboard)FindResource("AliceBackwardAnimation");
+            var aliceAlarmAnimation = (Timeline)FindResource("AliceDetectorAlarmAnimation");
             var storyboard = (Storyboard)FindResource("BackwardAnimation");
+            
+            var unblock1 = (Timeline)FindResource("Unblock1");
+            var unblock2 = (Timeline)FindResource("Unblock2");
+            var unblock3 = (Timeline)FindResource("Unblock3");
+            var unblock4 = (Timeline)FindResource("Unblock4");
 
             alicePhaseAnimation.To = Math.Abs(e.Item.AlicePhase - e.Item.Phase0) < 1e-5 ? Colors.DeepSkyBlue : Colors.Orchid;
             bobPhaseAnimation.To = Math.Abs(e.Item.BobPhase - e.Item.Phase0) < 1e-5 ? Colors.DeepSkyBlue : Colors.Orchid;
             var destructiveInterference = Math.Abs(e.Item.AlicePhase - e.Item.BobPhase) < 1e-5;
             aliceRng.Text = e.Item.AliceValue ? "1" : "0";
             bobRng.Text = e.Item.BobValue ? "1" : "0";
-           
+
             if (e.Item.CatchedByEva)
             {
                 eva1Animation.PathGeometry = (PathGeometry) FindResource("EvaCatchedWay1");
                 eva2Animation.PathGeometry = (PathGeometry)FindResource("EvaCatchedWay2");
-                ((Storyboard)FindResource("AliceBackwardAnimation")).BeginTime = TimeSpan.FromSeconds(11);
+                aliceBackwardAnimation.BeginTime = TimeSpan.FromSeconds(11);
                 alicePhaseAnimation.BeginTime = TimeSpan.FromSeconds(2.9);
                 aliceDetectorAnimation.BeginTime = TimeSpan.FromSeconds(9.9);
                 aliceDetectorAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.3));
-                aliceDetectorAnimation.To = Colors.GreenYellow;
-                photon2Animation.To = photon1Animation.To = 1;
+                aliceDetectorAnimation.To = Colors.Black;//Colors.GreenYellow;
+                photon2Animation.To = photon1Animation.To = e.Item.IsBlocked ? 0 : 1;
                 evaDetectorAnimation.To = e.Item.EvaResult == MeasurementResult.Inconclusive
                                               ? Colors.Blue
                                               : e.Item.EvaResult == MeasurementResult.Phase0
                                                     ? Colors.DeepSkyBlue
                                                     : Colors.Orchid;
+            
+                if (e.Item.IsBlocked)
+                {
+                    fromEveToAliceAnimation.Children.Remove(unblock1);
+                    fromEveToAliceAnimation.Children.Remove(unblock3);
+                    aliceBackwardAnimation.Children.Remove(unblock2);
+                    aliceBackwardAnimation.Children.Remove(unblock4);
+                    storyboard.Children.Remove(aliceAlarmAnimation);
+                }
+                else
+                {
+                    if (!fromEveToAliceAnimation.Children.Contains(unblock1))
+                    {
+                        fromEveToAliceAnimation.Children.Insert(2, unblock1);
+                        fromEveToAliceAnimation.Children.Insert(fromEveToAliceAnimation.Children.Count - 1, unblock3);
+                        aliceBackwardAnimation.Children.Insert(0, unblock4);
+                        aliceBackwardAnimation.Children.Insert(0, unblock2);
+                    } 
+                    
+                    if (!storyboard.Children.Contains(aliceAlarmAnimation))
+                    {
+                        storyboard.Children.Insert(storyboard.Children.Count - 1, aliceAlarmAnimation);
+                    }
+                }
+
                 if (!storyboard.Children.Contains((Timeline) FindResource("EveMirrorAnimation")))
                 {
                     storyboard.Children.Insert(storyboard.Children.Count - 1,
                                                (Timeline) FindResource("EveMirrorAnimation"));
                 }
-                if (!storyboard.Children.Contains((Timeline) FindResource("FromEveToAliceAnimation")))
+                if (!storyboard.Children.Contains(fromEveToAliceAnimation))
                 {
-                    storyboard.Children.Insert(storyboard.Children.Count - 1,
-                                               (Timeline) FindResource("FromEveToAliceAnimation"));
+                    storyboard.Children.Insert(storyboard.Children.Count - 1, fromEveToAliceAnimation);
                 }
-                if (!storyboard.Children.Contains((Timeline)FindResource("AliceDetectorAlarmAnimation")))
-                {
-                    storyboard.Children.Insert(storyboard.Children.Count - 1,
-                                               (Timeline) FindResource("AliceDetectorAlarmAnimation"));
-                }
+                
             }
             else
             {
                 eva1Animation.PathGeometry = (PathGeometry)FindResource("EvaNoCatchWay1");
                 eva2Animation.PathGeometry = (PathGeometry)FindResource("EvaNoCatchWay2");
-                ((Storyboard)FindResource("AliceBackwardAnimation")).BeginTime = TimeSpan.FromSeconds(9);
+                aliceBackwardAnimation.BeginTime = TimeSpan.FromSeconds(9);
                 alicePhaseAnimation.BeginTime = TimeSpan.FromSeconds(3.9);
                 aliceDetectorAnimation.BeginTime = TimeSpan.FromSeconds(10.9);
                 aliceDetectorAnimation.Duration = new Duration(TimeSpan.FromSeconds(0.5));
@@ -115,8 +143,13 @@ namespace Requc.Views.Devices
                 photon2Animation.To = photon1Animation.To = destructiveInterference ? 0 : 1;
                 evaDetectorAnimation.To = Colors.Black;
                 storyboard.Children.Remove((Timeline)FindResource("EveMirrorAnimation"));
-                storyboard.Children.Remove((Timeline)FindResource("FromEveToAliceAnimation"));
-                storyboard.Children.Remove((Timeline)FindResource("AliceDetectorAlarmAnimation"));
+                storyboard.Children.Remove(fromEveToAliceAnimation);
+                storyboard.Children.Remove(aliceAlarmAnimation);
+                if (!aliceBackwardAnimation.Children.Contains(unblock2))
+                {
+                    aliceBackwardAnimation.Children.Insert(0, unblock4);
+                    aliceBackwardAnimation.Children.Insert(0, unblock2);
+                }
             }
 
             storyboard.Begin(this, true);

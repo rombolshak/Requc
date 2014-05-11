@@ -12,7 +12,8 @@
             var alice = (bool)values[0];
             var bob = (bool)values[1];
             var catchedByEva = (bool) values[2];
-            return alice == bob && !catchedByEva ? "-" : "+";
+            var isBlocked = (bool) values[3];
+            return alice == bob && !catchedByEva || isBlocked ? "-" : "+";
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

@@ -11,10 +11,16 @@ namespace Requc.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var objects = parameter as object[];
-            var cathced = (bool) values[2];
             var aliceValue = (bool) values[0];
             var bobValue = (bool)values[1];
-            if (cathced)
+            var isCathced = (bool)values[2];
+            var isBlocked = (bool) values[3];
+            if (isBlocked)
+            {
+                return objects[0];
+            }
+
+            if (isCathced)
             {
                 return objects[2];
             }
