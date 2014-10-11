@@ -17,18 +17,18 @@ namespace Requc.ViewModels
         {
             Animations.RemoveAll(tuple => tuple.Item1.Equals(animation) && tuple.Item2.Equals(containingObject));
         }
-        
-        private static readonly List<Tuple<Storyboard, FrameworkElement>> Animations = new List<Tuple<Storyboard, FrameworkElement>>(5);
 
         public static void SetSpeed(double newValue)
         {
             _currentSpeed = newValue;
             Animations.ForEach(tuple =>
-            {
-                tuple.Item1.SpeedRatio = newValue;
-            });
+                {
+                    tuple.Item1.SetSpeedRatio(tuple.Item2, newValue);
+                    tuple.Item1.SpeedRatio = newValue;
+                });
         }
 
+        private static readonly List<Tuple<Storyboard, FrameworkElement>> Animations = new List<Tuple<Storyboard, FrameworkElement>>(5);
         private static double _currentSpeed = 1;
     }
 }

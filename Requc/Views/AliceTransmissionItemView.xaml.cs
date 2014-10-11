@@ -28,7 +28,10 @@ namespace Requc.Views
             InitializeComponent();
             Loaded += (sender, args) =>
                 {
-                    AnimationsManager.Add((Storyboard) FindResource("TransmissionItemAnimation"), this);
+                    var animation = (Storyboard) FindResource("TransmissionItemAnimation");
+                    AnimationsManager.Add(animation, this);
+                    animation.Completed +=
+                        (o, eventArgs) => AnimationsManager.Remove(animation, this);
                     /*if (((TransmissionItem) DataContext).CatchedByEva)
                     {
                         ((Storyboard) FindResource("TransmissionItemAnimation")).BeginTime += TimeSpan.FromSeconds(1);

@@ -25,16 +25,20 @@ namespace Requc.Views.Devices
     {
         public AllInOne()
         {
-            InitializeComponent(); Loaded += (sender, args) =>
+            InitializeComponent(); 
+            Loaded += (sender, args) =>
             {
-                AnimationsManager.Add((Storyboard)FindResource("ForwardAnimation"), this);
-                AnimationsManager.Add((Storyboard)FindResource("BackwardAnimation"), this);
+                var forwardAnimation = (Storyboard)FindResource("ForwardAnimation");
+                var backwardAnimation = (Storyboard)FindResource("BackwardAnimation");
+
+                AnimationsManager.Add(forwardAnimation, this);
+                AnimationsManager.Add(backwardAnimation, this);
 
                 ((ProtocolDevice)DataContext).ForwardProcessStarted += ForwardProcessStarted;
                 ((ProtocolDevice)DataContext).BackwardProcessStarted += BackwardProcessStarted;
 
-                ((Storyboard)FindResource("ForwardAnimation")).Completed += ForwardCompleted;
-                ((Storyboard)FindResource("BackwardAnimation")).Completed += BackwardCompleted;
+                forwardAnimation.Completed += ForwardCompleted;
+                backwardAnimation.Completed += BackwardCompleted;
             };
         }
 

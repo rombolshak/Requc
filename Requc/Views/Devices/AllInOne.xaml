@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="160" d:DesignWidth="900">
+             d:DesignHeight="280" d:DesignWidth="900">
     <UserControl.Resources>
         <!-- alice -->
         <TextBlock Text="1"  Width="20" Height="20" Margin="-390 140 0 0" x:Key="AliceRng" Opacity="0" FontWeight="Bold" FontSize="15" />
@@ -268,6 +268,49 @@
         <!-- /alice -->
     </UserControl.Resources>
     <Grid>
+        <!-- elements captions -->
+        <TextBlock Text="Задержка" Margin="140 130 0 0" />
+        <Line X1="149" Y1="130" X2="180" Y2="110" Stroke="Black" StrokeThickness="1" />
+
+        <TextBlock Text="Лазер" Margin="0 -15 0 0" />
+        
+        <TextBlock  Text="Лавинный фотодетектор" Margin="-70 150 0 0" />
+        <Line X1="-60" Y1="150" X2="10" Y2="130" Stroke="Black" StrokeThickness="1" />
+        
+        <TextBlock Text="Светоделитель" Margin="184 -15" />
+        <Line X1="175" Y1="0" X2="140" Y2="60" Stroke="Black" StrokeThickness="1" />
+        <Line X1="284" Y1="0" X2="320" Y2="60" Stroke="Black" StrokeThickness="1" />
+        
+        <TextBlock Text="Фазовый модулятор" TextWrapping="Wrap" MaxWidth="65" Margin="-400 60 0 0" />
+        <Line X1="265" Y1="95" X2="245" Y2="108" Stroke="Black" StrokeThickness="1" />
+
+        <TextBlock Text="ГСЧ Алисы" Margin="280 140 0 0" />
+        <Line X1="275" Y1="150" X2="255" Y2="160" Stroke="Black" StrokeThickness="1" />
+
+        <TextBlock Text="Детектор Евы" Margin="520 120 0 0" />
+        <Line X1="580" Y1="118" X2="540" Y2="98" Stroke="Black" StrokeThickness="1" />
+
+        <TextBlock Text="Лазер Евы" Margin="420 120 0 0" />
+        <Line X1="430" Y1="118" X2="465" Y2="105" Stroke="Black" StrokeThickness="1" />
+
+        <TextBlock Text="Зеркало" Margin="420 -15 0 0" />
+        <Line X1="450" Y1="5" X2="490" Y2="10" Stroke="Black" StrokeThickness="1" />
+        <Line X1="450" Y1="5" X2="500" Y2="30" Stroke="Black" StrokeThickness="1" />
+
+        <TextBlock Text="ГСЧ Боба" Margin="760 -25 0 0" />
+        <Line X1="758" Y1="-15" X2="735" Y2="-5" Stroke="Black" StrokeThickness="1" />
+
+        <TextBlock Text="Фазовый модулятор" TextWrapping="Wrap" MaxWidth="65" Margin="400 -40 0 0" />
+        <Line X1="665" Y1="0" X2="707" Y2="23" Stroke="Black" StrokeThickness="1" />
+
+        <TextBlock Text="Классический детектор" Margin="700 120 0 0" />
+        <Line X1="780" Y1="118" X2="710" Y2="90" Stroke="Black" StrokeThickness="1" />
+
+        <TextBlock Text="Аттенюатор" Margin="800 80 0 0" />
+        <Line X1="840" Y1="80" X2="795" Y2="50" Stroke="Black" StrokeThickness="1" />
+
+        <TextBlock Text="Зеркало" Margin="840 -25 0 0" />
+        <Line X1="850" Y1="-5" X2="870" Y2="15" Stroke="Black" StrokeThickness="1" />
         <!-- alice -->
         <!-- Laser -->
         <Path Stroke="Black" StrokeThickness="2" Fill="White">
