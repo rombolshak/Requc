@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Requc.Commands;
+using Requc.Helpers;
 using Requc.ViewModels;
 
 namespace Requc.Views
@@ -24,6 +26,8 @@ namespace Requc.Views
         public SimpleProtocolView()
         {
             InitializeComponent();
+            ModelingModeSelector.ItemsSource = from value in Enum.GetValues(typeof (ModelingMode)).Cast<ModelingMode>()
+                                               select EnumHelpers.GetEnumDescription(value);
         }
 
         private void AnimationSpeedSetterValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)

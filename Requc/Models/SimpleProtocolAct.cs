@@ -1,4 +1,5 @@
 ﻿using System;
+using Requc.Commands;
 
 namespace Requc.Models
 {
@@ -28,10 +29,10 @@ namespace Requc.Models
         public event EventHandler<SimpleProtocolEventArgs> Started = (sender, args) => { };
         public event EventHandler<SimpleProtocolEventArgs> Finished = (sender, args) => { };
 
-        public TransmissionItem Process()
+        public TransmissionItem Process(ModelingMode modelingMode)
         {
             _transmissionItem = new TransmissionItem(Params.Phase0, Params.Phase1);
-            var e = new SimpleProtocolEventArgs(_transmissionItem);
+            var e = new SimpleProtocolEventArgs(_transmissionItem, modelingMode);
             AllInOneDevice.ProcessForward(e);
             Started(this, e);
             return _transmissionItem;

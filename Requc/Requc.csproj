@@ -69,13 +69,16 @@
     </ApplicationDefinition>
     <Compile Include="Commands\AsyncCommand.cs" />
     <Compile Include="Commands\CommonCommand.cs" />
+    <Compile Include="Commands\ModelingMode.cs" />
     <Compile Include="Commands\RunCommand.cs" />
     <Compile Include="Converters\BooleanToIntConverter.cs" />
     <Compile Include="Converters\BoolToOppositeBoolConverter.cs" />
+    <Compile Include="Converters\EnumValueToStringConverter.cs" />
     <Compile Include="Converters\EvaToTextConverter.cs" />
     <Compile Include="Converters\PhaseValueToImageConverter.cs" />
     <Compile Include="Converters\ValuesToColorConverter.cs" />
     <Compile Include="Converters\TransmissionItemToDetectorClickConverter.cs" />
+    <Compile Include="Helpers\EnumHelpers.cs" />
     <Compile Include="Models\AllInOneDevice.cs" />
     <Compile Include="Models\Devices.cs" />
     <Compile Include="Models\MeasurementResult.cs" />
@@ -213,6 +216,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Key.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NumericUpDownControl\NumericUpDownControl.csproj">
+      <Project>{ffdf6818-650a-4e47-aba2-94b50b62cdce}</Project>
+      <Name>NumericUpDownControl</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
