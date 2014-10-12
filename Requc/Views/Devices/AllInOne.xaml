@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="280" d:DesignWidth="900">
+             d:DesignHeight="280" d:DesignWidth="900"
+             Canvas.ZIndex="5">
     <UserControl.Resources>
         <!-- alice -->
         <TextBlock Text="1"  Width="20" Height="20" Margin="-390 140 0 0" x:Key="AliceRng" Opacity="0" FontWeight="Bold" FontSize="15" />
@@ -65,17 +66,26 @@
                         To="Blue"
                         AutoReverse="True"
                         BeginTime="0:0:10.9" />
-        <ColorAnimation x:Key="AliceDetectorAlarmAnimation" 
-                        Duration="0:0:0.8"
-                        Storyboard.TargetName="AliceDetector"
+        <Storyboard x:Key="AliceDetectorAlarmAnimation"
+                    Duration="0:0:0.8"
+                    BeginTime="0:0:22"
+                    AutoReverse="True">
+            <ColorAnimation Storyboard.TargetName="AliceDetector"
                         Storyboard.TargetProperty="(Fill).(Color)"
-                        To="Red"
-                        AutoReverse="True"
-                        BeginTime="0:0:22" >
-            <ColorAnimation.EasingFunction>
-                <ElasticEase Oscillations="3" EasingMode="EaseOut"/>
-            </ColorAnimation.EasingFunction>
-        </ColorAnimation>
+                        To="Red" >
+                <ColorAnimation.EasingFunction>
+                    <ElasticEase Oscillations="10" Springiness="0" EasingMode="EaseOut"/>
+                </ColorAnimation.EasingFunction>
+            </ColorAnimation>
+            <DoubleAnimation Storyboard.TargetName="EvaDetectedText"
+                        Storyboard.TargetProperty="Opacity"
+                        To="1">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase Amplitude="0.3" EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        
         <DoubleAnimation  x:Key="MiddlePhoton1Animation"
                           Duration="0:0:0.5"
                           To="0"
@@ -269,6 +279,9 @@
     </UserControl.Resources>
     <Grid>
         <!-- elements captions -->
+
+        <TextBlock Text="Ева обнаружена" FontSize="40"  Margin="360 130 0 0" Foreground="Red" Opacity="0" x:Name="EvaDetectedText" Canvas.ZIndex="10" />
+        
         <TextBlock Text="Задержка" Margin="140 130 0 0" />
         <Line X1="149" Y1="130" X2="180" Y2="110" Stroke="Black" StrokeThickness="1" />
 
@@ -311,6 +324,8 @@
 
         <TextBlock Text="Зеркало" Margin="840 -25 0 0" />
         <Line X1="850" Y1="-5" X2="870" Y2="15" Stroke="Black" StrokeThickness="1" />
+        <!-- /elements caption -->
+        
         <!-- alice -->
         <!-- Laser -->
         <Path Stroke="Black" StrokeThickness="2" Fill="White">
