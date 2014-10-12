@@ -33,11 +33,17 @@ namespace Requc.ViewModels
         {
             get
             {
-                return _runCommand ?? (_runCommand = new RelayCommand((parameter) => new RunCommand(ProtocolAct, TransmissionItems, ModelingMode, RepeatCount).Execute(parameter)));
+                return _runCommand ??
+                       (_runCommand =
+                        new RelayCommand(
+                            parameter =>
+                            (_internalRunCommand = new RunCommand(ProtocolAct, TransmissionItems, ModelingMode, RepeatCount)).Execute(parameter),
+                            o => _internalRunCommand == null || _internalRunCommand.CanExecute(o)));
             }
         }
 
         private RelayCommand _runCommand;
+        private RunCommand _internalRunCommand;
         
         public void Dispose()
         {
