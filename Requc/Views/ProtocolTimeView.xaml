@@ -71,7 +71,15 @@
     <Grid>
         <Path Stroke="Black" StrokeThickness="6" Data="M 40,0 L 40,480" />
         <Path Stroke="Black" StrokeThickness="6" Data="M 870,0 L 870,480" />
-        <Path Stroke="LightSkyBlue" StrokeThickness="4" Data="M 20,40 L 60,40"></Path>
+        <Path Stroke="LightSkyBlue" StrokeThickness="4" Data="M 20,40 L 60,40" />
+        <Path Stroke="Black" StrokeThickness="1" Data="M 40,480 L 890,480 L 880,470 M 890,480 L 880,490" />
+        <Path Stroke="Black" StrokeThickness="1" Data="M 30,70 L 40,55 50,70"></Path>
+        <TextBlock Text="Местоположение" Margin="760 480 0 0" />
+        <TextBlock Text="Время" Margin="15 0 0 370">
+            <TextBlock.LayoutTransform>
+                <RotateTransform Angle="-90"></RotateTransform>
+            </TextBlock.LayoutTransform>
+        </TextBlock>
         
         <Path Data="{StaticResource First}" Stroke="DarkCyan" StrokeThickness="2" x:Name="Path1" Opacity="0" />
         <Path Data="{StaticResource Second}" Stroke="DarkOrange" StrokeThickness="2" x:Name="Path2" Opacity="0" />
