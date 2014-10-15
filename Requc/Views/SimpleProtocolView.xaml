@@ -41,9 +41,10 @@
 			
 		</Grid>
 
-		<view:AliceTransmissionItemsView Grid.Row="1" Grid.Column="0" />
+		<!--<view:AliceTransmissionItemsView Grid.Row="1" Grid.Column="0" />-->
+        <view:AllInOneTransmissionItemsView Grid.Row="1" Grid.Column="0" />
 		<ContentPresenter Content="{Binding ProtocolAct}" ContentTemplate="{StaticResource ProtocolTime}" Grid.Column="1" Grid.Row="1"/>
-		<view:BobTransmissionItemsView Grid.Row="1" Grid.Column="2" />
+		<!--<view:BobTransmissionItemsView Grid.Row="1" Grid.Column="2" />-->
 		<TextBox HorizontalAlignment="Left" Height="23" Margin="10,60,0,0" TextWrapping="Wrap" Text="1" 
 			VerticalAlignment="Top" Width="100" TextChanged="AnimationSpeedSetterTextChanged"
 			IsEnabled="{Binding RunCommand.IsExecuting, Converter={StaticResource BoolToOpposite}}"/>

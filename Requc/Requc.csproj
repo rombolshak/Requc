@@ -76,7 +76,6 @@
     <Compile Include="Converters\EnumValueToStringConverter.cs" />
     <Compile Include="Converters\EvaToTextConverter.cs" />
     <Compile Include="Converters\PhaseValueToImageConverter.cs" />
-    <Compile Include="Converters\ValuesToColorConverter.cs" />
     <Compile Include="Converters\TransmissionItemToDetectorClickConverter.cs" />
     <Compile Include="Helpers\EnumHelpers.cs" />
     <Compile Include="Models\AllInOneDevice.cs" />
@@ -89,17 +88,11 @@
     <Compile Include="Models\TransmissionItem.cs" />
     <Compile Include="ViewModels\AnimationsManager.cs" />
     <Compile Include="ViewModels\SimpleProtocolViewModel.cs" />
-    <Compile Include="Views\AliceTransmissionItemsView.xaml.cs">
-      <DependentUpon>AliceTransmissionItemsView.xaml</DependentUpon>
+    <Compile Include="Views\AllInOneTransmissionItemsView.xaml.cs">
+      <DependentUpon>AllInOneTransmissionItemsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AliceTransmissionItemView.xaml.cs">
-      <DependentUpon>AliceTransmissionItemView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\BobTransmissionItemsView.xaml.cs">
-      <DependentUpon>BobTransmissionItemsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\BobTransmissionItemView.xaml.cs">
-      <DependentUpon>BobTransmissionItemView.xaml</DependentUpon>
+    <Compile Include="Views\AllInOneTransmissionItemView.xaml.cs">
+      <DependentUpon>AllInOneTransmissionItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Devices\AllInOne.xaml.cs">
       <DependentUpon>AllInOne.xaml</DependentUpon>
@@ -116,21 +109,13 @@
     <Compile Include="Views\SimpleProtocolView.xaml.cs">
       <DependentUpon>SimpleProtocolView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Views\AliceTransmissionItemsView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\AllInOneTransmissionItemsView.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AliceTransmissionItemView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\AllInOneTransmissionItemView.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\BobTransmissionItemsView.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\BobTransmissionItemView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Devices\AllInOne.xaml">
       <SubType>Designer</SubType>

@@ -144,5 +144,30 @@ namespace Requc.Models
         {
             get { return _evaResult == MeasurementResult.Inconclusive; }
         }
+
+        public bool IsReturnedToAlice
+        {
+            get { return ((!CatchedByEva && (AliceValue != BobValue)) || (CatchedByEva && !IsBlocked)); }
+        }
+
+        public bool IsDestructed
+        {
+            get { return !IsReturnedToAlice; }
+        }
+
+        public bool IsEvaDetected
+        {
+            get { return IsReturnedToAlice && CatchedByEva; }
+        }
+
+        public bool IsGood
+        {
+            get { return IsReturnedToAlice && !CatchedByEva; }
+        }
+
+        public bool ShouldBeDropped
+        {
+            get { return IsDestructed || IsEvaDetected; }
+        }
     }
 }
