@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Cascade.View.BobBlockView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:Cascade.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModel="clr-namespace:Cascade.ViewModel"
+             d:DataContext="{d:DesignInstance viewModel:BlockSetViewModel}"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:BlockSizeToHeightConverter x:Key="blockSizeToHeight" />
+    </UserControl.Resources>
+    <Viewbox Height="641">
+        <ItemsControl ItemsSource="{Binding Blocks}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="viewModel:BlockViewModel">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Column="0"
+                                Width="20"
+                                Height="{Binding Size,
+                                                 Converter={StaticResource blockSizeToHeight}}"
+                                Margin="0 0 0 2"
+                                BorderBrush="Black"
+                                BorderThickness="1 1 0 1">
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Text="{Binding Parity}" />
+                        </Border>
+
+                        <StackPanel Grid.Column="1">
+                            <Border Width="20"
+                                    Height="1"
+                                    Margin="0 0 45 0"
+                                    BorderBrush="Black"
+                                    BorderThickness="0 1 0 0" />
+                            <ItemsControl Margin="0 0 45 2"
+                                          ItemTemplate="{StaticResource keyItemTemplate}"
+                                          ItemsSource="{Binding Items}" />
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Viewbox>
+</UserControl>

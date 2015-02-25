@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="Cascade.View.AliceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:Cascade.Converters"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:view="clr-namespace:Cascade.View"
+             xmlns:viewModel="clr-namespace:Cascade.ViewModel"
+             Margin="0,0,25,0"
+             d:DataContext="{d:DesignInstance viewModel:ProtocolViewModel}"
+             d:DesignHeight="742"
+             d:DesignWidth="683"
+             mc:Ignorable="d">
+    <UserControl.Resources>
+        <converters:AllBlocksToBlockSetConverter x:Key="blocksToBlockSet" />
+    </UserControl.Resources>
+    <Grid Name="blocksGrid" HorizontalAlignment="Right">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel x:Name="Key"
+                    Grid.Column="0"
+                    Height="641">
+            <Border Width="20"
+                    Height="1"
+                    BorderBrush="Black"
+                    BorderThickness="0 1 0 0" />
+            <ItemsControl ItemTemplate="{StaticResource keyItemTemplate}" ItemsSource="{Binding AliceKey}" />
+        </StackPanel>
+        <view:AliceBlockView x:Name="Pass1"
+                             Grid.Column="1"
+                             Width="0"
+                             DataContext="{Binding AliceBlocks,
+                                                   Converter={StaticResource blocksToBlockSet},
+                                                   ConverterParameter=0}" />
+        <view:AliceBlockView x:Name="Pass2"
+                             Grid.Column="2"
+                             Width="0"
+                             DataContext="{Binding AliceBlocks,
+                                                   Converter={StaticResource blocksToBlockSet},
+                                                   ConverterParameter=1}" />
+        <view:AliceBlockView x:Name="Pass3"
+                             Grid.Column="3"
+                             Width="0"
+                             DataContext="{Binding AliceBlocks,
+                                                   Converter={StaticResource blocksToBlockSet},
+                                                   ConverterParameter=2}" />
+        <view:AliceBlockView x:Name="Pass4"
+                             Grid.Column="4"
+                             Width="0"
+                             DataContext="{Binding AliceBlocks,
+                                                   Converter={StaticResource blocksToBlockSet},
+                                                   ConverterParameter=3}" />
+    </Grid>
+</UserControl>

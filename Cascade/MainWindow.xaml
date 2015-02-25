@@ -1,0 +1,11 @@
+﻿<mui:ModernWindow x:Class="Cascade.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mui="http://firstfloorsoftware.com/ModernUI" xmlns:view="clr-namespace:Cascade.View"
+                  Width="1366"
+                  Height="768"
+        Title="CASCADE" IsTitleVisible="True" Style="{StaticResource EmptyWindow}">
+    <Viewbox Margin="20">
+        <view:ProtocolView />
+    </Viewbox>
+</mui:ModernWindow>
