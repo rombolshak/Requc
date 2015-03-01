@@ -66,7 +66,7 @@
                     </ColorAnimationUsingKeyFrames>
                 </Storyboard>
             </VisualState>
-            <VisualState x:Name="ParityNormal">
+            <VisualState x:Name="Normal">
                 <Storyboard>
                     <ColorAnimationUsingKeyFrames Storyboard.TargetName="Parity" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
                         <EasingColorKeyFrame KeyTime="0" Value="White" />
@@ -76,13 +76,33 @@
                     </ColorAnimationUsingKeyFrames>
                 </Storyboard>
             </VisualState>
-            <VisualState x:Name="ParityOddError">
+            <VisualState x:Name="OddError">
                 <Storyboard>
                     <ColorAnimationUsingKeyFrames Storyboard.TargetName="Parity" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
                         <EasingColorKeyFrame KeyTime="0" Value="MediumPurple" />
                     </ColorAnimationUsingKeyFrames>
                     <ColorAnimationUsingKeyFrames Storyboard.TargetName="Key" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
                         <EasingColorKeyFrame KeyTime="0" Value="MediumPurple" />
+                    </ColorAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="OddErrorNotSelected">
+                <Storyboard>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Parity" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="0" Value="DodgerBlue" />
+                    </ColorAnimationUsingKeyFrames>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Key" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="0" Value="DodgerBlue" />
+                    </ColorAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="OddErrorSelected">
+                <Storyboard>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Parity" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="0" Value="DarkOrchid" />
+                    </ColorAnimationUsingKeyFrames>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Key" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="0" Value="DarkOrchid" />
                     </ColorAnimationUsingKeyFrames>
                 </Storyboard>
             </VisualState>

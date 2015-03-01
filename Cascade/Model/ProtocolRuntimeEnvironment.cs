@@ -35,6 +35,8 @@ namespace Cascade.Model
 
         public IList<ProtocolBlock> OddErrorsCountBlocks { get; set; }
 
+        public ProtocolBlock WorkingBlock { get; set; }
+
         private IEnumerable<KeyItem> CreateKey()
         {
             var list = new List<KeyItem>(KeyLength);

@@ -57,8 +57,10 @@ namespace Cascade.ViewModel
             NothingVisible,
             ParityMatched,
             ParityNotMatched,
-            ParityOddError,
-            ParityNormal
+            OddError,
+            Normal,
+            OddErrorSelected,
+            OddErrorNotSelected
         }
     }
 }

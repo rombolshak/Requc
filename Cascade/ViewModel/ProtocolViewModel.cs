@@ -137,6 +137,18 @@ namespace Cascade.ViewModel
                                   {
                                       blockViewModel.State = BlockViewModel.VisualStateE.NothingVisible;
                                   }
+                              }),
+                          TypeSwitch.Case<FindSmallestOddErrorBlockStep>(step =>
+                              {
+                                  foreach (var block in Enumerable.Range(0, 4)
+                                                                  .SelectMany(i => BobBlocks[i].Blocks)
+                                                                  .Where(
+                                                                      block =>
+                                                                      block.State ==
+                                                                      BlockViewModel.VisualStateE.OddError))
+                                  {
+                                      block.State = BlockViewModel.VisualStateE.OddErrorNotSelected;
+                                  }
                               }));
 
             StateManager.WaitAnimations();
@@ -165,35 +177,46 @@ namespace Cascade.ViewModel
                                   }
                               }),
                           TypeSwitch.Case<CheckParitiesStep>(step =>
-                          {
-                              for (var i = 0; i < _environment.BlocksCount[step.Pass]; ++i)
                               {
-                                  if (AliceBlocks[step.Pass].Blocks[i].Parity == BobBlocks[step.Pass].Blocks[i].Parity)
+                                  for (var i = 0; i < _environment.BlocksCount[step.Pass]; ++i)
                                   {
-                                      AliceBlocks[step.Pass].Blocks[i].State =
-                                          BobBlocks[step.Pass].Blocks[i].State =
-                                          BlockViewModel.VisualStateE.ParityMatched;
+                                      if (AliceBlocks[step.Pass].Blocks[i].Parity ==
+                                          BobBlocks[step.Pass].Blocks[i].Parity)
+                                      {
+                                          AliceBlocks[step.Pass].Blocks[i].State =
+                                              BobBlocks[step.Pass].Blocks[i].State =
+                                              BlockViewModel.VisualStateE.ParityMatched;
+                                      }
+                                      else
+                                      {
+                                          AliceBlocks[step.Pass].Blocks[i].State =
+                                              BobBlocks[step.Pass].Blocks[i].State =
+                                              BlockViewModel.VisualStateE.ParityNotMatched;
+                                      }
                                   }
-                                  else
-                                  {
-                                      AliceBlocks[step.Pass].Blocks[i].State =
-                                          BobBlocks[step.Pass].Blocks[i].State =
-                                          BlockViewModel.VisualStateE.ParityNotMatched;
-                                  }
-                              }
-                          }),
+                              }),
                           TypeSwitch.Case<SetOddErrorsBlocksStep>(step =>
                               {
-                                  foreach (var block in Enumerable.Range(0, 4).SelectMany(i => BobBlocks[i].Blocks))
+                                  foreach (var block in GetAllBlocks(BobBlocks))
                                   {
                                       block.State = _environment.OddErrorsCountBlocks.Contains(block.Model)
-                                                        ? BlockViewModel.VisualStateE.ParityOddError
-                                                        : BlockViewModel.VisualStateE.ParityNormal;
+                                                        ? BlockViewModel.VisualStateE.OddError
+                                                        : BlockViewModel.VisualStateE.Normal;
                                   }
 
-                                  foreach (var block in Enumerable.Range(0, 4).SelectMany(i => AliceBlocks[i].Blocks))
+                                  foreach (var block in GetAllBlocks(AliceBlocks))
                                   {
-                                      block.State = BlockViewModel.VisualStateE.ParityNormal;
+                                      block.State = BlockViewModel.VisualStateE.Normal;
+                                  }
+                              }),
+                          TypeSwitch.Case<FindSmallestOddErrorBlockStep>(step =>
+                              {
+                                  foreach (
+                                      var block in
+                                          GetAllBlocks(BobBlocks)
+                                              .Where(block => block.Model == _environment.WorkingBlock))
+                                  {
+                                      block.State = BlockViewModel.VisualStateE.OddErrorSelected;
                                   }
                               }));
 
@@ -201,6 +224,11 @@ namespace Cascade.ViewModel
             protocolStepFinishedEventArgs.Handle.Set();
             Thread.Sleep(1000);
             _runner.NextStep();
+        }
+
+        private IEnumerable<BlockViewModel> GetAllBlocks(BlockSetViewModel[] blocks)
+        {
+            return Enumerable.Range(0, 4).SelectMany(i => blocks[i].Blocks);
         }
 
         protected virtual void OnStepStarted(ProtocolStepStartedEventArgs e)
