@@ -32,7 +32,16 @@ namespace Cascade.Helpers
                         if (ctrl == null)
                             throw new InvalidOperationException(
                                 "This attached property only supports types derived from Control.");
-                        ChangeState(ctrl, (string) e.NewValue, () => WaitHandle.Signal());
+                        ChangeState(ctrl, (string) e.NewValue, () =>
+                            {
+                                try
+                                {
+                                    WaitHandle.Signal();
+                                }
+                                catch (InvalidOperationException)
+                                {
+                                }
+                            });
                     }));
 
         public static bool ChangeState(FrameworkElement ctrl, string state, Action onCompleted)

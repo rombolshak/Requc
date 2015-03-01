@@ -16,7 +16,7 @@ namespace Cascade.Model.ProtocolSteps
 
         private bool OddErrorsBlocksSetNotEmpty(ProtocolRuntimeEnvironment environment)
         {
-            return false;
+            return environment.OddErrorsCountBlocks.Count != 0;
         }
 
         public string Description { get { return "Просмотр блоков с нечетным количеством ошибок"; } }

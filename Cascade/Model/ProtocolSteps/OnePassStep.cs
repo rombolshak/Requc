@@ -21,7 +21,7 @@ namespace Cascade.Model.ProtocolSteps
             yield return new ShowCurrentPassStep(Pass);
             yield return new FillBlocksWithRandomPermutationStep(Pass);
             yield return new CalculateParitiesStep(Pass);
-            yield return new CheckParitiesStep();
+            yield return new CheckParitiesStep(Pass);
             yield return new SetOddErrorsBlocksStep();
             yield return new ProcessOddErrorsBlocksStep();
         }

@@ -16,9 +16,11 @@ namespace Cascade.Model
             BlockSize = new[] { 4, 8, 16, 32 };
             BlocksCount = new[] { 8, 4, 2, 1 };
 
-            AliceBlocks = new List<IEnumerable<ProtocolBlock>>();
-            BobBlocks = new List<IEnumerable<ProtocolBlock>>();
+            AliceBlocks = new List<IList<ProtocolBlock>>();
+            BobBlocks = new List<IList<ProtocolBlock>>();
             FillBlocksWithRandomPermutations(new[] {AliceBlocks, BobBlocks}, new[] {AliceKey, BobKey});
+
+            OddErrorsCountBlocks = new List<ProtocolBlock>();
         }
 
         public int KeyLength { get; private set; }
@@ -28,8 +30,10 @@ namespace Cascade.Model
 
         public int[] BlockSize { get; private set; }
         public int[] BlocksCount { get; private set; }
-        public IList<IEnumerable<ProtocolBlock>> AliceBlocks { get; private set; }
-        public IList<IEnumerable<ProtocolBlock>> BobBlocks { get; private set; }
+        public IList<IList<ProtocolBlock>> AliceBlocks { get; private set; }
+        public IList<IList<ProtocolBlock>> BobBlocks { get; private set; }
+
+        public IList<ProtocolBlock> OddErrorsCountBlocks { get; set; }
 
         private IEnumerable<KeyItem> CreateKey()
         {
@@ -67,7 +71,7 @@ namespace Cascade.Model
             return key;
         }
 
-        private void FillBlocksWithRandomPermutations(IList<IList<IEnumerable<ProtocolBlock>>> blocksArray,
+        private void FillBlocksWithRandomPermutations(IList<IList<ProtocolBlock>>[] blocksArray,
                                                       IList<IEnumerable<KeyItem>> keysArray)
         {
             const int numberOfPasses = 4;

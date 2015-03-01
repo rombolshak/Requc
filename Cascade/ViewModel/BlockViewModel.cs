@@ -15,6 +15,11 @@ namespace Cascade.ViewModel
             _block.KeyItems.CollectionChanged += (o, e) => NotifyPropertyChanged(null);
         }
 
+        public ProtocolBlock Model
+        {
+            get { return _block; }
+        }
+
         public IEnumerable<KeyItemViewModel> Items
         {
             get { return _block.KeyItems.Select(item => _keyItemViewModels.First(model => model.Position == item.Position)); }
@@ -49,7 +54,11 @@ namespace Cascade.ViewModel
         {
             ParityVisible,
             PositionsVisible,
-            NothingVisible
+            NothingVisible,
+            ParityMatched,
+            ParityNotMatched,
+            ParityOddError,
+            ParityNormal
         }
     }
 }

@@ -124,7 +124,7 @@ namespace Cascade.ViewModel
         {
             CurrentStepDescriptionVisualState = "Invisible";
             TypeSwitch.Do(protocolStepStartedEventArgs.Step,
-                          TypeSwitch.Case<OnePassStep>(step =>
+                          TypeSwitch.Case<FillBlocksWithRandomPermutationStep>(step =>
                               {
                                   AliceBlocks[step.Pass].State = BlockSetViewModel.VisualStateE.Invisible;
                                   BobBlocks[step.Pass].State = BlockSetViewModel.VisualStateE.Invisible;
@@ -163,7 +163,40 @@ namespace Cascade.ViewModel
                                   {
                                       blockViewModel.State = BlockViewModel.VisualStateE.ParityVisible;
                                   }
+                              }),
+                          TypeSwitch.Case<CheckParitiesStep>(step =>
+                          {
+                              for (var i = 0; i < _environment.BlocksCount[step.Pass]; ++i)
+                              {
+                                  if (AliceBlocks[step.Pass].Blocks[i].Parity == BobBlocks[step.Pass].Blocks[i].Parity)
+                                  {
+                                      AliceBlocks[step.Pass].Blocks[i].State =
+                                          BobBlocks[step.Pass].Blocks[i].State =
+                                          BlockViewModel.VisualStateE.ParityMatched;
+                                  }
+                                  else
+                                  {
+                                      AliceBlocks[step.Pass].Blocks[i].State =
+                                          BobBlocks[step.Pass].Blocks[i].State =
+                                          BlockViewModel.VisualStateE.ParityNotMatched;
+                                  }
+                              }
+                          }),
+                          TypeSwitch.Case<SetOddErrorsBlocksStep>(step =>
+                              {
+                                  foreach (var block in Enumerable.Range(0, 4).SelectMany(i => BobBlocks[i].Blocks))
+                                  {
+                                      block.State = _environment.OddErrorsCountBlocks.Contains(block.Model)
+                                                        ? BlockViewModel.VisualStateE.ParityOddError
+                                                        : BlockViewModel.VisualStateE.ParityNormal;
+                                  }
+
+                                  foreach (var block in Enumerable.Range(0, 4).SelectMany(i => AliceBlocks[i].Blocks))
+                                  {
+                                      block.State = BlockViewModel.VisualStateE.ParityNormal;
+                                  }
                               }));
+
             StateManager.WaitAnimations();
             protocolStepFinishedEventArgs.Handle.Set();
             Thread.Sleep(1000);

@@ -11,7 +11,7 @@
              helpers:StateManager.GoToState="{Binding VisualState}"
              mc:Ignorable="d">
     <VisualStateManager.VisualStateGroups>
-        <VisualStateGroup>
+        <VisualStateGroup x:Name="VisibilityStates">
             <VisualStateGroup.Transitions>
                 <VisualTransition GeneratedDuration="0:0:1" />
             </VisualStateGroup.Transitions>
@@ -47,11 +47,52 @@
                 </Storyboard>
             </VisualState>
         </VisualStateGroup>
+        <VisualStateGroup x:Name="ParityStates">
+            <VisualStateGroup.Transitions>
+                <VisualTransition GeneratedDuration="0:0:1" />
+            </VisualStateGroup.Transitions>
+
+            <VisualState x:Name="ParityMatched">
+                <Storyboard>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Parity" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="0" Value="LimeGreen" />
+                    </ColorAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="ParityNotMatched">
+                <Storyboard>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Parity" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="0" Value="Tomato" />
+                    </ColorAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="ParityNormal">
+                <Storyboard>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Parity" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="0" Value="White" />
+                    </ColorAnimationUsingKeyFrames>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Key" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="0" Value="White" />
+                    </ColorAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="ParityOddError">
+                <Storyboard>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Parity" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="0" Value="MediumPurple" />
+                    </ColorAnimationUsingKeyFrames>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Key" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="0" Value="MediumPurple" />
+                    </ColorAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+        </VisualStateGroup>
     </VisualStateManager.VisualStateGroups>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="45" />
         </Grid.ColumnDefinitions>
 
         <Border x:Name="Parity"
@@ -60,6 +101,7 @@
                 Height="{Binding Size,
                                  Converter={StaticResource BlockSizeToHeight}}"
                 Margin="0 0 0 2"
+                Background="White"
                 BorderBrush="Black"
                 BorderThickness="1 1 0 1"
                 Opacity="0">
@@ -80,13 +122,15 @@
                           ItemsSource="{Binding Items}" />
         </StackPanel>
 
-        <StackPanel Grid.Column="1">
+        <StackPanel x:Name="Key"
+                    Grid.Column="1"
+                    Background="White">
             <Border Width="20"
                     Height="1"
-                    Margin="0 0 45 0"
+                    Margin="0 0 0 0"
                     BorderBrush="Black"
                     BorderThickness="0 1 0 0" />
-            <ItemsControl Margin="0 0 45 2"
+            <ItemsControl Margin="0 0 0 2"
                           ItemTemplate="{StaticResource KeyItemTemplate}"
                           ItemsSource="{Binding Items}" />
         </StackPanel>

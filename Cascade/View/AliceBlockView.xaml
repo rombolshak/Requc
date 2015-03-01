@@ -11,7 +11,7 @@
              helpers:StateManager.GoToState="{Binding VisualState}"
              mc:Ignorable="d">
     <VisualStateManager.VisualStateGroups>
-        <VisualStateGroup>
+        <VisualStateGroup x:Name="VisibilityStates">
             <VisualStateGroup.Transitions>
                 <VisualTransition GeneratedDuration="0:0:1" />
             </VisualStateGroup.Transitions>
@@ -44,6 +44,33 @@
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetName="Positions" Storyboard.TargetProperty="(UIElement.Opacity)">
                         <EasingDoubleKeyFrame KeyTime="0" Value="0" />
                     </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+        </VisualStateGroup>
+        <VisualStateGroup x:Name="ParityStates">
+            <VisualStateGroup.Transitions>
+                <VisualTransition GeneratedDuration="0:0:1" />
+            </VisualStateGroup.Transitions>
+
+            <VisualState x:Name="ParityMatched">
+                <Storyboard>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Parity" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="0" Value="LimeGreen" />
+                    </ColorAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="ParityNotMatched">
+                <Storyboard>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Parity" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="0" Value="Tomato" />
+                    </ColorAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="ParityNormal">
+                <Storyboard>
+                    <ColorAnimationUsingKeyFrames Storyboard.TargetName="Parity" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)">
+                        <EasingColorKeyFrame KeyTime="0" Value="White" />
+                    </ColorAnimationUsingKeyFrames>
                 </Storyboard>
             </VisualState>
         </VisualStateGroup>
@@ -83,6 +110,7 @@
                 Height="{Binding Size,
                                  Converter={StaticResource BlockSizeToHeight}}"
                 Margin="0 0 0 2"
+                Background="White"
                 BorderBrush="Black"
                 BorderThickness="0 1 1 1"
                 Opacity="0">
