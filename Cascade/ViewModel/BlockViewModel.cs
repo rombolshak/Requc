@@ -12,11 +12,7 @@ namespace Cascade.ViewModel
             _block = block;
             _keyItemViewModels = keyItemViewModels;
 
-            _block.KeyItems.CollectionChanged += (o, e) =>
-                {
-                    NotifyPropertyChanged("Items");
-                    NotifyPropertyChanged("Parity");
-                };
+            _block.KeyItems.CollectionChanged += (o, e) => NotifyPropertyChanged(null);
         }
 
         public IEnumerable<KeyItemViewModel> Items
@@ -34,7 +30,26 @@ namespace Cascade.ViewModel
             get { return _block.Size; }
         }
 
+        public VisualStateE State
+        {
+            get { return _state; }
+            set
+            {
+                _state = value;
+                NotifyPropertyChanged();
+                VisualState = _state.ToString();
+            }
+        }
+
         private readonly ProtocolBlock _block;
         private readonly IEnumerable<KeyItemViewModel> _keyItemViewModels;
+        private VisualStateE _state;
+
+        public enum VisualStateE
+        {
+            ParityVisible,
+            PositionsVisible,
+            NothingVisible
+        }
     }
 }

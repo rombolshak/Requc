@@ -30,32 +30,28 @@
                     Height="1"
                     BorderBrush="Black"
                     BorderThickness="0 1 0 0" />
-            <ItemsControl ItemTemplate="{StaticResource keyItemTemplate}" ItemsSource="{Binding BobKey}" />
+            <ItemsControl ItemTemplate="{StaticResource KeyItemTemplate}" ItemsSource="{Binding BobKey}" />
         </StackPanel>
 
-        <view:BobBlockView x:Name="Pass1"
-                           Grid.Column="3"
-                           Width="0"
-                           DataContext="{Binding BobBlocks,
-                                                 Converter={StaticResource blocksToBlockSet},
-                                                 ConverterParameter=0}" />
-        <view:BobBlockView x:Name="Pass2"
-                           Grid.Column="2"
-                           Width="0"
-                           DataContext="{Binding BobBlocks,
-                                                 Converter={StaticResource blocksToBlockSet},
-                                                 ConverterParameter=1}" />
-        <view:BobBlockView x:Name="Pass3"
-                           Grid.Column="1"
-                           Width="0"
-                           DataContext="{Binding BobBlocks,
-                                                 Converter={StaticResource blocksToBlockSet},
-                                                 ConverterParameter=2}" />
-        <view:BobBlockView x:Name="Pass4"
-                           Grid.Column="0"
-                           Width="0"
-                           DataContext="{Binding BobBlocks,
-                                                 Converter={StaticResource blocksToBlockSet},
-                                                 ConverterParameter=3}" />
+        <view:BobBlockSetView x:Name="Pass1"
+                              Grid.Column="3"
+                              DataContext="{Binding BobBlocks,
+                                                    Converter={StaticResource blocksToBlockSet},
+                                                    ConverterParameter=0}" />
+        <view:BobBlockSetView x:Name="Pass2"
+                              Grid.Column="2"
+                              DataContext="{Binding BobBlocks,
+                                                    Converter={StaticResource blocksToBlockSet},
+                                                    ConverterParameter=1}" />
+        <view:BobBlockSetView x:Name="Pass3"
+                              Grid.Column="1"
+                              DataContext="{Binding BobBlocks,
+                                                    Converter={StaticResource blocksToBlockSet},
+                                                    ConverterParameter=2}" />
+        <view:BobBlockSetView x:Name="Pass4"
+                              Grid.Column="0"
+                              DataContext="{Binding BobBlocks,
+                                                    Converter={StaticResource blocksToBlockSet},
+                                                    ConverterParameter=3}" />
     </Grid>
 </UserControl>

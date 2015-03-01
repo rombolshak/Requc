@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Cascade.Helpers;
 using Cascade.Model;
+using Cascade.Model.ProtocolSteps;
 using FirstFloor.ModernUI.Presentation;
 
 namespace Cascade.ViewModel
@@ -32,7 +33,7 @@ namespace Cascade.ViewModel
             {
                 AliceBlocks[i] = new BlockSetViewModel
                     {
-                        Blocks = environment.AliceBlocks[i].Select(block => new BlockViewModel(block, AliceKey))
+                        Blocks = environment.AliceBlocks[i].Select(block => new BlockViewModel(block, AliceKey)).ToList()
                     };
             }
 
@@ -41,7 +42,7 @@ namespace Cascade.ViewModel
             {
                 BobBlocks[i] = new BlockSetViewModel
                 {
-                    Blocks = environment.BobBlocks[i].Select(block => new BlockViewModel(block, BobKey))
+                    Blocks = environment.BobBlocks[i].Select(block => new BlockViewModel(block, BobKey)).ToList()
                 };
             }
         }
@@ -52,7 +53,7 @@ namespace Cascade.ViewModel
             set
             {
                 _currentStepDescription = value;
-                NotifyPropertyChanged("CurrentStepDescription");
+                NotifyPropertyChanged();
             }
         }
 
@@ -67,7 +68,7 @@ namespace Cascade.ViewModel
                 }
 
                 _currentStepDescriptionVisualState = value;
-                NotifyPropertyChanged("CurrentStepDescriptionVisualState");
+                NotifyPropertyChanged();
             }
         }
 
@@ -77,7 +78,7 @@ namespace Cascade.ViewModel
             private set
             {
                 _aliceKeyViewModel = value;
-                NotifyPropertyChanged("AliceKey");
+                NotifyPropertyChanged();
             }
         }
 
@@ -87,7 +88,7 @@ namespace Cascade.ViewModel
             private set
             {
                 _bobKeyViewModel = value;
-                NotifyPropertyChanged("BobKey");
+                NotifyPropertyChanged();
             }
         }
 
@@ -97,7 +98,7 @@ namespace Cascade.ViewModel
             set
             {
                 _aliceBlocks = value;
-                NotifyPropertyChanged("AliceBlocks");
+                NotifyPropertyChanged();
             }
         }
 
@@ -107,7 +108,7 @@ namespace Cascade.ViewModel
             set
             {
                 _bobBlocks = value;
-                NotifyPropertyChanged("BobBlocks");
+                NotifyPropertyChanged();
             }
         }
 
@@ -122,6 +123,22 @@ namespace Cascade.ViewModel
         private void RunnerOnStepStarted(object sender, ProtocolStepStartedEventArgs protocolStepStartedEventArgs)
         {
             CurrentStepDescriptionVisualState = "Invisible";
+            TypeSwitch.Do(protocolStepStartedEventArgs.Step,
+                          TypeSwitch.Case<OnePassStep>(step =>
+                              {
+                                  AliceBlocks[step.Pass].State = BlockSetViewModel.VisualStateE.Invisible;
+                                  BobBlocks[step.Pass].State = BlockSetViewModel.VisualStateE.Invisible;
+                              }),
+                          TypeSwitch.Case<CalculateParitiesStep>(step =>
+                              {
+                                  foreach (
+                                      var blockViewModel in
+                                          AliceBlocks[step.Pass].Blocks.Concat(BobBlocks[step.Pass].Blocks))
+                                  {
+                                      blockViewModel.State = BlockViewModel.VisualStateE.NothingVisible;
+                                  }
+                              }));
+
             StateManager.WaitAnimations();
             protocolStepStartedEventArgs.Handle.Set();
             // OnStepStarted(protocolStepStartedEventArgs);
@@ -132,8 +149,24 @@ namespace Cascade.ViewModel
             // OnStepFinished(protocolStepFinishedEventArgs);
             CurrentStepDescription = protocolStepFinishedEventArgs.Step.Description;
             CurrentStepDescriptionVisualState = "Visible";
+            TypeSwitch.Do(protocolStepFinishedEventArgs.Step,
+                          TypeSwitch.Case<FillBlocksWithRandomPermutationStep>(step =>
+                              {
+                                  AliceBlocks[step.Pass].State = BlockSetViewModel.VisualStateE.Visible;
+                                  BobBlocks[step.Pass].State = BlockSetViewModel.VisualStateE.Visible;
+                              }),
+                          TypeSwitch.Case<CalculateParitiesStep>(step =>
+                              {
+                                  foreach (
+                                      var blockViewModel in
+                                          AliceBlocks[step.Pass].Blocks.Concat(BobBlocks[step.Pass].Blocks))
+                                  {
+                                      blockViewModel.State = BlockViewModel.VisualStateE.ParityVisible;
+                                  }
+                              }));
             StateManager.WaitAnimations();
             protocolStepFinishedEventArgs.Handle.Set();
+            Thread.Sleep(1000);
             _runner.NextStep();
         }
 

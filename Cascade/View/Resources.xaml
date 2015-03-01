@@ -1,7 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:Cascade.Converters"
+                    xmlns:helpers="clr-namespace:Cascade.Helpers"
                     xmlns:viewModel="clr-namespace:Cascade.ViewModel">
-    <DataTemplate x:Key="keyItemTemplate" DataType="viewModel:KeyItemViewModel">
+    <converters:BlockSizeToHeightConverter x:Key="BlockSizeToHeight" />
+
+    <DataTemplate x:Key="KeyItemTemplate" DataType="viewModel:KeyItemViewModel">
         <Border Width="20"
                 Height="20"
                 BorderBrush="Black"
@@ -9,6 +13,17 @@
             <TextBlock HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Text="{Binding Value}" />
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate x:Key="KeyItemPositionsTemplate" DataType="viewModel:KeyItemViewModel">
+        <Border Width="20"
+                Height="20"
+                BorderBrush="Black"
+                BorderThickness="1 0 1 1">
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Text="{Binding Position}" />
         </Border>
     </DataTemplate>
 </ResourceDictionary>

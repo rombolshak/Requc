@@ -1,23 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Cascade.ViewModel
 {
     public class BlockSetViewModel : ViewModelBase
     {
-        private IEnumerable<BlockViewModel> _blocks;
+        private IList<BlockViewModel> _blocks;
+        private VisualStateE _state;
 
-        public IEnumerable<BlockViewModel> Blocks
+        public IList<BlockViewModel> Blocks
         {
             get { return _blocks; }
             set
             {
                 _blocks = value;
-                NotifyPropertyChanged("AliceBlocks");
+                NotifyPropertyChanged();
             }
+        }
+
+        public VisualStateE State
+        {
+            get { return _state; }
+            set
+            {
+                _state = value;
+                NotifyPropertyChanged();
+                VisualState = _state.ToString();
+            }
+        }
+
+        public enum VisualStateE
+        {
+            Collapsed,
+            Invisible,
+            Visible
         }
     }
 }

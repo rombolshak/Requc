@@ -35,7 +35,6 @@
     <Reference Include="FirstFloor.ModernUI">
       <HintPath>..\packages\ModernUI.WPF.1.0.5\lib\net45\FirstFloor.ModernUI.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -43,7 +42,6 @@
     <Reference Include="System.Reactive.Interfaces, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=f300afd708cefcd3, processorArchitecture=MSIL" />
     <Reference Include="System.Reactive.Linq, Version=2.0.20823.0, Culture=neutral, PublicKeyToken=f300afd708cefcd3, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -68,19 +66,29 @@
     <Compile Include="Converters\AllBlocksToBlockSetConverter.cs" />
     <Compile Include="Converters\BlockSizeToHeightConverter.cs" />
     <Compile Include="Helpers\StateManager.cs" />
+    <Compile Include="Helpers\TypeSwitch.cs" />
     <Compile Include="Model\Extensions.cs" />
     <Compile Include="Model\KeyItem.cs" />
     <Compile Include="Model\ProtocolBlock.cs" />
+    <Compile Include="Model\ProtocolSteps\CalculateParitiesStep.cs" />
+    <Compile Include="Model\ProtocolSteps\ShowCurrentPassStep.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\BlockSetViewModel.cs" />
     <Compile Include="ViewModel\BlockViewModel.cs" />
     <Compile Include="ViewModel\KeyItemViewModel.cs" />
     <Compile Include="ViewModel\ProtocolViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Compile Include="View\AliceBlockSetView.xaml.cs">
+      <DependentUpon>AliceBlockSetView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AliceBlockView.xaml.cs">
       <DependentUpon>AliceBlockView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AliceView.xaml.cs">
       <DependentUpon>AliceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\BobBlockSetView.xaml.cs">
+      <DependentUpon>BobBlockSetView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\BobBlockView.xaml.cs">
       <DependentUpon>BobBlockView.xaml</DependentUpon>
@@ -130,11 +138,19 @@
     <Compile Include="Model\ProtocolSteps\SetOddErrorsBlocksStep.cs" />
     <Compile Include="Model\ProtocolSteps\WholeProtocolStep.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Page Include="View\AliceBlockSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\AliceBlockView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AliceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BobBlockSetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

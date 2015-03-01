@@ -16,47 +16,9 @@ namespace Cascade.Model
             BlockSize = new[] { 4, 8, 16, 32 };
             BlocksCount = new[] { 8, 4, 2, 1 };
 
-            const int numberOfPasses = 4;
-            AliceBlocks = new List<IEnumerable<ProtocolBlock>>(numberOfPasses);
-            for (var i = 0; i < numberOfPasses; ++i)
-            {
-                AliceBlocks.Add(new List<ProtocolBlock>(BlocksCount[i]));
-            }
-
-            for (var p = 0; p < numberOfPasses; ++p)
-            {
-                var list = new List<ProtocolBlock>();
-                for (var i = 0; i < BlocksCount[p]; ++i)
-                {
-                    list.Add(new ProtocolBlock
-                        {
-                            KeyItems = new ObservableCollection<KeyItem>(AliceKey.Skip(BlockSize[p]*i).Take(BlockSize[p]))
-                        });
-                }
-
-                AliceBlocks[p] = list;
-            }
-
-            BobBlocks = new List<IEnumerable<ProtocolBlock>>(numberOfPasses);
-            for (var i = 0; i < numberOfPasses; ++i)
-            {
-                BobBlocks.Add(new List<ProtocolBlock>(BlocksCount[i]));
-            }
-
-            for (var p = 0; p < numberOfPasses; ++p)
-            {
-                var list = new List<ProtocolBlock>();
-                for (var i = 0; i < BlocksCount[p]; ++i)
-                {
-                    var bobKey = BobKey as KeyItem[] ?? BobKey.ToArray();
-                    list.Add(new ProtocolBlock
-                    {
-                        KeyItems = new ObservableCollection<KeyItem>(bobKey.Skip(BlockSize[p] * i).Take(BlockSize[p]))
-                    });
-                }
-
-                BobBlocks[p] = list;
-            }
+            AliceBlocks = new List<IEnumerable<ProtocolBlock>>();
+            BobBlocks = new List<IEnumerable<ProtocolBlock>>();
+            FillBlocksWithRandomPermutations(new[] {AliceBlocks, BobBlocks}, new[] {AliceKey, BobKey});
         }
 
         public int KeyLength { get; private set; }
@@ -76,7 +38,7 @@ namespace Cascade.Model
 
             for (var i = 0; i < KeyLength; ++i)
             {
-                list.Add(new KeyItem() { Position = i, Value = random.Next(0, 2) });
+                list.Add(new KeyItem { Position = i, Value = random.Next(0, 2) });
             }
 
             return list;
@@ -87,7 +49,7 @@ namespace Cascade.Model
             var rnd = new Random();
             const int errorsCount = 7;
 
-            var key = AliceKey.Select(item => new KeyItem() {Position = item.Position, Value = item.Value}).ToList();
+            var key = AliceKey.Select(item => new KeyItem {Position = item.Position, Value = item.Value}).ToList();
             var errorPositions = new List<int>();
             while (errorPositions.Count < errorsCount)
             {
@@ -103,6 +65,48 @@ namespace Cascade.Model
             }
 
             return key;
+        }
+
+        private void FillBlocksWithRandomPermutations(IList<IList<IEnumerable<ProtocolBlock>>> blocksArray,
+                                                      IList<IEnumerable<KeyItem>> keysArray)
+        {
+            const int numberOfPasses = 4;
+            var rng = new Random();
+            for (var pass = 0; pass < numberOfPasses; ++pass)
+            {
+                var indexes = Enumerable.Range(0, KeyLength).ToList();
+                indexes.Shuffle(rng);
+
+                var blockSize = BlockSize[pass];
+                var protocolBlocksArray = new List<ProtocolBlock>[blocksArray.Count()];
+                for (var i = 0; i < protocolBlocksArray.Length; ++i)
+                {
+                    protocolBlocksArray[i] = new List<ProtocolBlock>();
+                }
+
+                for (var b = 0; b < BlocksCount[pass]; ++b)
+                {
+                    var keyIndexes = indexes.Skip(blockSize*b).Take(blockSize).ToList();
+                    for (var i = 0; i < protocolBlocksArray.Length; ++i)
+                    {
+                        var items = new ObservableCollection<KeyItem>();
+                        foreach (var index in keyIndexes)
+                        {
+                            items.Add(keysArray[i].First(item => item.Position == index));
+                        }
+
+                        protocolBlocksArray[i].Add(new ProtocolBlock
+                            {
+                                KeyItems = items
+                            });
+                    }
+                }
+
+                for (var i = 0; i < protocolBlocksArray.Length; ++i)
+                {
+                    blocksArray[i].Add(protocolBlocksArray[i]);
+                }
+            }
         }
     }
 }

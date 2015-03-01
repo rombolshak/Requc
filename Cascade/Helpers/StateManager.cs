@@ -32,12 +32,12 @@ namespace Cascade.Helpers
                         if (ctrl == null)
                             throw new InvalidOperationException(
                                 "This attached property only supports types derived from Control.");
-                        ChangeState(ctrl, (string) e.NewValue, () => WaitHandle.Set());
+                        ChangeState(ctrl, (string) e.NewValue, () => WaitHandle.Signal());
                     }));
 
         public static bool ChangeState(FrameworkElement ctrl, string state, Action onCompleted)
         {
-            animationsInProgressCount += 1;
+            WaitHandle.AddCount();
             SubscribeToStateCompletion(ctrl, state, onCompleted);
             if (!GoToState(ctrl, state, true))
             {
@@ -54,11 +54,9 @@ namespace Cascade.Helpers
         public static void WaitAnimations()
         {
             Thread.Sleep(500);
-            while (animationsInProgressCount > 0)
-            {
-                WaitHandle.WaitOne();
-                animationsInProgressCount -= 1;
-            }
+            WaitHandle.Signal();
+            WaitHandle.Wait(2000);
+            WaitHandle.Reset();
         }
 
         private static void SubscribeToStateCompletion(FrameworkElement ctrl, string stateName, Action onCompleted)
@@ -90,7 +88,6 @@ namespace Cascade.Helpers
             return groups.OfType<VisualStateGroup>().SelectMany(g => g.States.OfType<VisualState>()).FirstOrDefault(s => s.Name == stateName);
         }
 
-        private static readonly AutoResetEvent WaitHandle = new AutoResetEvent(false);
-        private static uint animationsInProgressCount = 0;
+        private static readonly CountdownEvent WaitHandle = new CountdownEvent(1);
     }
 }

@@ -30,29 +30,25 @@
                     Height="1"
                     BorderBrush="Black"
                     BorderThickness="0 1 0 0" />
-            <ItemsControl ItemTemplate="{StaticResource keyItemTemplate}" ItemsSource="{Binding AliceKey}" />
+            <ItemsControl ItemTemplate="{StaticResource KeyItemTemplate}" ItemsSource="{Binding AliceKey}" />
         </StackPanel>
-        <view:AliceBlockView x:Name="Pass1"
+        <view:AliceBlockSetView x:Name="Pass1"
                              Grid.Column="1"
-                             Width="0"
                              DataContext="{Binding AliceBlocks,
                                                    Converter={StaticResource blocksToBlockSet},
                                                    ConverterParameter=0}" />
-        <view:AliceBlockView x:Name="Pass2"
+        <view:AliceBlockSetView x:Name="Pass2"
                              Grid.Column="2"
-                             Width="0"
                              DataContext="{Binding AliceBlocks,
                                                    Converter={StaticResource blocksToBlockSet},
                                                    ConverterParameter=1}" />
-        <view:AliceBlockView x:Name="Pass3"
+        <view:AliceBlockSetView x:Name="Pass3"
                              Grid.Column="3"
-                             Width="0"
                              DataContext="{Binding AliceBlocks,
                                                    Converter={StaticResource blocksToBlockSet},
                                                    ConverterParameter=2}" />
-        <view:AliceBlockView x:Name="Pass4"
+        <view:AliceBlockSetView x:Name="Pass4"
                              Grid.Column="4"
-                             Width="0"
                              DataContext="{Binding AliceBlocks,
                                                    Converter={StaticResource blocksToBlockSet},
                                                    ConverterParameter=3}" />
