@@ -67,6 +67,7 @@
     <Compile Include="Converters\BlockSizeToHeightConverter.cs" />
     <Compile Include="Helpers\StateManager.cs" />
     <Compile Include="Helpers\TypeSwitch.cs" />
+    <Compile Include="Model\BinaryProtocolRuntimeEnvironment.cs" />
     <Compile Include="Model\Extensions.cs" />
     <Compile Include="Model\KeyItem.cs" />
     <Compile Include="Model\ProtocolBlock.cs" />
@@ -125,7 +126,7 @@
     <Compile Include="Content\SettingsAppearanceViewModel.cs" />
     <Compile Include="Model\IProtocolStep.cs" />
     <Compile Include="Model\ProtocolRunner.cs" />
-    <Compile Include="Model\ProtocolRuntimeEnvironment.cs" />
+    <Compile Include="Model\CascadeProtocolRuntimeEnvironment.cs" />
     <Compile Include="Model\ProtocolStepFinishedEventArgs.cs" />
     <Compile Include="Model\ProtocolStepStartedEventArgs.cs" />
     <Compile Include="Model\ProtocolSteps\BackTrackCorrectedErrorStep.cs" />

@@ -11,7 +11,7 @@ namespace Cascade.Model.ProtocolSteps
             Pass = pass;
         }
 
-        public IEnumerable<IProtocolStep> Execute(ProtocolRuntimeEnvironment environment)
+        public IEnumerable<IProtocolStep> Execute(CascadeProtocolRuntimeEnvironment environment)
         {
             return null;
         }

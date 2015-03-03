@@ -20,7 +20,7 @@ namespace Cascade
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
             AppearanceManager.Current.AccentColor = Color.FromRgb(0x76, 0x60, 0x8a);  // mauve
-            var environment = new ProtocolRuntimeEnvironment();
+            var environment = new CascadeProtocolRuntimeEnvironment();
             var viewModel = new ProtocolViewModel(new ProtocolRunner(environment), environment);
             new MainWindow{ DataContext = viewModel }.Show();
         }

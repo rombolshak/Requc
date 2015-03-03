@@ -14,7 +14,7 @@ namespace Cascade.ViewModel
 {
     public class ProtocolViewModel : ViewModelBase
     {
-        public ProtocolViewModel(ProtocolRunner runner, ProtocolRuntimeEnvironment environment)
+        public ProtocolViewModel(ProtocolRunner runner, CascadeProtocolRuntimeEnvironment environment)
         {
             _runner = runner;
             _environment = environment;
@@ -140,12 +140,11 @@ namespace Cascade.ViewModel
                               }),
                           TypeSwitch.Case<FindSmallestOddErrorBlockStep>(step =>
                               {
-                                  foreach (var block in Enumerable.Range(0, 4)
-                                                                  .SelectMany(i => BobBlocks[i].Blocks)
-                                                                  .Where(
-                                                                      block =>
-                                                                      block.State ==
-                                                                      BlockViewModel.VisualStateE.OddError))
+                                  foreach (var block in GetAllBlocks(BobBlocks)
+                                      .Where(
+                                          block =>
+                                          block.State ==
+                                          BlockViewModel.VisualStateE.OddError))
                                   {
                                       block.State = BlockViewModel.VisualStateE.OddErrorNotSelected;
                                   }
@@ -214,7 +213,7 @@ namespace Cascade.ViewModel
                                   foreach (
                                       var block in
                                           GetAllBlocks(BobBlocks)
-                                              .Where(block => block.Model == _environment.WorkingBlock))
+                                              .Where(block => block.Model == _environment.BinaryEnvironment.WorkingBlock))
                                   {
                                       block.State = BlockViewModel.VisualStateE.OddErrorSelected;
                                   }
@@ -244,7 +243,7 @@ namespace Cascade.ViewModel
         }
 
         private readonly ProtocolRunner _runner;
-        private readonly ProtocolRuntimeEnvironment _environment;
+        private readonly CascadeProtocolRuntimeEnvironment _environment;
         private string _currentStepDescription;
         private IEnumerable<KeyItemViewModel> _aliceKeyViewModel;
         private IEnumerable<KeyItemViewModel> _bobKeyViewModel;

@@ -5,7 +5,7 @@ namespace Cascade.Model
 {
     public interface IProtocolStep
     {
-        IEnumerable<IProtocolStep> Execute(ProtocolRuntimeEnvironment environment);
+        IEnumerable<IProtocolStep> Execute(CascadeProtocolRuntimeEnvironment environment);
         
         string Description { get; }
     }

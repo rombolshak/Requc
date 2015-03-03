@@ -11,7 +11,7 @@ namespace Cascade.Model
 {
     public class ProtocolRunner
     {
-        public ProtocolRunner(ProtocolRuntimeEnvironment environment)
+        public ProtocolRunner(CascadeProtocolRuntimeEnvironment environment)
         {
             _environment = environment;
             _stepHandle = new ManualResetEvent(false);
@@ -71,7 +71,7 @@ namespace Cascade.Model
         }
 
         private readonly BackgroundWorker _worker;
-        private readonly ProtocolRuntimeEnvironment _environment;
+        private readonly CascadeProtocolRuntimeEnvironment _environment;
         private readonly ManualResetEvent _stepHandle;
     }
 }

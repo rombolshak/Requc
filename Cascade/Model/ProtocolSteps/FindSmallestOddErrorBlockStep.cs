@@ -5,9 +5,9 @@ namespace Cascade.Model.ProtocolSteps
 {
     public class FindSmallestOddErrorBlockStep : IProtocolStep
     {
-        public IEnumerable<IProtocolStep> Execute(ProtocolRuntimeEnvironment environment)
+        public IEnumerable<IProtocolStep> Execute(CascadeProtocolRuntimeEnvironment environment)
         {
-            environment.WorkingBlock = environment.OddErrorsCountBlocks.OrderBy(block => block.Size).First();
+            environment.BinaryEnvironment.WorkingBlock = environment.OddErrorsCountBlocks.OrderBy(block => block.Size).First();
             return null;
         }
 

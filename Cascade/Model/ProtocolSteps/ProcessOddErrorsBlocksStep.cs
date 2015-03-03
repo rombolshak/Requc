@@ -4,7 +4,7 @@ namespace Cascade.Model.ProtocolSteps
 {
     public class ProcessOddErrorsBlocksStep : IProtocolStep
     {
-        public IEnumerable<IProtocolStep> Execute(ProtocolRuntimeEnvironment environment)
+        public IEnumerable<IProtocolStep> Execute(CascadeProtocolRuntimeEnvironment environment)
         {
             while (OddErrorsBlocksSetNotEmpty(environment))
             {
@@ -14,7 +14,7 @@ namespace Cascade.Model.ProtocolSteps
             }
         }
 
-        private bool OddErrorsBlocksSetNotEmpty(ProtocolRuntimeEnvironment environment)
+        private bool OddErrorsBlocksSetNotEmpty(CascadeProtocolRuntimeEnvironment environment)
         {
             return environment.OddErrorsCountBlocks.Count != 0;
         }

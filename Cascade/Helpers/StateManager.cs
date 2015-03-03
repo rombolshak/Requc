@@ -46,7 +46,16 @@ namespace Cascade.Helpers
 
         public static bool ChangeState(FrameworkElement ctrl, string state, Action onCompleted)
         {
-            WaitHandle.AddCount();
+            try
+            {
+                WaitHandle.AddCount();
+            }
+            catch (InvalidOperationException)
+            {
+                WaitHandle.Reset();
+                WaitHandle.AddCount();
+            }
+
             SubscribeToStateCompletion(ctrl, state, onCompleted);
             if (!GoToState(ctrl, state, true))
             {

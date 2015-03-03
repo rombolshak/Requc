@@ -5,9 +5,9 @@ using System.Linq;
 
 namespace Cascade.Model
 {
-    public class ProtocolRuntimeEnvironment
+    public class CascadeProtocolRuntimeEnvironment
     {
-        public ProtocolRuntimeEnvironment()
+        public CascadeProtocolRuntimeEnvironment()
         {
             KeyLength = 32;
             AliceKey = new List<KeyItem>(CreateKey());
@@ -21,6 +21,7 @@ namespace Cascade.Model
             FillBlocksWithRandomPermutations(new[] {AliceBlocks, BobBlocks}, new[] {AliceKey, BobKey});
 
             OddErrorsCountBlocks = new List<ProtocolBlock>();
+            BinaryEnvironment = new BinaryProtocolRuntimeEnvironment();
         }
 
         public int KeyLength { get; private set; }
@@ -35,7 +36,7 @@ namespace Cascade.Model
 
         public IList<ProtocolBlock> OddErrorsCountBlocks { get; set; }
 
-        public ProtocolBlock WorkingBlock { get; set; }
+        public BinaryProtocolRuntimeEnvironment BinaryEnvironment { get; set; }
 
         private IEnumerable<KeyItem> CreateKey()
         {

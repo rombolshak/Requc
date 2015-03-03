@@ -7,7 +7,7 @@ namespace Cascade.Model.ProtocolSteps
 {
     public class WholeProtocolStep : IProtocolStep
     {
-        public IEnumerable<IProtocolStep> Execute(ProtocolRuntimeEnvironment environment)
+        public IEnumerable<IProtocolStep> Execute(CascadeProtocolRuntimeEnvironment environment)
         {
             for (int i = 0; i < 4; ++i)
             {

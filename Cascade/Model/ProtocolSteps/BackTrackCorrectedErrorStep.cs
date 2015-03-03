@@ -4,7 +4,7 @@ namespace Cascade.Model.ProtocolSteps
 {
     public class BackTrackCorrectedErrorStep : IProtocolStep
     {
-        public IEnumerable<IProtocolStep> Execute(ProtocolRuntimeEnvironment environment)
+        public IEnumerable<IProtocolStep> Execute(CascadeProtocolRuntimeEnvironment environment)
         {
             return null;
         }

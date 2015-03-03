@@ -9,7 +9,7 @@ namespace Cascade.Model.ProtocolSteps
             Description = "Проход №" + (pass + 1);
         }
 
-        public IEnumerable<IProtocolStep> Execute(ProtocolRuntimeEnvironment environment)
+        public IEnumerable<IProtocolStep> Execute(CascadeProtocolRuntimeEnvironment environment)
         {
             return null;
         }
