@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Cascade.Model;
+﻿using Cascade.Model;
 
 namespace Cascade.ViewModel
 {
     public class KeyItemViewModel : ViewModelBase
     {
         private readonly KeyItem _item;
+        private VisualStateE _state;
 
         public KeyItemViewModel(KeyItem item)
         {
@@ -22,7 +18,7 @@ namespace Cascade.ViewModel
             set
             {
                 _item.Position = value;
-                NotifyPropertyChanged("Position");
+                NotifyPropertyChanged();
             }
         }
 
@@ -32,8 +28,35 @@ namespace Cascade.ViewModel
             set
             {
                 _item.Value = value;
-                NotifyPropertyChanged("Value");
+                NotifyPropertyChanged();
             }
+        }
+
+        public bool ErrorHere
+        {
+            get { return _item.ErrorHere; }
+            set
+            {
+                _item.ErrorHere = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        public VisualStateE State   
+        {
+            get { return _state; }
+            set
+            {
+                _state = value;
+                VisualState = _state.ToString();
+            }
+        }
+
+        public enum VisualStateE
+        {
+            Error,
+            Normal,
+            Corrected
         }
     }
 }

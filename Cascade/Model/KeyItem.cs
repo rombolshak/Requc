@@ -10,5 +10,6 @@ namespace Cascade.Model
     {
         public int Position { get; set; }
         public int Value { get; set; }
+        public bool ErrorHere { get; set; }
     }
 }

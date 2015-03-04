@@ -2,18 +2,21 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:converters="clr-namespace:Cascade.Converters"
                     xmlns:helpers="clr-namespace:Cascade.Helpers"
+                    xmlns:view="clr-namespace:Cascade.View"
                     xmlns:viewModel="clr-namespace:Cascade.ViewModel">
     <converters:BlockSizeToHeightConverter x:Key="BlockSizeToHeight" />
+    <converters:WorkingSizeToHeightConverter x:Key="WorkingSizeToHeight" />
+    <converters:StartPositionToThicknessConverter x:Key="StartPositionToThickness" />
+
+    <Color x:Key="NormalColor">White</Color>
+    <Color x:Key="OddErrorSelectedColor">DarkOrchid</Color>
+    <Color x:Key="OddErrorNotSelectedColor">DodgerBlue</Color>
+    <Color x:Key="OddErrorColor">MediumPurple</Color>
+    <Color x:Key="ParityMatchColor">LimeGreen</Color>
+    <Color x:Key="ParityNotMatchColor">Tomato</Color>
 
     <DataTemplate x:Key="KeyItemTemplate" DataType="viewModel:KeyItemViewModel">
-        <Border Width="20"
-                Height="20"
-                BorderBrush="Black"
-                BorderThickness="1 0 1 1">
-            <TextBlock HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Text="{Binding Value}" />
-        </Border>
+        <view:KeyItemView />
     </DataTemplate>
 
     <DataTemplate x:Key="KeyItemPositionsTemplate" DataType="viewModel:KeyItemViewModel">

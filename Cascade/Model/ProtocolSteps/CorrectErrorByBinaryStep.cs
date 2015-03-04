@@ -6,7 +6,7 @@ namespace Cascade.Model.ProtocolSteps
     {
         public IEnumerable<IProtocolStep> Execute(CascadeProtocolRuntimeEnvironment environment)
         {
-            yield return new SayAboutBinaryCorrectionStep();
+            yield return new InitializeBinaryCorrectionStep();
 
             while (environment.BinaryEnvironment.PositionsCount > 1)
             {
@@ -70,15 +70,5 @@ namespace Cascade.Model.ProtocolSteps
         }
 
         public string Description { get { return ""; } }
-    }
-
-    public class SayAboutBinaryCorrectionStep : IProtocolStep
-    {
-        public IEnumerable<IProtocolStep> Execute(CascadeProtocolRuntimeEnvironment environment)
-        {
-            return null;
-        }
-
-        public string Description { get { return "Исправление ошибки с помощью бинарного поиска"; } }
     }
 }

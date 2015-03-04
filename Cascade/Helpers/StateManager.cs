@@ -32,30 +32,12 @@ namespace Cascade.Helpers
                         if (ctrl == null)
                             throw new InvalidOperationException(
                                 "This attached property only supports types derived from Control.");
-                        ChangeState(ctrl, (string) e.NewValue, () =>
-                            {
-                                try
-                                {
-                                    WaitHandle.Signal();
-                                }
-                                catch (InvalidOperationException)
-                                {
-                                }
-                            });
+                        ChangeState(ctrl, (string) e.NewValue, OnAnimationCompleted);
                     }));
 
         public static bool ChangeState(FrameworkElement ctrl, string state, Action onCompleted)
         {
-            try
-            {
-                WaitHandle.AddCount();
-            }
-            catch (InvalidOperationException)
-            {
-                WaitHandle.Reset();
-                WaitHandle.AddCount();
-            }
-
+            AddAnimation();
             SubscribeToStateCompletion(ctrl, state, onCompleted);
             if (!GoToState(ctrl, state, true))
             {
@@ -67,6 +49,30 @@ namespace Cascade.Helpers
             }
 
             return true;
+        }
+
+        public static void OnAnimationCompleted()
+        {
+            try
+            {
+                WaitHandle.Signal();
+            }
+            catch (InvalidOperationException)
+            {
+            }
+        }
+
+        public static void AddAnimation()
+        {
+            try
+            {
+                WaitHandle.AddCount();
+            }
+            catch (InvalidOperationException)
+            {
+                WaitHandle.Reset();
+                WaitHandle.AddCount();
+            }
         }
 
         public static void WaitAnimations()

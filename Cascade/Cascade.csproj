@@ -65,6 +65,8 @@
     </Compile>
     <Compile Include="Converters\AllBlocksToBlockSetConverter.cs" />
     <Compile Include="Converters\BlockSizeToHeightConverter.cs" />
+    <Compile Include="Converters\StartPositionToThicknessConverter.cs" />
+    <Compile Include="Converters\WorkingSizeToHeightConverter.cs" />
     <Compile Include="Helpers\StateManager.cs" />
     <Compile Include="Helpers\TypeSwitch.cs" />
     <Compile Include="Model\BinaryProtocolRuntimeEnvironment.cs" />
@@ -72,7 +74,10 @@
     <Compile Include="Model\KeyItem.cs" />
     <Compile Include="Model\ProtocolBlock.cs" />
     <Compile Include="Model\ProtocolSteps\CalculateParitiesStep.cs" />
+    <Compile Include="Model\ProtocolSteps\HideInitialErrorsStep.cs" />
+    <Compile Include="Model\ProtocolSteps\InitializeBinaryCorrectionStep.cs" />
     <Compile Include="Model\ProtocolSteps\ShowCurrentPassStep.cs" />
+    <Compile Include="Model\ProtocolSteps\ShowInitialErrorsStep.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\BlockSetViewModel.cs" />
     <Compile Include="ViewModel\BlockViewModel.cs" />
@@ -98,6 +103,9 @@
       <DependentUpon>BobView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GridLengthAnimation.cs" />
+    <Compile Include="View\KeyItemView.xaml.cs">
+      <DependentUpon>KeyItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ProtocolView.xaml.cs">
       <DependentUpon>ProtocolView.xaml</DependentUpon>
     </Compile>
@@ -160,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\BobView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\KeyItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Cascade.Model;
@@ -11,8 +12,8 @@ namespace Cascade.ViewModel
         {
             _block = block;
             _keyItemViewModels = keyItemViewModels;
-
-            _block.KeyItems.CollectionChanged += (o, e) => NotifyPropertyChanged(null);
+            WorkingSize = Size;
+            StartPosition = 0;
         }
 
         public ProtocolBlock Model
@@ -20,9 +21,9 @@ namespace Cascade.ViewModel
             get { return _block; }
         }
 
-        public IEnumerable<KeyItemViewModel> Items
+        public IList<KeyItemViewModel> Items
         {
-            get { return _block.KeyItems.Select(item => _keyItemViewModels.First(model => model.Position == item.Position)); }
+            get { return _block.KeyItems.Select(item => _keyItemViewModels.First(model => model.Position == item.Position)).ToList(); }
         }
 
         public int Parity
@@ -35,6 +36,9 @@ namespace Cascade.ViewModel
             get { return _block.Size; }
         }
 
+        public int WorkingSize { get; set; }
+        public int StartPosition { get; set; }
+
         public VisualStateE State
         {
             get { return _state; }
@@ -45,10 +49,6 @@ namespace Cascade.ViewModel
                 VisualState = _state.ToString();
             }
         }
-
-        private readonly ProtocolBlock _block;
-        private readonly IEnumerable<KeyItemViewModel> _keyItemViewModels;
-        private VisualStateE _state;
 
         public enum VisualStateE
         {
@@ -62,5 +62,22 @@ namespace Cascade.ViewModel
             OddErrorSelected,
             OddErrorNotSelected
         }
+
+        public event EventHandler ChangeVisualStateRequested;
+
+        protected virtual void OnChangeVisualStateRequested()
+        {
+            var handler = ChangeVisualStateRequested;
+            if (handler != null) handler(this, EventArgs.Empty);
+        }
+
+        public void ChangeBinaryVisualState()
+        {
+            OnChangeVisualStateRequested();
+        }
+
+        private readonly ProtocolBlock _block;
+        private readonly IEnumerable<KeyItemViewModel> _keyItemViewModels;
+        private VisualStateE _state;
     }
 }

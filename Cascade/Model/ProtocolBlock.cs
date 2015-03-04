@@ -6,7 +6,7 @@ namespace Cascade.Model
 {
     public class ProtocolBlock
     {
-        public ObservableCollection<KeyItem> KeyItems { get; set; }
+        public IList<KeyItem> KeyItems { get; set; }
         public int Size { get { return KeyItems.Count(); } }
 
         public int Parity

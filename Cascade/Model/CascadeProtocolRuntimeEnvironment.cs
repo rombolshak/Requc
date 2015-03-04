@@ -26,8 +26,8 @@ namespace Cascade.Model
 
         public int KeyLength { get; private set; }
 
-        public IEnumerable<KeyItem> AliceKey { get; private set; }
-        public IEnumerable<KeyItem> BobKey { get; private set; }
+        public IList<KeyItem> AliceKey { get; private set; }
+        public IList<KeyItem> BobKey { get; private set; }
 
         public int[] BlockSize { get; private set; }
         public int[] BlocksCount { get; private set; }
@@ -51,7 +51,7 @@ namespace Cascade.Model
             return list;
         }
 
-        private IEnumerable<KeyItem> CreateBobKey()
+        private IList<KeyItem> CreateBobKey()
         {
             var rnd = new Random();
             const int errorsCount = 7;
@@ -96,12 +96,7 @@ namespace Cascade.Model
                     var keyIndexes = indexes.Skip(blockSize*b).Take(blockSize).ToList();
                     for (var i = 0; i < protocolBlocksArray.Length; ++i)
                     {
-                        var items = new ObservableCollection<KeyItem>();
-                        foreach (var index in keyIndexes)
-                        {
-                            items.Add(keysArray[i].First(item => item.Position == index));
-                        }
-
+                        var items = keyIndexes.Select(index => keysArray[i].Single(item => item.Position == index)).ToList();
                         protocolBlocksArray[i].Add(new ProtocolBlock
                             {
                                 KeyItems = items
