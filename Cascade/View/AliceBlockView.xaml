@@ -10,6 +10,20 @@
              d:DesignWidth="300"
              helpers:StateManager.GoToState="{Binding VisualState}"
              mc:Ignorable="d">
+    <UserControl.Resources>
+        <ThicknessAnimation x:Key="MarginAnimation"
+                            Duration="0:0:1"
+                            Storyboard.TargetName="Parity"
+                            Storyboard.TargetProperty="(Control.Margin)" />
+        <DoubleAnimation x:Key="HeightAnimation"
+                         Duration="0:0:1"
+                         Storyboard.TargetName="Parity"
+                         Storyboard.TargetProperty="(Control.Height)" />
+        <Storyboard x:Key="BinaryStoryboard">
+            <StaticResource ResourceKey="HeightAnimation" />
+            <StaticResource ResourceKey="MarginAnimation" />
+        </Storyboard>
+    </UserControl.Resources>
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="VisibilityStates">
             <VisualStateGroup.Transitions>
@@ -74,6 +88,27 @@
                 </Storyboard>
             </VisualState>
         </VisualStateGroup>
+
+        <VisualStateGroup x:Name="ParityTextVisibility">
+            <VisualStateGroup.Transitions>
+                <VisualTransition GeneratedDuration="0:0:1" />
+            </VisualStateGroup.Transitions>
+
+            <VisualState x:Name="ParityTextVisible">
+                <Storyboard>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ParityText" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+            <VisualState x:Name="ParityTextInvisible">
+                <Storyboard>
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ParityText" Storyboard.TargetProperty="(UIElement.Opacity)">
+                        <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+        </VisualStateGroup>
     </VisualStateManager.VisualStateGroups>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -110,11 +145,13 @@
                 Height="{Binding Size,
                                  Converter={StaticResource BlockSizeToHeight}}"
                 Margin="0 0 0 2"
+                VerticalAlignment="Top"
                 Background="White"
                 BorderBrush="Black"
                 BorderThickness="0 1 1 1"
                 Opacity="0">
-            <TextBlock HorizontalAlignment="Center"
+            <TextBlock x:Name="ParityText"
+                       HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Text="{Binding Parity}" />
         </Border>

@@ -74,10 +74,15 @@
     <Compile Include="Model\KeyItem.cs" />
     <Compile Include="Model\ProtocolBlock.cs" />
     <Compile Include="Model\ProtocolSteps\CalculateParitiesStep.cs" />
+    <Compile Include="Model\ProtocolSteps\CalculateWorkingPositionsParityStep.cs" />
+    <Compile Include="Model\ProtocolSteps\CompareWorkingPositionsParityStep.cs" />
+    <Compile Include="Model\ProtocolSteps\CorrectErrorInFoundPositionStep.cs" />
     <Compile Include="Model\ProtocolSteps\HideInitialErrorsStep.cs" />
     <Compile Include="Model\ProtocolSteps\InitializeBinaryCorrectionStep.cs" />
+    <Compile Include="Model\ProtocolSteps\LookAtFirstHalfOfWorkingPositionsStep.cs" />
     <Compile Include="Model\ProtocolSteps\ShowCurrentPassStep.cs" />
     <Compile Include="Model\ProtocolSteps\ShowInitialErrorsStep.cs" />
+    <Compile Include="Model\ProtocolSteps\UpdateWorkingPositionsStep.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModel\BlockSetViewModel.cs" />
     <Compile Include="ViewModel\BlockViewModel.cs" />

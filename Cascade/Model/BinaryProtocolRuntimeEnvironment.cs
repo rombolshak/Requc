@@ -21,7 +21,7 @@ namespace Cascade.Model
 
         private int CalculateParity(ProtocolBlock block)
         {
-            return block.KeyItems.Skip(StartPosition).Take(PositionsCount).Count(item => item.Value == 1) % 2;
+            return block.KeyItems.Skip(StartPosition).Take(PositionsCount / 2).Count(item => item.Value == 1) % 2;
         }
     }
 }

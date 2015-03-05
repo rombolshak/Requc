@@ -119,14 +119,14 @@
             <VisualState x:Name="ParityTextVisible">
                 <Storyboard>
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ParityText" Storyboard.TargetProperty="(UIElement.Opacity)">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="0" />
+                        <EasingDoubleKeyFrame KeyTime="0" Value="1" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
             </VisualState>
-            <VisualState x:Name="ParityTextInVisible">
+            <VisualState x:Name="ParityTextInvisible">
                 <Storyboard>
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ParityText" Storyboard.TargetProperty="(UIElement.Opacity)">
-                        <EasingDoubleKeyFrame KeyTime="0" Value="1" />
+                        <EasingDoubleKeyFrame KeyTime="0" Value="0" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
             </VisualState>

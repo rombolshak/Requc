@@ -28,7 +28,7 @@ namespace Cascade.ViewModel
 
         public int Parity
         {
-            get { return _block.Parity; }
+            get { return ShowWorkingParity ? WorkingParity : _block.Parity; }
         }
 
         public int Size
@@ -38,6 +38,29 @@ namespace Cascade.ViewModel
 
         public int WorkingSize { get; set; }
         public int StartPosition { get; set; }
+        public int WorkingParity
+        {
+            get { return _workingParity; }
+            set
+            {
+                if (value == _workingParity) return;
+                _workingParity = value;
+                NotifyPropertyChanged();
+                NotifyPropertyChanged("Parity");
+            }
+        }
+
+        public bool ShowWorkingParity
+        {
+            get { return _showWorkingParity; }
+            set
+            {
+                if (value.Equals(_showWorkingParity)) return;
+                _showWorkingParity = value;
+                NotifyPropertyChanged();
+                NotifyPropertyChanged("Parity");
+            }
+        }
 
         public VisualStateE State
         {
@@ -60,7 +83,9 @@ namespace Cascade.ViewModel
             OddError,
             Normal,
             OddErrorSelected,
-            OddErrorNotSelected
+            OddErrorNotSelected,
+            ParityTextVisible,
+            ParityTextInvisible
         }
 
         public event EventHandler ChangeVisualStateRequested;
@@ -79,5 +104,7 @@ namespace Cascade.ViewModel
         private readonly ProtocolBlock _block;
         private readonly IEnumerable<KeyItemViewModel> _keyItemViewModels;
         private VisualStateE _state;
+        private bool _showWorkingParity;
+        private int _workingParity;
     }
 }

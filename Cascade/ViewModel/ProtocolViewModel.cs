@@ -152,7 +152,18 @@ namespace Cascade.ViewModel
                           TypeSwitch.Case<InitializeBinaryCorrectionStep>(step =>
                               {
                                   GetWorkingBlock().State = BlockViewModel.VisualStateE.Normal;
-                              }));
+                              }),
+                          TypeSwitch.Case<LookAtFirstHalfOfWorkingPositionsStep>(() =>
+                              {
+                                  GetWorkingBlock().State = BlockViewModel.VisualStateE.ParityTextInvisible;
+                                  GetSampleBlock().State = BlockViewModel.VisualStateE.ParityTextInvisible;
+                              }),
+                              TypeSwitch.Case<CorrectErrorInFoundPositionStep>(() =>
+                                  {
+                                      GetWorkingBlock().State = BlockViewModel.VisualStateE.NothingVisible;
+                                      GetSampleBlock().State = BlockViewModel.VisualStateE.NothingVisible;
+                                      GetWorkingBlock().Items[_environment.BinaryEnvironment.StartPosition].State = KeyItemViewModel.VisualStateE.HighlightError;
+                                  }));
 
             StateManager.WaitAnimations();
             protocolStepStartedEventArgs.Handle.Set();
@@ -240,11 +251,75 @@ namespace Cascade.ViewModel
                               }),
                           TypeSwitch.Case<LookAtFirstHalfOfWorkingPositionsStep>(() =>
                               {
+                                  ChangeVisualStateInBinaryProtocol(GetWorkingBlock());
+                                  ChangeVisualStateInBinaryProtocol(GetSampleBlock());
+                              }),
+                          TypeSwitch.Case<CalculateWorkingPositionsParityStep>(() =>
+                              {
                                   var workingBlock = GetWorkingBlock();
-                                  workingBlock.StartPosition = _environment.BinaryEnvironment.StartPosition;
-                                  workingBlock.WorkingSize = _environment.BinaryEnvironment.PositionsCount;
-                                  workingBlock.ChangeBinaryVisualState();
-                              }));
+                                  var sampleBlock = GetSampleBlock();
+
+                                  workingBlock.WorkingParity = _environment.BinaryEnvironment.WorkingParity;
+                                  workingBlock.ShowWorkingParity = true;
+
+                                  sampleBlock.WorkingParity = _environment.BinaryEnvironment.SampleParity;
+                                  sampleBlock.ShowWorkingParity = true;
+
+                                  workingBlock.State = BlockViewModel.VisualStateE.ParityTextVisible;
+                                  sampleBlock.State = BlockViewModel.VisualStateE.ParityTextVisible;
+                              }),
+                          TypeSwitch.Case<CompareWorkingPositionsParityStep>(() =>
+                              {
+                                  var workingBlock = GetWorkingBlock();
+                                  var sampleBlock = GetSampleBlock();
+                                  if (_environment.BinaryEnvironment.SampleParity ==
+                                      _environment.BinaryEnvironment.WorkingParity)
+                                  {
+                                      workingBlock.State =
+                                          sampleBlock.State = BlockViewModel.VisualStateE.ParityMatched;
+                                  }
+                                  else
+                                  {
+                                      workingBlock.State =
+                                          sampleBlock.State = BlockViewModel.VisualStateE.ParityNotMatched;
+                                  }
+                              }),
+                              TypeSwitch.Case<UpdateWorkingPositionsStep>(() =>
+                                  {
+                                      foreach (
+                                          var item in
+                                              GetWorkingBlock()
+                                                  .Items.Take(_environment.BinaryEnvironment.StartPosition)
+                                                  .Concat(
+                                                      GetWorkingBlock()
+                                                          .Items.Skip(_environment.BinaryEnvironment.StartPosition +
+                                                                      _environment.BinaryEnvironment.PositionsCount)))
+                                      {
+                                          item.State = KeyItemViewModel.VisualStateE.Normal;
+                                      }
+
+                                      GetWorkingBlock().State = BlockViewModel.VisualStateE.Normal;
+                                      GetSampleBlock().State = BlockViewModel.VisualStateE.Normal;
+                                  }),
+                                  TypeSwitch.Case<CorrectErrorInFoundPositionStep>(() =>
+                                      {
+                                          var workingBlock = GetWorkingBlock();
+                                          var sampleBlock = GetSampleBlock();
+
+                                          workingBlock.Items[_environment.BinaryEnvironment.StartPosition].Value = sampleBlock.Items[_environment.BinaryEnvironment.StartPosition].Value;
+                                          workingBlock.Items[_environment.BinaryEnvironment.StartPosition].State = KeyItemViewModel.VisualStateE.Corrected;
+
+                                          _environment.BinaryEnvironment.StartPosition = 0;
+                                          _environment.BinaryEnvironment.PositionsCount = workingBlock.Size * 2;
+                                          ChangeVisualStateInBinaryProtocol(workingBlock);
+                                          ChangeVisualStateInBinaryProtocol(sampleBlock);
+                                          
+                                          workingBlock.ShowWorkingParity = false;
+                                          sampleBlock.ShowWorkingParity = false;
+
+                                          workingBlock.State = BlockViewModel.VisualStateE.ParityVisible;
+                                          sampleBlock.State = BlockViewModel.VisualStateE.ParityVisible;
+                                      }));
 
             StateManager.WaitAnimations();
             protocolStepFinishedEventArgs.Handle.Set();
@@ -252,10 +327,23 @@ namespace Cascade.ViewModel
             _runner.NextStep();
         }
 
+        private void ChangeVisualStateInBinaryProtocol(BlockViewModel workingBlock)
+        {
+            workingBlock.StartPosition = _environment.BinaryEnvironment.StartPosition;
+            workingBlock.WorkingSize = _environment.BinaryEnvironment.PositionsCount;
+            workingBlock.ChangeBinaryVisualState();
+        }
+
         private BlockViewModel GetWorkingBlock()
         {
             return GetAllBlocks(BobBlocks)
                 .Single(block => block.Model == _environment.BinaryEnvironment.WorkingBlock);
+        }
+
+        private BlockViewModel GetSampleBlock()
+        {
+            return GetAllBlocks(AliceBlocks)
+                .Single(block => block.Model == _environment.BinaryEnvironment.SampleBlock);
         }
 
         private IEnumerable<BlockViewModel> GetAllBlocks(BlockSetViewModel[] blocks)
