@@ -8,13 +8,6 @@ namespace Cascade.Model.ProtocolSteps
 {
     public class FillBlocksWithRandomPermutationStep : IProtocolStep
     {
-        public FillBlocksWithRandomPermutationStep(int pass)
-        {
-            Pass = pass;
-        }
-
-        public int Pass { get; private set; }
-
         public IEnumerable<IProtocolStep> Execute(CascadeProtocolRuntimeEnvironment environment)
         {
             return null;

@@ -7,7 +7,7 @@ namespace Cascade.Model.ProtocolSteps
         public IEnumerable<IProtocolStep> Execute(CascadeProtocolRuntimeEnvironment environment)
         {
             environment.OddErrorsCountBlocks.Clear();
-            for (var i = 0; i < environment.AliceBlocks.Count; ++i)
+            for (var i = 0; i < environment.Pass + 1; ++i)
             {
                 for (var j = 0; j < environment.AliceBlocks[i].Count; ++j)
                 {

@@ -126,14 +126,14 @@ namespace Cascade.ViewModel
             TypeSwitch.Do(protocolStepStartedEventArgs.Step,
                           TypeSwitch.Case<FillBlocksWithRandomPermutationStep>(step =>
                               {
-                                  AliceBlocks[step.Pass].State = BlockSetViewModel.VisualStateE.Invisible;
-                                  BobBlocks[step.Pass].State = BlockSetViewModel.VisualStateE.Invisible;
+                                  AliceBlocks[_environment.Pass].State = BlockSetViewModel.VisualStateE.Invisible;
+                                  BobBlocks[_environment.Pass].State = BlockSetViewModel.VisualStateE.Invisible;
                               }),
                           TypeSwitch.Case<CalculateParitiesStep>(step =>
                               {
                                   foreach (
                                       var blockViewModel in
-                                          AliceBlocks[step.Pass].Blocks.Concat(BobBlocks[step.Pass].Blocks))
+                                          AliceBlocks[_environment.Pass].Blocks.Concat(BobBlocks[_environment.Pass].Blocks))
                                   {
                                       blockViewModel.State = BlockViewModel.VisualStateE.NothingVisible;
                                   }
@@ -192,45 +192,40 @@ namespace Cascade.ViewModel
                               }),
                           TypeSwitch.Case<FillBlocksWithRandomPermutationStep>(step =>
                               {
-                                  AliceBlocks[step.Pass].State = BlockSetViewModel.VisualStateE.Visible;
-                                  BobBlocks[step.Pass].State = BlockSetViewModel.VisualStateE.Visible;
+                                  AliceBlocks[_environment.Pass].State = BlockSetViewModel.VisualStateE.Visible;
+                                  BobBlocks[_environment.Pass].State = BlockSetViewModel.VisualStateE.Visible;
                               }),
                           TypeSwitch.Case<CalculateParitiesStep>(step =>
                               {
                                   foreach (
                                       var blockViewModel in
-                                          AliceBlocks[step.Pass].Blocks.Concat(BobBlocks[step.Pass].Blocks))
+                                          AliceBlocks[_environment.Pass].Blocks.Concat(BobBlocks[_environment.Pass].Blocks))
                                   {
                                       blockViewModel.State = BlockViewModel.VisualStateE.ParityVisible;
                                   }
                               }),
                           TypeSwitch.Case<CheckParitiesStep>(step =>
                               {
-                                  for (var i = 0; i < _environment.BlocksCount[step.Pass]; ++i)
+                                  for (var i = 0; i < _environment.BlocksCount[_environment.Pass]; ++i)
                                   {
-                                      if (AliceBlocks[step.Pass].Blocks[i].Parity ==
-                                          BobBlocks[step.Pass].Blocks[i].Parity)
+                                      if (AliceBlocks[_environment.Pass].Blocks[i].Parity ==
+                                          BobBlocks[_environment.Pass].Blocks[i].Parity)
                                       {
-                                          AliceBlocks[step.Pass].Blocks[i].State =
-                                              BobBlocks[step.Pass].Blocks[i].State =
+                                          AliceBlocks[_environment.Pass].Blocks[i].State =
+                                              BobBlocks[_environment.Pass].Blocks[i].State =
                                               BlockViewModel.VisualStateE.ParityMatched;
                                       }
                                       else
                                       {
-                                          AliceBlocks[step.Pass].Blocks[i].State =
-                                              BobBlocks[step.Pass].Blocks[i].State =
+                                          AliceBlocks[_environment.Pass].Blocks[i].State =
+                                              BobBlocks[_environment.Pass].Blocks[i].State =
                                               BlockViewModel.VisualStateE.ParityNotMatched;
                                       }
                                   }
                               }),
                           TypeSwitch.Case<SetOddErrorsBlocksStep>(step =>
                               {
-                                  foreach (var block in GetAllBlocks(BobBlocks))
-                                  {
-                                      block.State = _environment.OddErrorsCountBlocks.Contains(block.Model)
-                                                        ? BlockViewModel.VisualStateE.OddError
-                                                        : BlockViewModel.VisualStateE.Normal;
-                                  }
+                                  UpdateOddErrorsBlocks();
 
                                   foreach (var block in GetAllBlocks(AliceBlocks))
                                   {
@@ -319,12 +314,24 @@ namespace Cascade.ViewModel
 
                                           workingBlock.State = BlockViewModel.VisualStateE.ParityVisible;
                                           sampleBlock.State = BlockViewModel.VisualStateE.ParityVisible;
-                                      }));
+                                      }),
+                                      TypeSwitch.Case<BackTrackCorrectedErrorStep>(UpdateOddErrorsBlocks));
 
             StateManager.WaitAnimations();
             protocolStepFinishedEventArgs.Handle.Set();
             Thread.Sleep(1000);
             _runner.NextStep();
+        }
+
+        private void UpdateOddErrorsBlocks()
+        {
+            foreach (var block in GetAllBlocks(BobBlocks))
+            {
+                block.State = _environment.OddErrorsCountBlocks.Contains(block.Model)
+                                  ? BlockViewModel.VisualStateE.OddError
+                                  : BlockViewModel.VisualStateE.Normal;
+                block.UpdateParity();
+            }
         }
 
         private void ChangeVisualStateInBinaryProtocol(BlockViewModel workingBlock)

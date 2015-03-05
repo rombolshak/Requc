@@ -6,7 +6,7 @@ namespace Cascade.Model.ProtocolSteps
     {
         public OnePassStep(int pass)
         {
-            Pass = pass;
+            _pass = pass;
         }
 
         public string Description
@@ -14,16 +14,17 @@ namespace Cascade.Model.ProtocolSteps
             get { return ""; }
         }
 
-        public int Pass { get; private set; }
-
         public IEnumerable<IProtocolStep> Execute(CascadeProtocolRuntimeEnvironment environment)
         {
-            yield return new ShowCurrentPassStep(Pass);
-            yield return new FillBlocksWithRandomPermutationStep(Pass);
-            yield return new CalculateParitiesStep(Pass);
-            yield return new CheckParitiesStep(Pass);
+            environment.Pass = _pass;
+            yield return new ShowCurrentPassStep(_pass);
+            yield return new FillBlocksWithRandomPermutationStep();
+            yield return new CalculateParitiesStep();
+            yield return new CheckParitiesStep();
             yield return new SetOddErrorsBlocksStep();
             yield return new ProcessOddErrorsBlocksStep();
         }
+
+        private readonly int _pass;
     }
 }

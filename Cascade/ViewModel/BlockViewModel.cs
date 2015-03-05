@@ -31,6 +31,11 @@ namespace Cascade.ViewModel
             get { return ShowWorkingParity ? WorkingParity : _block.Parity; }
         }
 
+        public void UpdateParity()
+        {
+            NotifyPropertyChanged("Parity");
+        }
+
         public int Size
         {
             get { return _block.Size; }

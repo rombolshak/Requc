@@ -39,7 +39,7 @@ namespace Cascade.Model
             
             var stepStartedEventArgs = new ProtocolStepStartedEventArgs(step);
             handler(this, stepStartedEventArgs);
-            stepStartedEventArgs.Handle.WaitOne();
+            stepStartedEventArgs.Handle.WaitOne(2000);
         }
 
         protected virtual void OnStepFinished(IProtocolStep step)
@@ -49,7 +49,7 @@ namespace Cascade.Model
             
             var stepFinishedEventArgs = new ProtocolStepFinishedEventArgs(step);
             handler(this, stepFinishedEventArgs);
-            stepFinishedEventArgs.Handle.WaitOne();
+            stepFinishedEventArgs.Handle.WaitOne(2000);
         }
 
         private void DoWorkerTask(object sender, DoWorkEventArgs e)

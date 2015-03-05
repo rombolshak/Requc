@@ -38,6 +38,8 @@ namespace Cascade.Model
 
         public BinaryProtocolRuntimeEnvironment BinaryEnvironment { get; set; }
 
+        public int Pass { get; set; }
+
         private IEnumerable<KeyItem> CreateKey()
         {
             var list = new List<KeyItem>(KeyLength);

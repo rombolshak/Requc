@@ -4,13 +4,6 @@ namespace Cascade.Model.ProtocolSteps
 {
     public class CheckParitiesStep : IProtocolStep
     {
-        public int Pass { get; private set; }
-
-        public CheckParitiesStep(int pass)
-        {
-            Pass = pass;
-        }
-
         public IEnumerable<IProtocolStep> Execute(CascadeProtocolRuntimeEnvironment environment)
         {
             return null;

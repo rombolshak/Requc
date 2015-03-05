@@ -10,7 +10,7 @@
 
     <Color x:Key="NormalColor">White</Color>
     <Color x:Key="OddErrorSelectedColor">DarkOrchid</Color>
-    <Color x:Key="OddErrorNotSelectedColor">DodgerBlue</Color>
+    <Color x:Key="OddErrorNotSelectedColor">LightBlue</Color>
     <Color x:Key="OddErrorColor">MediumPurple</Color>
     <Color x:Key="ParityMatchColor">LimeGreen</Color>
     <Color x:Key="ParityNotMatchColor">Tomato</Color>

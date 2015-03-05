@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Cascade.Model.ProtocolSteps
 {
@@ -16,7 +17,7 @@ namespace Cascade.Model.ProtocolSteps
 
         private bool OddErrorsBlocksSetNotEmpty(CascadeProtocolRuntimeEnvironment environment)
         {
-            return environment.OddErrorsCountBlocks.Count != 0;
+            return environment.OddErrorsCountBlocks.Any();
         }
 
         public string Description { get { return "Просмотр блоков с нечетным количеством ошибок"; } }

@@ -4,13 +4,6 @@ namespace Cascade.Model.ProtocolSteps
 {
     public class CalculateParitiesStep : IProtocolStep
     {
-        public int Pass { get; set; }
-
-        public CalculateParitiesStep(int pass)
-        {
-            Pass = pass;
-        }
-
         public IEnumerable<IProtocolStep> Execute(CascadeProtocolRuntimeEnvironment environment)
         {
             Description = "Вычисление чётностей блоков";
