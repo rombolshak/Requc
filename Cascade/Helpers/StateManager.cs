@@ -79,7 +79,7 @@ namespace Cascade.Helpers
         {
             Thread.Sleep(500);
             WaitHandle.Signal();
-            WaitHandle.Wait(2000);
+            WaitHandle.Wait(1000);
             WaitHandle.Reset();
         }
 

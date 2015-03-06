@@ -255,6 +255,11 @@ namespace Cascade.ViewModel
                                   {
                                       item.State = KeyItemViewModel.VisualStateE.Error;
                                   }
+
+                                  foreach (var item in GetSampleBlock().Items)
+                                  {
+                                      item.State = KeyItemViewModel.VisualStateE.Corrected;
+                                  }
                               }),
                           TypeSwitch.Case<LookAtFirstHalfOfWorkingPositionsStep>(() =>
                               {
@@ -293,14 +298,17 @@ namespace Cascade.ViewModel
                               }),
                               TypeSwitch.Case<UpdateWorkingPositionsStep>(() =>
                                   {
+                                      var workingBlock = GetWorkingBlock();
+                                      var sampleBlock = GetSampleBlock();
                                       foreach (
                                           var item in
-                                              GetWorkingBlock()
-                                                  .Items.Take(_environment.BinaryEnvironment.StartPosition)
-                                                  .Concat(
-                                                      GetWorkingBlock()
-                                                          .Items.Skip(_environment.BinaryEnvironment.StartPosition +
-                                                                      _environment.BinaryEnvironment.PositionsCount)))
+                                              workingBlock.Items.Except(
+                                                  workingBlock.Items.Skip(_environment.BinaryEnvironment.StartPosition)
+                                                              .Take(_environment.BinaryEnvironment.PositionsCount))
+                                                          .Concat(
+                                                              sampleBlock.Items.Except(
+                                                                  sampleBlock.Items.Skip(_environment.BinaryEnvironment.StartPosition)
+                                                                             .Take(_environment.BinaryEnvironment.PositionsCount))))
                                       {
                                           item.State = KeyItemViewModel.VisualStateE.Normal;
                                       }
@@ -318,6 +326,7 @@ namespace Cascade.ViewModel
                                               sampleBlock.Items[correctedPosition].Value;
                                           workingBlock.Items[correctedPosition].State =
                                               KeyItemViewModel.VisualStateE.Corrected;
+                                          sampleBlock.Items[correctedPosition].State = KeyItemViewModel.VisualStateE.Normal;
                                           ErrorItems.Single(model => model.Position == workingBlock.Items[correctedPosition].Position).State =
                                               KeyItemViewModel.VisualStateE.Corrected;
 
@@ -350,7 +359,6 @@ namespace Cascade.ViewModel
 
             StateManager.WaitAnimations();
             protocolStepFinishedEventArgs.Handle.Set();
-            Thread.Sleep(1000);
             _runner.NextStep();
         }
 
