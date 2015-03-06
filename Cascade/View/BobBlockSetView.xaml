@@ -19,7 +19,7 @@
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroup>
             <VisualStateGroup.Transitions>
-                <VisualTransition GeneratedDuration="0:0:1" />
+                <VisualTransition GeneratedDuration="0:0:1" GeneratedEasingFunction="{StaticResource GeneratedEasingFunction}" />
             </VisualStateGroup.Transitions>
 
             <VisualState x:Name="Collapsed">

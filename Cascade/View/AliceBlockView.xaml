@@ -13,10 +13,12 @@
     <UserControl.Resources>
         <ThicknessAnimation x:Key="MarginAnimation"
                             Duration="0:0:1"
+                            EasingFunction="{StaticResource GeneratedEasingFunction}"
                             Storyboard.TargetName="Parity"
                             Storyboard.TargetProperty="(Control.Margin)" />
         <DoubleAnimation x:Key="HeightAnimation"
                          Duration="0:0:1"
+                         EasingFunction="{StaticResource GeneratedEasingFunction}"
                          Storyboard.TargetName="Parity"
                          Storyboard.TargetProperty="(Control.Height)" />
         <Storyboard x:Key="BinaryStoryboard">
@@ -27,7 +29,7 @@
     <VisualStateManager.VisualStateGroups>
         <VisualStateGroup x:Name="VisibilityStates">
             <VisualStateGroup.Transitions>
-                <VisualTransition GeneratedDuration="0:0:1" />
+                <VisualTransition GeneratedDuration="0:0:1" GeneratedEasingFunction="{StaticResource GeneratedEasingFunction}" />
             </VisualStateGroup.Transitions>
 
             <VisualState x:Name="PositionsVisible">
@@ -63,7 +65,7 @@
         </VisualStateGroup>
         <VisualStateGroup x:Name="ParityStates">
             <VisualStateGroup.Transitions>
-                <VisualTransition GeneratedDuration="0:0:1" />
+                <VisualTransition GeneratedDuration="0:0:1" GeneratedEasingFunction="{StaticResource GeneratedEasingFunction}" />
             </VisualStateGroup.Transitions>
 
             <VisualState x:Name="ParityMatched">
@@ -91,7 +93,7 @@
 
         <VisualStateGroup x:Name="ParityTextVisibility">
             <VisualStateGroup.Transitions>
-                <VisualTransition GeneratedDuration="0:0:1" />
+                <VisualTransition GeneratedDuration="0:0:1" GeneratedEasingFunction="{StaticResource GeneratedEasingFunction}" />
             </VisualStateGroup.Transitions>
 
             <VisualState x:Name="ParityTextVisible">
