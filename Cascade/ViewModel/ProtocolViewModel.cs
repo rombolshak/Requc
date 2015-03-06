@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using Cascade.Helpers;
 using Cascade.Model;
 using Cascade.Model.ProtocolSteps;
@@ -26,6 +22,10 @@ namespace Cascade.ViewModel
 
             AliceKey = environment.AliceKey.Select(item => new KeyItemViewModel(item)).ToList();
             BobKey = environment.BobKey.Select(item => new KeyItemViewModel(item)).ToList();
+            ErrorItems =
+                environment.BobKey.Where((model, i) => environment.AliceKey[i].Value != model.Value)
+                           .Select(model => new KeyItemViewModel(model))
+                           .ToList();
 
             const int numberOfPasses = 4;
             AliceBlocks = new BlockSetViewModel[numberOfPasses];
@@ -92,6 +92,17 @@ namespace Cascade.ViewModel
             }
         }
 
+        public IList<KeyItemViewModel> ErrorItems
+        {
+            get { return _errorItems; }
+            set
+            {
+                if (Equals(value, _errorItems)) return;
+                _errorItems = value;
+                NotifyPropertyChanged();
+            }
+        }
+
         public BlockSetViewModel[] AliceBlocks
         {
             get { return _aliceBlocks; }
@@ -115,10 +126,6 @@ namespace Cascade.ViewModel
         public RelayCommand NextStepCommand { get; private set; }
 
         public RelayCommand StartProcessCommand { get; private set; }
-
-        public event EventHandler<ProtocolStepStartedEventArgs> StepStarted;
-
-        public event EventHandler<ProtocolStepFinishedEventArgs> StepFinished;
 
         private void RunnerOnStepStarted(object sender, ProtocolStepStartedEventArgs protocolStepStartedEventArgs)
         {
@@ -181,6 +188,11 @@ namespace Cascade.ViewModel
                                   foreach (var viewModel in BobKey.Where(model => model.ErrorHere))
                                   {
                                       viewModel.State = KeyItemViewModel.VisualStateE.Error;
+                                  }
+
+                                  foreach (var viewModel in ErrorItems)
+                                  {
+                                      viewModel.State = KeyItemViewModel.VisualStateE.Normal;
                                   }
                               }),
                           TypeSwitch.Case<HideInitialErrorsStep>(() =>
@@ -301,8 +313,13 @@ namespace Cascade.ViewModel
                                           var workingBlock = GetWorkingBlock();
                                           var sampleBlock = GetSampleBlock();
 
-                                          workingBlock.Items[_environment.BinaryEnvironment.StartPosition].Value = sampleBlock.Items[_environment.BinaryEnvironment.StartPosition].Value;
-                                          workingBlock.Items[_environment.BinaryEnvironment.StartPosition].State = KeyItemViewModel.VisualStateE.Corrected;
+                                          var correctedPosition = _environment.BinaryEnvironment.StartPosition;
+                                          workingBlock.Items[correctedPosition].Value =
+                                              sampleBlock.Items[correctedPosition].Value;
+                                          workingBlock.Items[correctedPosition].State =
+                                              KeyItemViewModel.VisualStateE.Corrected;
+                                          ErrorItems.Single(model => model.Position == workingBlock.Items[correctedPosition].Position).State =
+                                              KeyItemViewModel.VisualStateE.Corrected;
 
                                           _environment.BinaryEnvironment.StartPosition = 0;
                                           _environment.BinaryEnvironment.PositionsCount = workingBlock.Size * 2;
@@ -315,7 +332,21 @@ namespace Cascade.ViewModel
                                           workingBlock.State = BlockViewModel.VisualStateE.ParityVisible;
                                           sampleBlock.State = BlockViewModel.VisualStateE.ParityVisible;
                                       }),
-                                      TypeSwitch.Case<BackTrackCorrectedErrorStep>(UpdateOddErrorsBlocks));
+                                      TypeSwitch.Case<BackTrackCorrectedErrorStep>(UpdateOddErrorsBlocks),
+                                      TypeSwitch.Case<OnePassStep>(() =>
+                                          {
+                                              foreach (var block in BobKey.Where(item => item.State == KeyItemViewModel.VisualStateE.Corrected))
+                                              {
+                                                  block.State = KeyItemViewModel.VisualStateE.Normal;
+                                              }
+                                          }),
+                                      TypeSwitch.Case<WholeProtocolStep>(() =>
+                                          {
+                                              foreach (var blockSet in AliceBlocks.Concat(BobBlocks))
+                                              {
+                                                  blockSet.State = BlockSetViewModel.VisualStateE.Collapsed;
+                                              }
+                                          }));
 
             StateManager.WaitAnimations();
             protocolStepFinishedEventArgs.Handle.Set();
@@ -358,18 +389,6 @@ namespace Cascade.ViewModel
             return Enumerable.Range(0, 4).SelectMany(i => blocks[i].Blocks);
         }
 
-        protected virtual void OnStepStarted(ProtocolStepStartedEventArgs e)
-        {
-            var handler = StepStarted;
-            if (handler != null) handler(this, e);
-        }
-
-        protected virtual void OnStepFinished(ProtocolStepFinishedEventArgs e)
-        {
-            var handler = StepFinished;
-            if (handler != null) handler(this, e);
-        }
-
         private readonly ProtocolRunner _runner;
         private readonly CascadeProtocolRuntimeEnvironment _environment;
         private string _currentStepDescription;
@@ -378,5 +397,6 @@ namespace Cascade.ViewModel
         private BlockSetViewModel[] _aliceBlocks;
         private BlockSetViewModel[] _bobBlocks;
         private string _currentStepDescriptionVisualState;
+        private IList<KeyItemViewModel> _errorItems;
     }
 }

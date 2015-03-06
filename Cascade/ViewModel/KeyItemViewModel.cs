@@ -42,11 +42,6 @@ namespace Cascade.ViewModel
             }
         }
 
-        public void UpdateProperties()
-        {
-            NotifyPropertyChanged();
-        }
-
         public VisualStateE State   
         {
             get { return _state; }

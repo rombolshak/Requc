@@ -107,6 +107,9 @@
     <Compile Include="View\BobView.xaml.cs">
       <DependentUpon>BobView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ErrorItemView.xaml.cs">
+      <DependentUpon>ErrorItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GridLengthAnimation.cs" />
     <Compile Include="View\KeyItemView.xaml.cs">
       <DependentUpon>KeyItemView.xaml</DependentUpon>
@@ -175,6 +178,10 @@
     <Page Include="View\BobView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ErrorItemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\KeyItemView.xaml">
       <SubType>Designer</SubType>

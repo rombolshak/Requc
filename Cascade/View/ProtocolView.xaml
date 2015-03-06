@@ -40,6 +40,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <TextBlock x:Name="CurrentStepDescriptionText"
@@ -49,7 +50,7 @@
                    VerticalAlignment="Top"
                    Opacity="1"
                    Text="{Binding CurrentStepDescription}" />
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" HorizontalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
@@ -68,5 +69,20 @@
             </Canvas>
             <view:BobView Grid.Column="2" />
         </Grid>
+
+        <ItemsControl Grid.Row="2"
+                      HorizontalAlignment="Center"
+                      ItemsSource="{Binding ErrorItems}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Margin="10" Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type viewModel:KeyItemViewModel}">
+                    <view:ErrorItemView />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>
