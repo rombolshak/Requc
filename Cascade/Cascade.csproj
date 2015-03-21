@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{2A079C45-0635-4BAD-9A3D-FBEED23C8AB1}</ProjectGuid>
@@ -14,7 +14,8 @@
     <FileAlignment>512</FileAlignment>
     <ExpressionBlendVersion>5.0.40218.0</ExpressionBlendVersion>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,13 +24,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>elements_cascade.ico</ApplicationIcon>
@@ -74,6 +76,7 @@
     <Compile Include="Helpers\TypeSwitch.cs" />
     <Compile Include="Model\BinaryProtocolRuntimeEnvironment.cs" />
     <Compile Include="Model\Extensions.cs" />
+    <Compile Include="Model\FileLogger.cs" />
     <Compile Include="Model\KeyItem.cs" />
     <Compile Include="Model\ProtocolBlock.cs" />
     <Compile Include="Model\ProtocolSteps\CalculateParitiesStep.cs" />
@@ -128,21 +131,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Content\About.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Compile Include="Content\About.xaml.cs">
-      <DependentUpon>About.xaml</DependentUpon>
-    </Compile>
-    <Page Include="Content\SettingsAppearance.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Compile Include="Content\SettingsAppearance.xaml.cs">
-      <DependentUpon>SettingsAppearance.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Content\SettingsAppearanceViewModel.cs" />
     <Compile Include="Model\IProtocolStep.cs" />
     <Compile Include="Model\ProtocolRunner.cs" />
     <Compile Include="Model\CascadeProtocolRuntimeEnvironment.cs" />

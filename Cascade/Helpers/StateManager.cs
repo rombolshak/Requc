@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -35,20 +34,12 @@ namespace Cascade.Helpers
                         ChangeState(ctrl, (string) e.NewValue, OnAnimationCompleted);
                     }));
 
-        public static bool ChangeState(FrameworkElement ctrl, string state, Action onCompleted)
+        private static void ChangeState(FrameworkElement ctrl, string state, Action onCompleted)
         {
             AddAnimation();
             SubscribeToStateCompletion(ctrl, state, onCompleted);
-            if (!GoToState(ctrl, state, true))
-            {
-                if (!GoToElementState(ctrl, state, true))
-                {
-                    Debug.WriteLine("Unable to Tranistion to State " + state);
-                    return false;
-                }
-            }
-
-            return true;
+            if (GoToState(ctrl, state, true)) return;
+            GoToElementState(ctrl, state, true);
         }
 
         public static void OnAnimationCompleted()
@@ -95,7 +86,7 @@ namespace Cascade.Helpers
             onCompletedObservable.Take(1).Subscribe(_ => onCompleted());
         }
 
-        public static VisualState TryGetState(string stateName, FrameworkElement ctrl)
+        private static VisualState TryGetState(string stateName, FrameworkElement ctrl)
         {
             var groups = GetVisualStateGroups(ctrl);
             if (groups.Count == 0)

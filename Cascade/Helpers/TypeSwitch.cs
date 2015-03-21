@@ -24,7 +24,7 @@ namespace Cascade.Helpers
 
         public static CaseInfo Case<T>(Action action)
         {
-            return new CaseInfo()
+            return new CaseInfo
                 {
                     Action = x => action(),
                     Target = typeof (T)
@@ -33,7 +33,7 @@ namespace Cascade.Helpers
 
         public static CaseInfo Case<T>(Action<T> action)
         {
-            return new CaseInfo()
+            return new CaseInfo
                 {
                     Action = (x) => action((T) x),
                     Target = typeof (T)
@@ -42,7 +42,7 @@ namespace Cascade.Helpers
 
         public static CaseInfo Default(Action action)
         {
-            return new CaseInfo()
+            return new CaseInfo
                 {
                     Action = x => action(),
                     IsDefault = true
