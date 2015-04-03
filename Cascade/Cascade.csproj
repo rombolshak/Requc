@@ -72,6 +72,7 @@
     <Compile Include="Converters\BlockSizeToHeightConverter.cs" />
     <Compile Include="Converters\StartPositionToThicknessConverter.cs" />
     <Compile Include="Converters\WorkingSizeToHeightConverter.cs" />
+    <Compile Include="Helpers\ScreenCapture.cs" />
     <Compile Include="Helpers\StateManager.cs" />
     <Compile Include="Helpers\TypeSwitch.cs" />
     <Compile Include="Model\BinaryProtocolRuntimeEnvironment.cs" />
@@ -188,6 +189,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -1,4 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using Cascade.Helpers;
@@ -16,6 +20,8 @@ namespace Cascade.ViewModel
             _environment = environment;
             NextStepCommand = new RelayCommand(_ => _runner.NextStep());
             StartProcessCommand = new RelayCommand(_ => { _runner.Start(); _runner.NextStep(); });
+
+            _screenCapture = new ScreenCapture();
 
             _runner.StepStarted += RunnerOnStepStarted;
             _runner.StepFinished += RunnerOnStepFinished;
@@ -174,6 +180,11 @@ namespace Cascade.ViewModel
 
             StateManager.WaitAnimations();
             protocolStepStartedEventArgs.Handle.Set();
+
+            _screenCapture.CaptureWindowToFile(
+                Process.GetCurrentProcess().MainWindowHandle,
+                Path.Combine(Environment.CurrentDirectory, "images",
+                             DateTime.Now.ToString("hhmmss_") + protocolStepStartedEventArgs.Step + "_started.png"), ImageFormat.Png);
             // OnStepStarted(protocolStepStartedEventArgs);
         }
 
@@ -359,6 +370,11 @@ namespace Cascade.ViewModel
 
             StateManager.WaitAnimations();
             protocolStepFinishedEventArgs.Handle.Set();
+            
+            _screenCapture.CaptureWindowToFile(
+                Process.GetCurrentProcess().MainWindowHandle,
+               Path.Combine(Environment.CurrentDirectory, "images",
+                            DateTime.Now.ToString("hhmmss_") + protocolStepFinishedEventArgs.Step + "_finished.png"), ImageFormat.Png);
             _runner.NextStep();
         }
 
@@ -406,5 +422,6 @@ namespace Cascade.ViewModel
         private BlockSetViewModel[] _bobBlocks;
         private string _currentStepDescriptionVisualState;
         private IList<KeyItemViewModel> _errorItems;
+        private readonly ScreenCapture _screenCapture;
     }
 }
