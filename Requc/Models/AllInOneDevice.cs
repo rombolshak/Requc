@@ -38,13 +38,9 @@ namespace Requc.Models
                                           ? result
                                           : args.ModelingMode == ModelingMode.EvaUndefinedResult
                                                 ? MeasurementResult.Inconclusive
-                                                : args.ModelingMode == ModelingMode.EvaDefinedResultNoClick
-                                                      ? args.Item.BobValue
-                                                            ? MeasurementResult.Phase1
-                                                            : MeasurementResult.Phase0
-                                                      : args.Item.BobValue
-                                                            ? MeasurementResult.Phase0
-                                                            : MeasurementResult.Phase1;
+                                                : args.Item.BobValue
+                                                      ? MeasurementResult.Phase0
+                                                      : MeasurementResult.Phase1;
                 switch (args.Item.EvaResult)
                 {
                     case MeasurementResult.Phase0:
@@ -65,7 +61,7 @@ namespace Requc.Models
             Devices.BeamSplit(stateTop, stateBottom);
             args.Item.AliceValue = args.ModelingMode == ModelingMode.Random
                                        ? RandomHelper.RandomBool()
-                                       : args.ModelingMode == ModelingMode.NoEvaWithClick
+                                       : (args.ModelingMode == ModelingMode.NoEvaWithClick || args.ModelingMode == ModelingMode.EvaDefinedResultDetected)
                                              ? !args.Item.BobValue
                                              : args.Item.BobValue;
             Devices.PhaseShift(stateBottom, 0, args.Item.AlicePhase);
