@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Requc.Helpers.NotificationObject" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAAAAAAAAAAAgABAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\NotificationObject.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Requc.Models.AllInOneDevice" Collapsed="true">
+    <Position X="10.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAACAAAAAAAA=</HashCode>
+      <FileName>Models\AllInOneDevice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Requc.Models.Devices">
+    <Position X="8.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAEAAAACAAAAAAAAIAAAFAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Devices.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Requc.Models.ProtocolDevice" Collapsed="true">
+    <Position X="10.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAABAAAAEgAAAAAgEAGCCAAQAAAQA=</HashCode>
+      <FileName>Models\ProtocolDevice.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Requc.Models.ProtocolParams" Collapsed="true">
+    <Position X="8.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABAAAAQAAAAAAAAAAAAAAABAA=</HashCode>
+      <FileName>Models\ProtocolParams.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Requc.Models.QuantumState" Collapsed="true">
+    <Position X="10.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Models\QuantumState.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Requc.Models.SimpleProtocolAct" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAIAICAAAAAAAgQAAAAAAAIAAAAFAAAAAAAAAAA=</HashCode>
+      <FileName>Models\SimpleProtocolAct.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_transmissionItem" />
+      <Property Name="AllInOneDevice" />
+      <Property Name="Params" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Requc.Models.TransmissionItem">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CAgAAAAAAEAAAIAHEkdoAgACAAICAgAIAQAAAAAjBAA=</HashCode>
+      <FileName>Models\TransmissionItem.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="QuantumState" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Requc.ViewModels.BaseViewModel" Collapsed="true">
+    <Position X="3.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\BaseViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Requc.ViewModels.MainWindowViewModel" Collapsed="true">
+    <Position X="3" Y="2.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\MainWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SimpleProtocol" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Requc.ViewModels.SimpleProtocolViewModel" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="4.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAACAAAAAAAAAAAAAiAAEAAAAAICQAAAAAAAA=</HashCode>
+      <FileName>ViewModels\SimpleProtocolViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ProtocolAct" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="TransmissionItems" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Requc.Views.AllInOneTransmissionItemsView" Collapsed="true">
+    <Position X="5.75" Y="10.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\AllInOneTransmissionItemsView.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Requc.Views.AllInOneTransmissionItemView" Collapsed="true">
+    <Position X="5.75" Y="11.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\AllInOneTransmissionItemView.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Requc.Views.ProtocolActView" Collapsed="true">
+    <Position X="4" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ProtocolActView.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Requc.Views.ProtocolTimeView" Collapsed="true">
+    <Position X="2.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ProtocolTimeView.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Requc.Views.SimpleProtocolView" Collapsed="true">
+    <Position X="2.25" Y="9.5" Width="6" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\SimpleProtocolView.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Requc.Views.Devices.AllInOne" Collapsed="true">
+    <Position X="4" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAEAAgAACAAAAAAAAAA=</HashCode>
+      <FileName>Views\Devices\AllInOne.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
