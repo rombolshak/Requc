@@ -1,12 +1,24 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Runtime.InteropServices;
 
 namespace Cascade.Helpers
 {
     public class ScreenCapture
     {
+        private readonly string _path;
+
+        public ScreenCapture(string path)
+        {
+            _path = Path.Combine(Environment.CurrentDirectory, path);
+            if (!Directory.Exists(_path))
+            {
+                Directory.CreateDirectory(_path);
+            }
+        }
+
         /// <summary>
         /// Creates an Image object containing a screen shot of the entire desktop
         /// </summary>
@@ -58,7 +70,7 @@ namespace Cascade.Helpers
         public void CaptureWindowToFile(IntPtr handle, string filename, ImageFormat format)
         {
             var img = CaptureWindow(handle);
-            img.Save(filename, format);
+            img.Save(GetFullFileName(filename), format);
         }
         /// <summary>
         /// Captures a screen shot of the entire desktop, and saves it to a file
@@ -68,9 +80,13 @@ namespace Cascade.Helpers
         public void CaptureScreenToFile(string filename, ImageFormat format)
         {
             var img = CaptureScreen();
-            img.Save(filename, format);
+            img.Save(GetFullFileName(filename), format);
         }
 
+        private string GetFullFileName(string filename)
+        {
+            return Path.Combine(_path, filename);
+        }
         /// <summary>
         /// Helper class containing Gdi32 API functions
         /// </summary>

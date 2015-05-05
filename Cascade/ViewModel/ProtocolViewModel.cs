@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing.Imaging;
-using System.IO;
 using System.Linq;
-using System.Threading;
 using Cascade.Helpers;
 using Cascade.Model;
 using Cascade.Model.ProtocolSteps;
@@ -21,7 +19,7 @@ namespace Cascade.ViewModel
             NextStepCommand = new RelayCommand(_ => _runner.NextStep());
             StartProcessCommand = new RelayCommand(_ => { _runner.Start(); _runner.NextStep(); });
 
-            _screenCapture = new ScreenCapture();
+            _screenCapture = new ScreenCapture("images");
 
             _runner.StepStarted += RunnerOnStepStarted;
             _runner.StepFinished += RunnerOnStepFinished;
@@ -181,10 +179,9 @@ namespace Cascade.ViewModel
             StateManager.WaitAnimations();
             protocolStepStartedEventArgs.Handle.Set();
 
-            _screenCapture.CaptureWindowToFile(
-                Process.GetCurrentProcess().MainWindowHandle,
-                Path.Combine(Environment.CurrentDirectory, "images",
-                             DateTime.Now.ToString("hhmmss_") + protocolStepStartedEventArgs.Step + "_started.png"), ImageFormat.Png);
+            _screenCapture.CaptureWindowToFile(Process.GetCurrentProcess().MainWindowHandle,
+                                               DateTime.Now.ToString("hhmmss_") + protocolStepStartedEventArgs.Step + "_started.png",
+                                               ImageFormat.Png);
             // OnStepStarted(protocolStepStartedEventArgs);
         }
 
@@ -370,11 +367,10 @@ namespace Cascade.ViewModel
 
             StateManager.WaitAnimations();
             protocolStepFinishedEventArgs.Handle.Set();
-            
+
             _screenCapture.CaptureWindowToFile(
                 Process.GetCurrentProcess().MainWindowHandle,
-               Path.Combine(Environment.CurrentDirectory, "images",
-                            DateTime.Now.ToString("hhmmss_") + protocolStepFinishedEventArgs.Step + "_finished.png"), ImageFormat.Png);
+                DateTime.Now.ToString("hhmmss_") + protocolStepFinishedEventArgs.Step + "_finished.png", ImageFormat.Png);
             _runner.NextStep();
         }
 
