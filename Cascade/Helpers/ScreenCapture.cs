@@ -12,7 +12,7 @@ namespace Cascade.Helpers
 
         public ScreenCapture(string path)
         {
-            _path = Path.Combine(Environment.CurrentDirectory, path);
+            _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Cascade", path);
             if (!Directory.Exists(_path))
             {
                 Directory.CreateDirectory(_path);

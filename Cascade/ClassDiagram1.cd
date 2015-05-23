@@ -247,13 +247,6 @@
   </Class>
   <Class Name="Cascade.ViewModel.BlockSetViewModel" Collapsed="true">
     <Position X="10" Y="3.75" Width="1.75" />
-    <NestedTypes>
-      <Enum Name="Cascade.ViewModel.BlockSetViewModel.VisualStateE" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>ViewModel\BlockSetViewModel.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAEAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>ViewModel\BlockSetViewModel.cs</FileName>
@@ -264,13 +257,6 @@
   </Class>
   <Class Name="Cascade.ViewModel.BlockViewModel" Collapsed="true">
     <Position X="12.75" Y="3.75" Width="1.5" />
-    <NestedTypes>
-      <Enum Name="Cascade.ViewModel.BlockViewModel.VisualStateE" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>ViewModel\BlockViewModel.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
     <TypeIdentifier>
       <HashCode>EEKQAAAAEAAAiIAAAAAACAAAAAIIAAwQAAgABAAQAAA=</HashCode>
       <FileName>ViewModel\BlockViewModel.cs</FileName>
@@ -287,13 +273,6 @@
     <Compartments>
       <Compartment Name="Private" Collapsed="true" />
     </Compartments>
-    <NestedTypes>
-      <Enum Name="Cascade.ViewModel.KeyItemViewModel.VisualStateE" Collapsed="true">
-        <TypeIdentifier>
-          <NewMemberFileName>ViewModel\KeyItemViewModel.cs</NewMemberFileName>
-        </TypeIdentifier>
-      </Enum>
-    </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAgAAAACAAAABAAAAAAAAAgBAgAAAA=</HashCode>
       <FileName>ViewModel\KeyItemViewModel.cs</FileName>
@@ -307,6 +286,11 @@
     <AssociationLine Name="AliceKey" Type="Cascade.ViewModel.KeyItemViewModel">
       <MemberNameLabel ManuallyPlaced="true">
         <Position X="0.164" Y="-0.232" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="BobKey" Type="Cascade.ViewModel.KeyItemViewModel">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.179" Y="0.036" />
       </MemberNameLabel>
     </AssociationLine>
     <AssociationLine Name="AliceBlocks" Type="Cascade.ViewModel.BlockSetViewModel" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
@@ -326,11 +310,6 @@
         <Point X="10" Y="3.94" />
       </Path>
     </AssociationLine>
-    <AssociationLine Name="BobKey" Type="Cascade.ViewModel.KeyItemViewModel">
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.179" Y="0.036" />
-      </MemberNameLabel>
-    </AssociationLine>
     <AssociationLine Name="_environment" Type="Cascade.Model.CascadeProtocolRuntimeEnvironment" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="8.25" Y="2.125" />
@@ -344,14 +323,14 @@
       <FileName>ViewModel\ProtocolViewModel.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="_environment" />
       <Field Name="_runner" />
+      <Field Name="_environment" />
     </ShowAsAssociation>
     <ShowAsCollectionAssociation>
       <Property Name="AliceKey" />
+      <Property Name="BobKey" />
       <Property Name="AliceBlocks" />
       <Property Name="BobBlocks" />
-      <Property Name="BobKey" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Cascade.ViewModel.ViewModelBase" Collapsed="true">
